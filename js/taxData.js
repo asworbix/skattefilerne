@@ -8,23 +8,27 @@ const TAX_RATES = {
     amBidrag: 0.08,
 
     // Personfradrag (personal tax allowance) - 2025
-    personfradrag: 49700,
+    personfradrag: 51600,
 
-    // Bundskat (bottom bracket state tax)
-    bundskat: 0.1209,
+    // Bundskat (bottom bracket state tax) - 2025
+    bundskat: 0.1201,
 
     // Topskat (top bracket tax)
     topskatRate: 0.15,
-    topskatThreshold: 588900, // Income threshold after AM-bidrag
+    topskatThreshold: 611800, // Income threshold after AM-bidrag
 
     // Kommuneskat (municipal tax) - national weighted average 2025
-    kommuneskat: 0.25067,
+    kommuneskat: 0.2507,
 
     // Kirkeskat (church tax) - national average 2025
-    kirkeskat: 0.0088,
+    kirkeskat: 0.0087,
 
     // Skatteloft (tax ceiling) - the max combined tax rate
-    skatteloft: 0.5240, // 52.07% ordinary + marginal ceiling
+    skatteloft: 0.5207,
+
+    // Beskæftigelsesfradrag (employment deduction) - 2025
+    beskaeftigelsesfradragRate: 0.1230,
+    beskaeftigelsesfradragMax: 55600,
 };
 
 /**
@@ -51,7 +55,7 @@ const BUDGET_BREAKDOWN = [
         icon: "🤝",
         name: "Social beskyttelse & overførsler",
         nameEn: "Social Protection",
-        percent: 25.4,
+        percent: 25.2,
         color: "#f97316",
         description: "Folkepension, førtidspension, kontanthjælp, dagpenge, sygedagpenge, boligstøtte og børnefamilieydelse.",
         details: "Den største post. Inkluderer alle overførselsindkomster som sikrer borgere i sårbare situationer — arbejdsløshed, sygdom, alderdom."
@@ -61,7 +65,7 @@ const BUDGET_BREAKDOWN = [
         icon: "🎓",
         name: "Uddannelse",
         nameEn: "Education",
-        percent: 12.6,
+        percent: 12.4,
         color: "#3b82f6",
         description: "Folkeskoler, gymnasier, erhvervsuddannelser, universiteter, SU (Statens Uddannelsesstøtte) og voksenuddannelse.",
         details: "Gratis uddannelse fra folkeskole til universitet. Ca. 330.000 studerende modtager SU. Danmark har en af verdens højeste uddannelsesrater."
@@ -111,7 +115,7 @@ const BUDGET_BREAKDOWN = [
         icon: "⚖️",
         name: "Politi & retsvæsen",
         nameEn: "Police & Justice",
-        percent: 3.4,
+        percent: 2.0,
         color: "#8b5cf6",
         description: "Politi, domstole, kriminalforsorg, anklagemyndighed og retssikkerhed.",
         details: "Ca. 11.000 politibetjente og 36 politikredse. Domstolene behandler over 700.000 sager årligt."
@@ -121,7 +125,7 @@ const BUDGET_BREAKDOWN = [
         icon: "🌿",
         name: "Miljø & klima",
         nameEn: "Environment & Climate",
-        percent: 3.2,
+        percent: 4.8,
         color: "#22c55e",
         description: "Grøn omstilling, klimaindsats, naturbeskyttelse, vandmiljø, affaldshåndtering og bæredygtig energi.",
         details: "Danmark er verdensførende i vindenergi. Målet er 70% CO₂-reduktion i 2030. Massive investeringer i grøn energi."
@@ -161,7 +165,7 @@ const BUDGET_BREAKDOWN = [
         icon: "🏛️",
         name: "Offentlig administration",
         nameEn: "Public Administration",
-        percent: 6.2,
+        percent: 6.4,
         color: "#78716c",
         description: "Statsadministration, kommunal administration, digitalisering, Folketinget og offentlige IT-systemer.",
         details: "Inkluderer Borger.dk, NemID/MitID, digital post og den administrative maskine der holder samfundet kørende."
@@ -205,9 +209,9 @@ const IMPACT_EXAMPLES = [
     {
         icon: "🎓",
         threshold: 0,
-        titleFn: (tax) => `${formatDKK(tax * 0.126)} til uddannelse`,
+        titleFn: (tax) => `${formatDKK(tax * 0.124)} til uddannelse`,
         descFn: (tax) => {
-            const months = Math.max(1, Math.round((tax * 0.126) / 8500));
+            const months = Math.max(1, Math.round((tax * 0.124) / 8500));
             return `Dit uddannelsesbidrag svarer til ca. ${months} måneders folkeskoleundervisning for ét barn. Du finansierer gratis uddannelse for alle — fra 1. klasse til ph.d.`;
         }
     },
