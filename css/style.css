@@ -2430,3 +2430,248 @@ footer a:hover {
     color: var(--text-muted);
     line-height: 1.5;
 }
+
+/* === Consultant Section === */
+
+.consultant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.consultant-card {
+    padding: 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 4px solid var(--border);
+}
+
+.consultant-flagged {
+    border-left-color: var(--accent);
+}
+
+.consultant-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.consultant-rank {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--accent-light);
+    min-width: 35px;
+}
+
+.consultant-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.consultant-amount {
+    font-size: 0.85rem;
+    color: var(--orange);
+    font-weight: 600;
+}
+
+.consultant-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+}
+
+.consultant-controversy {
+    font-size: 0.85rem;
+    color: var(--accent-light);
+    line-height: 1.5;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    background: rgba(200, 16, 46, 0.06);
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+/* Scandal-consultant cards */
+.scandal-consultant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.scandal-consultant-card {
+    padding: 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent);
+}
+
+.scandal-consultant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.scandal-consultant-header h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.scandal-cost {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    padding: 0.2rem 0.6rem;
+    background: rgba(200, 16, 46, 0.1);
+    border-radius: 4px;
+}
+
+.scandal-details p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+}
+
+.scandal-details strong {
+    color: var(--text);
+}
+
+.scandal-what-happened {
+    padding: 0.75rem;
+    background: rgba(200, 16, 46, 0.04);
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+/* Management consultants */
+.mgmt-consultant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mgmt-consultant-row {
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.mgmt-consultant-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.mgmt-consultant-info strong {
+    font-size: 0.9rem;
+}
+
+.mgmt-consultant-info span {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.mgmt-consultant-rate {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--orange);
+}
+
+.mgmt-consultant-controversy {
+    width: 100%;
+    font-size: 0.82rem;
+    color: var(--accent-light);
+    line-height: 1.5;
+    margin-top: 0.25rem;
+}
+
+/* === CTA Section === */
+
+.cta-card {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(200, 16, 46, 0.06) 0%, var(--bg-card) 100%);
+}
+
+.cta-card h2 {
+    font-size: 1.5rem;
+    color: var(--text);
+}
+
+.cta-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cta-item {
+    padding: 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.cta-item h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.cta-item p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.cta-orbix {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.cta-orbix h3 {
+    color: var(--blue);
+}
+
+.cta-orbix a:not(.orbix-link) {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cta-orbix a:not(.orbix-link):hover {
+    text-decoration: underline;
+}
+
+.cta-orbix .orbix-link {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.cta-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.cta-final {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.7;
+}

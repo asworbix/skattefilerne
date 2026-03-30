@@ -254,7 +254,7 @@ const MODERN_SOLUTIONS = [
             "Process mining identificerer automatisk flaskehalse og undtagelser i eksisterende systemer.",
             "Kravdokumentation genereres automatisk fra analyse, ikke fra konsulenter der gætter.",
         ],
-        orbixAngle: "Orbix bruger AI til at forstå komplekse systemer og generere præcis kravspecifikation baseret på data, ikke gætværk."
+        orbixAngle: "Orbix Core bruger AI til at forstå komplekse systemer og generere præcis kravspecifikation baseret på data, ikke gætværk."
     },
     {
         id: "incremental",
@@ -269,7 +269,7 @@ const MODERN_SOLUTIONS = [
             "AI-drevet monitoring: overvåger automatisk patientsikkerhed, brugerklager og systemfejl i realtid.",
             "Automatisk rollback: hvis AI opdager kritiske problemer, ruller systemet automatisk tilbage.",
         ],
-        orbixAngle: "Orbix bygger software i korte sprints med løbende AI-kvalitetskontrol. Problemer fanges i dage, ikke år."
+        orbixAngle: "Orbix Core bygger software i korte sprints med løbende AI-kvalitetskontrol. Problemer fanges i dage, ikke år."
     },
     {
         id: "ai-testing",
@@ -284,7 +284,7 @@ const MODERN_SOLUTIONS = [
             "Regressionstesting: AI sikrer at nye funktioner ikke ødelægger eksisterende.",
             "Performance-test: AI simulerer belastning fra 40.000 brugere (som Sundhedsplatformen) før go-live.",
         ],
-        orbixAngle: "Orbix integrerer AI-testing i hele udviklingsprocessen, ikke bare som en eftertanke ved go-live."
+        orbixAngle: "Orbix Core integrerer AI-testing i hele udviklingsprocessen, ikke bare som en eftertanke ved go-live."
     },
     {
         id: "ai-procurement",
@@ -299,7 +299,7 @@ const MODERN_SOLUTIONS = [
             "Real-time budget tracking: AI sammenligner løbende faktisk forbrug med plan og advarer tidligt.",
             "Benchmarking: Hvad kostede lignende projekter i Norge (8% overskridelse) vs. Danmark (108%)?",
         ],
-        orbixAngle: "Orbix bruger data-drevet estimering og løbende AI-overvågning for at holde projekter på sporet."
+        orbixAngle: "Orbix Core bruger data-drevet estimering og løbende AI-overvågning for at holde projekter på sporet."
     },
     {
         id: "inhouse",
@@ -314,7 +314,7 @@ const MODERN_SOLUTIONS = [
             "Vidensbevarelse: AI fanger og strukturerer institutionel viden der ellers forsvinder med personaleudskiftning.",
             "Onboarding: Nye medarbejdere trænes med AI der kender systemet indgående.",
         ],
-        orbixAngle: "Orbix bygger AI-løsninger der giver offentlige institutioner ekspertviden uden konsulentafhængighed."
+        orbixAngle: "Orbix Core bygger AI-løsninger der giver offentlige institutioner ekspertviden uden konsulentafhængighed."
     },
     {
         id: "transparency-ai",
@@ -329,7 +329,7 @@ const MODERN_SOLUTIONS = [
             "Anomali-detektion: AI flager automatisk projekter der afviger fra planen.",
             "Ansvarlighedsmekanisme: Transparens gør det umuligt at skjule problemer i årevis.",
         ],
-        orbixAngle: "Orbix tror på fuld gennemsigtighed. Det er hele fundamentet bag TransparentTax."
+        orbixAngle: "Orbix Core tror på fuld gennemsigtighed. Det er hele fundamentet bag Skattefilerne."
     },
 ];
 
@@ -350,4 +350,123 @@ const IT_WASTE_SUMMARY = {
         consultantReduction: 0.50, // 50% reduction in consultant dependency
         overrunReduction: 0.70,  // Reduce overruns by 70% (from 108% to ~30%)
     }
+};
+
+/**
+ * Consultant spending data - who gets the money?
+ * Sources:
+ * - Version2/DigiTech: "Netcompany dominerer statens it-konsulentforbrug: Se top 10 her" (2024)
+ * - OPS Indsigt: "Et selskab står for 18 pct. af statens udgifter til it-konsulenter" (2024)
+ * - Altinget: "Staten favoriserer udenlandske konsulentgiganter" (2019)
+ * - DR: "Politikere undrer sig: Hvorfor har vi betalt 2 milliarder for it-system?" (2018)
+ * - Version2: "Epic og NNIT vinder milliardstor ordre på sundhedsplatform" (2013)
+ */
+const CONSULTANT_DATA = {
+    totalAnnualSpendBn: 4.1,  // 2023 total
+    totalAnnualSpendYear: "2023",
+    growthPct: 14,  // Year-over-year growth
+    govTargetReductionBn: 3,  // Government's 2019 target to reduce by 3 mia
+
+    topSuppliers: [
+        {
+            rank: 1,
+            name: "Netcompany",
+            annualStateBn: 0.734,
+            annualStateLabel: "734 mio. kr.",
+            pctOfTotal: 18,
+            note: "Dobbelt så meget som nr. 2. Leverer bl.a. MitID, NemLog-in, borger.dk-infrastruktur.",
+            controversy: "Dominerer markedet markant. Kritiseret for vendor lock-in."
+        },
+        {
+            rank: 2,
+            name: "KMD (NEC)",
+            annualStateBn: 0.38,
+            annualStateLabel: "~380 mio. kr.",
+            pctOfTotal: 9,
+            note: "Tidligere Kommunedata. Japansk-ejet (NEC) siden 2019. Drifter kernesystemer for kommuner.",
+            controversy: "Arv fra monopoltiden. Kommuner har svært ved at skifte væk."
+        },
+        {
+            rank: 3,
+            name: "Visma Consulting",
+            annualStateBn: 0.284,
+            annualStateLabel: "284 mio. kr.",
+            pctOfTotal: 7,
+            note: "Norsk-ejet. Vokser hurtigt på det danske marked.",
+            controversy: ""
+        },
+        {
+            rank: 4,
+            name: "Deloitte",
+            annualStateBn: 0.25,
+            annualStateLabel: "~250 mio. kr.",
+            pctOfTotal: 6,
+            note: "Både IT-konsulenter og managementrådgivning. Dobbeltrolle som revisor og konsulent.",
+            controversy: "Var revisor for SKAT under EFI-skandalen, samtidig med konsulentopgaver."
+        },
+        {
+            rank: 5,
+            name: "Atea",
+            annualStateBn: 0.2,
+            annualStateLabel: "~200 mio. kr.",
+            pctOfTotal: 5,
+            note: "Nordisk IT-infrastruktur og konsulentvirksomhed.",
+            controversy: ""
+        },
+        {
+            rank: 6,
+            name: "CSC/DXC Technology",
+            annualStateBn: 0.15,
+            annualStateLabel: "~150 mio. kr.",
+            pctOfTotal: 4,
+            note: "Leverede POLSAG til politiet. Amerikansk virksomhed.",
+            controversy: "POLSAG-skandalen: 500 mio. kr. tabt. CSC fik betaling trods at systemet aldrig virkede."
+        },
+    ],
+
+    scandalInvolvement: [
+        {
+            scandal: "EFI (SKATs inddrivelse)",
+            totalCost: "1+ mia. kr.",
+            consultants: "KMD (udvikling), Accenture (rådgivning), McKinsey (strategi), Deloitte (revision)",
+            whoDecided: "Skatteminister Kristian Jensen (V) igangsatte. Holger K. Nielsen (SF) fortsatte.",
+            whatHappened: "KMD og Accenture leverede et system med fundamentale designfejl. McKinsey rådgav om organisationsændringer der fjernede 2.500 medarbejdere FØR systemet virkede. Deloitte var SKATs revisor men fangede ikke problemerne."
+        },
+        {
+            scandal: "POLSAG (Politiets system)",
+            totalCost: "500 mio. kr.",
+            consultants: "CSC (nu DXC Technology)",
+            whoDecided: "Rigspolitiet. Justitsminister Brian Mikkelsen (K) var ansvarlig.",
+            whatHappened: "CSC vandt kontrakten på 153 mio. kr. men leverede et system der ikke fungerede. Prisen tredobledes. Justitsministeriet holdt dokumenter hemmelige. CSC beholdt betalingen."
+        },
+        {
+            scandal: "Sundhedsplatformen",
+            totalCost: "3,8+ mia. kr.",
+            consultants: "Epic Systems (USA), NNIT (implementering)",
+            whoDecided: "Region Hovedstaden v/ regionsrådsformand Sophie Hæstorp Andersen (S). IT-direktør Jan Kold skiftede fra regionen til NNIT.",
+            whatHappened: "Epic/NNIT vandt trods at de var DYRESTE tilbud (200 mio. kr. over konkurrenten Cerner). Cerners protest om 'aftalt spil' blev lukket med forlig. Jan Kold, regionens tidligere IT-direktør, var nu hos NNIT. Prisen eksploderede fra 2,8 til 3,8+ mia."
+        },
+        {
+            scandal: "Amanda (Arbejdsmarkedsstyrelsen)",
+            totalCost: "1 mia. kr.",
+            consultants: "Skiftende leverandører (bl.a. Accenture, IBM)",
+            whoDecided: "Arbejdsmarkedsstyrelsen under Beskæftigelsesministeriet.",
+            whatHappened: "5 års forsinkelser. Gentagne leverandørskift førte til videnstab. Ca. 1 mia. kr. tabt uden brugbart system."
+        },
+    ],
+
+    managementConsultants: {
+        totalMarketBn: 2.5,  // Annual public sector management consulting spend
+        topFirms: [
+            { name: "McKinsey", role: "Strategirådgivning", hourlyRate: "7.000-15.000 kr./time", controversy: "Rådgav om SKATs reorganisering under EFI. Presset ud af top 10 i 2017." },
+            { name: "Boston Consulting Group (BCG)", role: "Strategirådgivning", hourlyRate: "7.000-15.000 kr./time", controversy: "Overtog McKinseys position som statens foretrukne strategikonsulent." },
+            { name: "Deloitte", role: "Revision + konsulentydelser", hourlyRate: "3.000-8.000 kr./time", controversy: "Dobbeltrolle som revisor og konsulent skaber interessekonflikter." },
+            { name: "PwC", role: "Revision + konsulentydelser", hourlyRate: "3.000-8.000 kr./time", controversy: "" },
+            { name: "EY (Ernst & Young)", role: "Revision + konsulentydelser", hourlyRate: "3.000-8.000 kr./time", controversy: "" },
+        ],
+        civilServantHourlyRate: "350-550 kr./time",
+        consultantMultiplier: "8-25x dyrere end en fastansat",
+    },
+
+    concentrationNote: "7 leverandører står for over halvdelen af statens konsulentforbrug på 4,1 mia. kr. Regeringen lovede i 2019 at reducere konsulentforbruget med 3 mia. kr. inden 2025. I stedet steg det med 14% på ét år.",
 };

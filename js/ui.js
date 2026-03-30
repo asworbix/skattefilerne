@@ -341,7 +341,7 @@ function renderSolutions() {
                 ${sol.howItWorks.map(step => `<li>${step}</li>`).join('')}
             </ul>
             <div class="solution-orbix">
-                <strong><a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-inline-link">Orbix</a>:</strong> ${sol.orbixAngle}
+                <strong><a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-inline-link">Orbix Core</a>:</strong> ${sol.orbixAngle}
             </div>
         </div>
     `).join('');
@@ -428,9 +428,90 @@ function renderSavingsCalculator() {
     `;
 }
 
+function renderConsultantBreakdown() {
+    const container = document.getElementById('consultant-breakdown');
+    if (!container || typeof CONSULTANT_DATA === 'undefined') return;
+
+    const d = CONSULTANT_DATA;
+
+    let html = `
+        <div class="kh-stats-grid">
+            <div class="kh-stat-card kh-stat-primary">
+                <div class="kh-stat-value">${d.totalAnnualSpendBn} mia. kr.</div>
+                <div class="kh-stat-label">Statens IT-konsulentforbrug (${d.totalAnnualSpendYear})</div>
+                <div class="kh-stat-note">Steg ${d.growthPct}% på ét år</div>
+            </div>
+            <div class="kh-stat-card kh-stat-cost">
+                <div class="kh-stat-value">${d.managementConsultants.consultantMultiplier}</div>
+                <div class="kh-stat-label">Konsulent vs. fastansat</div>
+                <div class="kh-stat-note">En konsulent koster ${d.managementConsultants.civilServantHourlyRate} vs. 3.000-15.000 kr./time</div>
+            </div>
+        </div>
+
+        <h3 class="kh-sub-heading">Hvem får pengene? Top IT-konsulentleverandører til staten</h3>
+        <div class="consultant-list">
+            ${d.topSuppliers.map(s => `
+                <div class="consultant-card ${s.controversy ? 'consultant-flagged' : ''}">
+                    <div class="consultant-header">
+                        <div class="consultant-rank">#${s.rank}</div>
+                        <div class="consultant-info">
+                            <h4>${s.name}</h4>
+                            <span class="consultant-amount">${s.annualStateLabel}/år (${s.pctOfTotal}% af markedet)</span>
+                        </div>
+                    </div>
+                    <p class="consultant-note">${s.note}</p>
+                    ${s.controversy ? `<p class="consultant-controversy">${s.controversy}</p>` : ''}
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading">Hvem tjente på skandalerne?</h3>
+        <div class="scandal-consultant-list">
+            ${d.scandalInvolvement.map(s => `
+                <div class="scandal-consultant-card">
+                    <div class="scandal-consultant-header">
+                        <h4>${s.scandal}</h4>
+                        <span class="scandal-cost">${s.totalCost} tabt</span>
+                    </div>
+                    <div class="scandal-details">
+                        <p><strong>Konsulenter:</strong> ${s.consultants}</p>
+                        <p><strong>Ansvarlig:</strong> ${s.whoDecided}</p>
+                        <p class="scandal-what-happened">${s.whatHappened}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading">Management-konsulenterne: Strategirådgivning til millioner</h3>
+        <div class="mgmt-consultant-list">
+            ${d.managementConsultants.topFirms.map(f => `
+                <div class="mgmt-consultant-row">
+                    <div class="mgmt-consultant-info">
+                        <strong>${f.name}</strong>
+                        <span>${f.role}</span>
+                    </div>
+                    <div class="mgmt-consultant-rate">${f.hourlyRate}</div>
+                    ${f.controversy ? `<p class="mgmt-consultant-controversy">${f.controversy}</p>` : ''}
+                </div>
+            `).join('')}
+        </div>
+
+        <div class="spending-insight-box insight-warn">
+            <span class="insight-icon"></span>
+            <div>
+                <strong>Regeringens brudte løfte</strong>
+                <p>${d.concentrationNote}</p>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
 function renderITDeepDive() {
     initDeepDiveTabs();
     renderCaseStudies();
+    renderConsultantBreakdown();
     renderRootCauses();
     renderSolutions();
     renderSavingsCalculator();
