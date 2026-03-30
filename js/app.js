@@ -6,7 +6,6 @@
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
         renderITDeepDive();
-        renderKontanthjaelp();
         renderPublicSpending();
     });
 })();
