@@ -1253,8 +1253,58 @@ header {
     border: 1px solid rgba(200, 16, 46, 0.2);
     border-radius: 6px;
     font-size: 0.88rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
     color: var(--accent-light);
+}
+
+.case-vendors {
+    padding: 0.6rem 0.9rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    color: #c4b5fd;
+}
+
+.case-lawsuit {
+    padding: 0.6rem 0.9rem;
+    background: rgba(234, 179, 8, 0.1);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    color: #fde047;
+}
+
+.case-aftermath {
+    padding: 0.6rem 0.9rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    color: #fca5a5;
+}
+
+.serial-offender-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.serial-offender-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.serial-offender-list li::before {
+    content: "x ";
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 0.5rem;
 }
 
 .case-body h5 {

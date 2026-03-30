@@ -275,7 +275,14 @@ function renderCaseStudies() {
                 <span class="case-expand-icon">+</span>
             </div>
             <div class="case-body">
+                ${cs.vendors ? `<div class="case-vendors"><strong>Leverandører:</strong> ${cs.vendors}</div>` : ''}
                 ${cs.lostValue ? `<div class="case-lost"><strong>Tabt værdi:</strong> ${cs.lostValue}</div>` : ''}
+                ${cs.lawsuit ? `<div class="case-lawsuit"><strong>Retssag:</strong> ${cs.lawsuit}</div>` : ''}
+                ${cs.aftermathNote ? `<div class="case-aftermath"><strong>Bemærkelsesværdigt:</strong> ${cs.aftermathNote}</div>` : ''}
+                ${cs.bidNote ? `<div class="case-lawsuit"><strong>Udbuddet:</strong> ${cs.bidNote}</div>` : ''}
+                ${cs.conflictOfInterest ? `<div class="case-aftermath"><strong>Interessekonflikt:</strong> ${cs.conflictOfInterest}</div>` : ''}
+                ${cs.settlementNote ? `<div class="case-lawsuit"><strong>Forlig:</strong> ${cs.settlementNote}</div>` : ''}
+                ${cs.usabilityNote ? `<div class="case-lost"><strong>Brugervenlighed:</strong> ${cs.usabilityNote}</div>` : ''}
                 <h5>Tidslinje</h5>
                 <div class="case-timeline">
                     ${cs.timeline.map(t => `
@@ -495,6 +502,62 @@ function renderConsultantBreakdown() {
                 </div>
             `).join('')}
         </div>
+
+        ${d.vendorLockIn ? `
+        <h3 class="kh-sub-heading">Vendor Lock-in: Staten er fanget</h3>
+        <div class="kh-stats-grid">
+            <div class="kh-stat-card kh-stat-primary">
+                <div class="kh-stat-value">${d.vendorLockIn.criticalSystems}</div>
+                <div class="kh-stat-label">Samfundskritiske IT-systemer</div>
+            </div>
+            <div class="kh-stat-card kh-stat-cost">
+                <div class="kh-stat-value">${d.vendorLockIn.cannotBeTendered}</div>
+                <div class="kh-stat-label">Systemer der IKKE kan sendes i udbud</div>
+                <div class="kh-stat-note">Total vendor lock-in</div>
+            </div>
+        </div>
+        <p class="tab-intro">${d.vendorLockIn.legacyNote}</p>
+        ` : ''}
+
+        ${d.serialOffenders ? `
+        <h3 class="kh-sub-heading">Serieforbryderne: Leverandører der fejler igen og igen</h3>
+        <div class="scandal-consultant-list">
+            <div class="scandal-consultant-card">
+                <div class="scandal-consultant-header">
+                    <h4>${d.serialOffenders.cscDxc.name}</h4>
+                    <span class="scandal-cost">Privatiseret offentlig IT</span>
+                </div>
+                <div class="scandal-details">
+                    <p class="consultant-note">${d.serialOffenders.cscDxc.origin}</p>
+                    <ul class="serial-offender-list">
+                        ${d.serialOffenders.cscDxc.scandals.map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                    <p class="consultant-controversy">Drifter stadig: ${d.serialOffenders.cscDxc.stillOperates}</p>
+                </div>
+            </div>
+            <div class="scandal-consultant-card">
+                <div class="scandal-consultant-header">
+                    <h4>${d.serialOffenders.kmd.name}</h4>
+                    <span class="scandal-cost">${d.serialOffenders.kmd.totalPublicRevenue}</span>
+                </div>
+                <div class="scandal-details">
+                    <p class="consultant-note">${d.serialOffenders.kmd.origin}</p>
+                    <p><strong>Monopol brudt:</strong> ${d.serialOffenders.kmd.monopolBreak}</p>
+                    <p class="consultant-controversy">${d.serialOffenders.kmd.penalties}</p>
+                </div>
+            </div>
+            <div class="scandal-consultant-card">
+                <div class="scandal-consultant-header">
+                    <h4>${d.serialOffenders.netcompany.name}</h4>
+                    <span class="scandal-cost">18% af statens IT-marked</span>
+                </div>
+                <div class="scandal-details">
+                    <p class="consultant-controversy">${d.serialOffenders.netcompany.gdprFine}</p>
+                    <p class="consultant-controversy">${d.serialOffenders.netcompany.monopolWarning}</p>
+                </div>
+            </div>
+        </div>
+        ` : ''}
 
         <div class="spending-insight-box insight-warn">
             <span class="insight-icon"></span>
