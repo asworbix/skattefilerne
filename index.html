@@ -258,6 +258,101 @@
                 <p class="comparison-footnote">* Private priser er baseret på gennemsnitlige danske markedspriser 2025. Sundhedsforsikring er baseret på sammenlignelige internationale private systemer (USA/CH). Infrastruktur, forsvar, politi m.fl. er beregnet som din andel af befolkningens samlede omkostning.</p>
             </section>
 
+            <!-- PUBLIC SPENDING INSIGHTS - Follow the money -->
+            <section id="spending-section" class="card">
+                <h2>Følg Pengene — Hvad Gør Den Offentlige Sektor Med Dem?</h2>
+                <p class="section-desc">Din skat lander i den offentlige sektor. Men hvad sker der derefter? Her er indsigt i budget vs. virkelighed, kvartalsforbrug og kendte problemer.</p>
+
+                <!-- Tab navigation -->
+                <div class="spending-tabs">
+                    <button class="spending-tab active" data-tab="budget-actual">Budget vs. Virkelighed</button>
+                    <button class="spending-tab" data-tab="operational">Hvad Bruges Pengene På?</button>
+                    <button class="spending-tab" data-tab="quarterly">Kvartalsforbrug</button>
+                    <button class="spending-tab" data-tab="issues">Kendte Problemer</button>
+                </div>
+
+                <!-- Tab: Budget vs Actual -->
+                <div id="tab-budget-actual" class="spending-tab-content active">
+                    <p class="tab-intro">Hvert år vedtages Finansloven med et budget for hvert område. Statsregnskabet viser hvad der faktisk blev brugt. Forskellen afslører forsinkelser, fejlbudgettering og ubrugte midler.</p>
+                    <div id="budget-actual-table" class="budget-actual-table">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div class="spending-insight-box">
+                        <span class="insight-icon">💡</span>
+                        <div>
+                            <strong>Hvad sker med ubrugte penge?</strong>
+                            <p>Statslige institutioner må overføre op til 2% af deres bevilling til næste år. Alt derudover bortfalder — det forsvinder simpelthen fra deres budget. Det skaber et incitament til at bruge pengene op, uanset om behovet er der.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Operational Breakdown -->
+                <div id="tab-operational" class="spending-tab-content">
+                    <p class="tab-intro">Når et ministerium modtager sin bevilling, hvor ender pengene så? Her ser du den typiske fordeling af driftsudgifter.</p>
+
+                    <div class="op-selector">
+                        <label>Vælg sektor:</label>
+                        <select id="op-sector-select">
+                            <option value="overall">Gennemsnit (hele den offentlige sektor)</option>
+                            <option value="healthcare">Sundhedsvæsen</option>
+                            <option value="education">Uddannelse</option>
+                            <option value="administration">Offentlig administration</option>
+                            <option value="defense">Forsvar</option>
+                        </select>
+                    </div>
+
+                    <div id="operational-breakdown" class="operational-breakdown">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="spending-insight-box insight-warn">
+                        <span class="insight-icon">⚠️</span>
+                        <div>
+                            <strong>Konsulenter vs. fastansatte</strong>
+                            <p>Den offentlige sektor bruger 12-15 mia. kr. årligt på eksterne konsulenter. Det svarer til ca. 4,5% af driftsbudgettet — og konsulenthonorarer er typisk 3-5x dyrere end fastansatte for sammenlignelige opgaver.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Quarterly Flow -->
+                <div id="tab-quarterly" class="spending-tab-content">
+                    <p class="tab-intro">Pengene flyder ikke jævnt gennem året. Her ser du det typiske mønster — og det problematiske Q4-forbrug.</p>
+
+                    <div id="quarterly-chart" class="quarterly-chart">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div id="quarterly-details" class="quarterly-details">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="spending-insight-box insight-warn">
+                        <span class="insight-icon">📅</span>
+                        <div>
+                            <strong>December-feber</strong>
+                            <p id="quarterly-insight"></p>
+                        </div>
+                    </div>
+
+                    <div class="carryover-box">
+                        <h4>Overførsler mellem år</h4>
+                        <p id="carryover-text"></p>
+                        <div class="carryover-amount">
+                            <span>Estimeret årlig overførsel:</span>
+                            <strong id="carryover-amount-value"></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Known Issues -->
+                <div id="tab-issues" class="spending-tab-content">
+                    <p class="tab-intro">Rigsrevisionen, medierne og uafhængige analyser har dokumenteret en række tilbagevendende problemer med offentligt forbrug.</p>
+                    <div id="issues-list" class="issues-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </section>
+
             <!-- Impact Section - What your tax creates -->
             <section id="impact-section" class="card">
                 <h2>Hvad Skaber Dine Skattekroner?</h2>
@@ -301,6 +396,7 @@
     </footer>
 
     <script src="js/taxData.js"></script>
+    <script src="js/publicSpending.js"></script>
     <script src="js/taxCalculator.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>

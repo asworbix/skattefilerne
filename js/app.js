@@ -70,6 +70,7 @@
         renderTaxSummary(result);
         renderBreakdown(result.totalTax);
         renderValueComparison(result.totalTax);
+        renderPublicSpending(result.totalTax);
         renderImpact(result.totalTax);
 
         // Show household section
