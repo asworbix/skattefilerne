@@ -193,6 +193,191 @@ const BUDGET_BREAKDOWN = [
 ];
 
 /**
+ * Private market costs for services currently covered by tax.
+ * These are annual costs per unit in DKK, based on Danish and
+ * comparable international private market prices.
+ *
+ * Sources: CEPOS, DI, international health insurance comparisons,
+ * Danish private school/childcare fees, infrastructure cost studies.
+ */
+const PRIVATE_COSTS = {
+    // Healthcare - private health insurance for a family
+    // Based on comparable systems (Switzerland ~8.000 CHF/person/year,
+    // US ~$7.000/person/year for employer plans). Danish private
+    // sundhedsforsikring covers limited care; full coverage would be far more.
+    healthInsurancePerAdult: 48000,   // Full private coverage per adult/year
+    healthInsurancePerChild: 24000,   // Per child/year
+    doctorVisit: 1200,               // Private GP consultation
+    hospitalDayRate: 18000,          // Private hospital per day (avg stay 4.5 days)
+    hospitalStayAvgDays: 4.5,
+
+    // Education - private school fees
+    nurseryPerChild: 144000,         // Private vuggestue ~12.000 kr./md (full cost)
+    kindergartenPerChild: 108000,    // Private børnehave ~9.000 kr./md (full cost)
+    folkeskolePerChild: 72000,       // Privatskole ~6.000 kr./md
+    highschoolPerChild: 84000,       // Privat gymnasium ~7.000 kr./md
+    universityPerPerson: 120000,     // Tuition comparable to EU private uni + no SU
+
+    // Transport - private alternatives
+    publicTransportPerPerson: 18000, // Yearly pass subsidized portion (~1.500/md subsidy value)
+
+    // Library
+    libraryPerHousehold: 4000,       // Books, media, digital access equivalent
+
+    // Shared services (per capita) - everyone benefits from these whether they
+    // "use" them directly or not. Calculated as total budget / 5.9M population.
+    // Total Danish public expenditure ~1.300 mia. kr.
+    perCapitaDefense: 8400,          // Forsvar
+    perCapitaPolice: 4400,           // Politi & retsvæsen
+    perCapitaInfrastructure: 11200,  // Veje, broer, cykelstier (beyond transport pass)
+    perCapitaEnvironment: 10600,     // Miljø & klima
+    perCapitaAdministration: 14100,  // Borger.dk, MitID, digital post, etc.
+    perCapitaResearch: 7700,         // Forskning & innovation
+    perCapitaSocialSafety: 55500,    // Social sikkerhedsnet (dagpenge, kontanthjælp, pension)
+    perCapitaEldercare: 12800,       // Ældrepleje (du betaler nu, du bruger det senere)
+    perCapitaHousing: 7900,          // Boligstøtte, alment byggeri
+    perCapitaCulture: 6200,          // Kultur, sport, foreningsliv
+    perCapitaForeignAid: 4600,       // Udviklingsbistand
+    perCapitaDebt: 3300,             // Renter på statsgæld
+};
+
+/**
+ * Calculate total private cost for a household profile.
+ * Returns itemized breakdown + total.
+ */
+function calculatePrivateCost(household, totalTax) {
+    const items = [];
+
+    // --- Healthcare ---
+    const adults = household.adults;
+    const totalChildren = household.nursery + household.kindergarten +
+                          household.school + household.highschool;
+    const healthInsurance = (adults * PRIVATE_COSTS.healthInsurancePerAdult) +
+                            (totalChildren * PRIVATE_COSTS.healthInsurancePerChild);
+    const doctorCost = household.doctorVisits * PRIVATE_COSTS.doctorVisit;
+    const hospitalCost = household.hospitalVisits *
+                         PRIVATE_COSTS.hospitalDayRate * PRIVATE_COSTS.hospitalStayAvgDays;
+
+    items.push({
+        icon: "🏥",
+        name: "Sundhedsforsikring",
+        publicCost: Math.round(totalTax * 0.158),
+        privateCost: Math.round(healthInsurance),
+        note: `${adults} voksen(e)${totalChildren > 0 ? ' + ' + totalChildren + ' barn' : ''} — fuld privat dækning`
+    });
+    items.push({
+        icon: "👨‍⚕️",
+        name: "Lægebesøg & hospital",
+        publicCost: 0, // included in healthcare above
+        privateCost: Math.round(doctorCost + hospitalCost),
+        note: `${household.doctorVisits} lægebesøg + ${household.hospitalVisits} hospitalsbesøg/år`
+    });
+
+    // --- Childcare ---
+    if (household.nursery > 0) {
+        items.push({
+            icon: "👶",
+            name: "Vuggestue/dagpleje",
+            publicCost: Math.round(totalTax * 0.052 * (household.nursery / Math.max(1, totalChildren || 1))),
+            privateCost: household.nursery * PRIVATE_COSTS.nurseryPerChild,
+            note: `${household.nursery} barn — fuld pris uden offentligt tilskud`
+        });
+    }
+    if (household.kindergarten > 0) {
+        items.push({
+            icon: "🧒",
+            name: "Børnehave",
+            publicCost: Math.round(totalTax * 0.052 * (household.kindergarten / Math.max(1, totalChildren || 1))),
+            privateCost: household.kindergarten * PRIVATE_COSTS.kindergartenPerChild,
+            note: `${household.kindergarten} barn — fuld pris uden offentligt tilskud`
+        });
+    }
+
+    // --- Education ---
+    if (household.school > 0) {
+        items.push({
+            icon: "🎒",
+            name: "Folkeskole (privatskole)",
+            publicCost: Math.round(totalTax * 0.124 * 0.4), // ~40% of education budget is folkeskole
+            privateCost: household.school * PRIVATE_COSTS.folkeskolePerChild,
+            note: `${household.school} barn i privatskole`
+        });
+    }
+    if (household.highschool > 0) {
+        items.push({
+            icon: "📚",
+            name: "Gymnasium/erhvervsuddannelse",
+            publicCost: Math.round(totalTax * 0.124 * 0.25),
+            privateCost: household.highschool * PRIVATE_COSTS.highschoolPerChild,
+            note: `${household.highschool} ung(e) i privat gymnasium`
+        });
+    }
+    if (household.university > 0) {
+        items.push({
+            icon: "🎓",
+            name: "Universitet (tuition + tabt SU)",
+            publicCost: Math.round(totalTax * 0.124 * 0.35),
+            privateCost: household.university * PRIVATE_COSTS.universityPerPerson,
+            note: `${household.university} studerende — privat tuition, ingen SU`
+        });
+    }
+
+    // --- Transport ---
+    if (household.transport > 0) {
+        items.push({
+            icon: "🚆",
+            name: "Offentlig transport (subsidieandel)",
+            publicCost: Math.round(totalTax * 0.051 * 0.3),
+            privateCost: household.transport * PRIVATE_COSTS.publicTransportPerPerson,
+            note: `${household.transport} person(er) — den offentlige subsidie du mister`
+        });
+    }
+
+    // --- Library ---
+    if (household.library) {
+        items.push({
+            icon: "📖",
+            name: "Bibliotek & medieadgang",
+            publicCost: Math.round(totalTax * 0.028 * 0.15),
+            privateCost: PRIVATE_COSTS.libraryPerHousehold,
+            note: "Bøger, e-bøger, film, musik, digitale tjenester"
+        });
+    }
+
+    // --- Shared services everyone uses ---
+    const sharedServices = [
+        { icon: "🛡️", name: "Forsvar & sikkerhed", cost: PRIVATE_COSTS.perCapitaDefense, note: "Din andel af nationalt forsvar — kan ikke fravælges" },
+        { icon: "⚖️", name: "Politi & retsvæsen", cost: PRIVATE_COSTS.perCapitaPolice, note: "Retssikkerhed, politibeskyttelse, domstole" },
+        { icon: "🛤️", name: "Veje & infrastruktur", cost: PRIVATE_COSTS.perCapitaInfrastructure, note: "Veje, broer, cykelstier — brugt af alle dagligt" },
+        { icon: "🌿", name: "Miljø & klima", cost: PRIVATE_COSTS.perCapitaEnvironment, note: "Rent vand, affald, grøn omstilling" },
+        { icon: "🏛️", name: "Administration & digitalisering", cost: PRIVATE_COSTS.perCapitaAdministration, note: "MitID, Borger.dk, digital post, skatteadministration" },
+        { icon: "🔬", name: "Forskning & innovation", cost: PRIVATE_COSTS.perCapitaResearch, note: "Medicinsk forskning, teknologi, universitetsforskning" },
+        { icon: "🤝", name: "Socialt sikkerhedsnet", cost: PRIVATE_COSTS.perCapitaSocialSafety, note: "Dagpenge, kontanthjælp, pension — din forsikring mod uforudsete hændelser" },
+        { icon: "👴", name: "Ældrepleje (din fremtidige pleje)", cost: PRIVATE_COSTS.perCapitaEldercare, note: "Du betaler nu — du bruger det når du bliver ældre" },
+        { icon: "🏠", name: "Boligstøtte & alment byggeri", cost: PRIVATE_COSTS.perCapitaHousing, note: "Holder boligmarkedet tilgængeligt for alle" },
+        { icon: "🎭", name: "Kultur, sport & foreningsliv", cost: PRIVATE_COSTS.perCapitaCulture, note: "Museer, biblioteker, DR, sportsfaciliteter" },
+        { icon: "🌍", name: "Udviklingsbistand", cost: PRIVATE_COSTS.perCapitaForeignAid, note: "Danmarks internationale forpligtelser" },
+        { icon: "📉", name: "Renter på statsgæld", cost: PRIVATE_COSTS.perCapitaDebt, note: "Lav gæld = lave renter — et tegn på sund økonomi" },
+    ];
+
+    sharedServices.forEach(svc => {
+        const perHousehold = svc.cost * adults; // scale by adults in household
+        items.push({
+            icon: svc.icon,
+            name: svc.name,
+            publicCost: 0, // we show the total comparison at the end
+            privateCost: Math.round(perHousehold),
+            note: svc.note,
+            isShared: true
+        });
+    });
+
+    const totalPrivate = items.reduce((sum, item) => sum + item.privateCost, 0);
+
+    return { items, totalPrivate };
+}
+
+/**
  * Concrete impact examples per budget category
  * Shows what a specific tax amount "buys" in real terms
  */

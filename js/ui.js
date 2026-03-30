@@ -84,6 +84,117 @@ function renderImpact(totalTax) {
     `).join('');
 }
 
+function getHouseholdProfile() {
+    return {
+        adults: parseInt(document.getElementById('hh-adults').value),
+        nursery: parseInt(document.getElementById('hh-nursery').value),
+        kindergarten: parseInt(document.getElementById('hh-kindergarten').value),
+        school: parseInt(document.getElementById('hh-school').value),
+        highschool: parseInt(document.getElementById('hh-highschool').value),
+        university: parseInt(document.getElementById('hh-university').value),
+        transport: parseInt(document.getElementById('hh-transport').value),
+        doctorVisits: parseInt(document.getElementById('hh-doctor').value),
+        hospitalVisits: parseInt(document.getElementById('hh-hospital').value),
+        library: parseInt(document.getElementById('hh-library').value) === 1,
+    };
+}
+
+function renderValueComparison(totalTax) {
+    const household = getHouseholdProfile();
+    const { items, totalPrivate } = calculatePrivateCost(household, totalTax);
+
+    // Verdict
+    const diff = totalPrivate - totalTax;
+    const verdictBox = document.getElementById('verdict-box');
+    const verdictIcon = document.getElementById('verdict-icon');
+    const verdictLabel = document.getElementById('verdict-label');
+    const verdictDiff = document.getElementById('verdict-diff');
+
+    document.getElementById('verdict-tax').textContent = formatDKK(totalTax);
+    document.getElementById('verdict-private').textContent = formatDKK(totalPrivate);
+
+    if (diff > 0) {
+        verdictBox.className = 'verdict-box verdict-positive';
+        verdictIcon.textContent = '✅';
+        verdictLabel.textContent = 'Du sparer penge på det offentlige system';
+        verdictDiff.innerHTML = `Du ville betale <strong>${formatDKK(diff)}</strong> mere om året for de samme services privat. Det svarer til <strong>${formatDKK(Math.round(diff / 12))}/md.</strong> ekstra.`;
+    } else {
+        verdictBox.className = 'verdict-box verdict-negative';
+        verdictIcon.textContent = '⚠️';
+        verdictLabel.textContent = 'Du betaler mere end den direkte private pris';
+        verdictDiff.innerHTML = `Forskellen er <strong>${formatDKK(Math.abs(diff))}</strong> om året. Men husk: du finansierer også et sikkerhedsnet du kan falde tilbage på, og services for hele samfundet — inkl. ældre, børn og fremtidige generationer.`;
+    }
+
+    // Comparison table
+    const table = document.getElementById('comparison-table');
+
+    // Split into direct services and shared services
+    const directItems = items.filter(i => !i.isShared && i.privateCost > 0);
+    const sharedItems = items.filter(i => i.isShared);
+    const sharedTotal = sharedItems.reduce((sum, i) => sum + i.privateCost, 0);
+
+    let html = '';
+
+    // Direct services header
+    html += '<div class="comp-section-header">Services du bruger direkte</div>';
+    directItems.forEach(item => {
+        const saving = item.privateCost;
+        html += `
+            <div class="comp-row">
+                <div class="comp-service">
+                    <span class="comp-icon">${item.icon}</span>
+                    <div>
+                        <div class="comp-name">${item.name}</div>
+                        <div class="comp-note">${item.note}</div>
+                    </div>
+                </div>
+                <div class="comp-price">${formatDKK(saving)}</div>
+            </div>`;
+    });
+
+    // Shared services header
+    html += '<div class="comp-section-header">Fælles services (din andel som borger)</div>';
+    sharedItems.forEach(item => {
+        html += `
+            <div class="comp-row comp-row-shared">
+                <div class="comp-service">
+                    <span class="comp-icon">${item.icon}</span>
+                    <div>
+                        <div class="comp-name">${item.name}</div>
+                        <div class="comp-note">${item.note}</div>
+                    </div>
+                </div>
+                <div class="comp-price">${formatDKK(item.privateCost)}</div>
+            </div>`;
+    });
+
+    // Total row
+    html += `
+        <div class="comp-row comp-total">
+            <div class="comp-service">
+                <span class="comp-icon">📊</span>
+                <div><div class="comp-name">Samlet privat pris</div></div>
+            </div>
+            <div class="comp-price comp-price-total">${formatDKK(totalPrivate)}</div>
+        </div>
+        <div class="comp-row comp-your-tax">
+            <div class="comp-service">
+                <span class="comp-icon">🧾</span>
+                <div><div class="comp-name">Din faktiske skat</div></div>
+            </div>
+            <div class="comp-price">${formatDKK(totalTax)}</div>
+        </div>
+        <div class="comp-row comp-diff ${diff > 0 ? 'comp-diff-positive' : 'comp-diff-negative'}">
+            <div class="comp-service">
+                <span class="comp-icon">${diff > 0 ? '💰' : '📌'}</span>
+                <div><div class="comp-name">${diff > 0 ? 'Du sparer' : 'Du betaler mere'}</div></div>
+            </div>
+            <div class="comp-price">${formatDKK(Math.abs(diff))}</div>
+        </div>`;
+
+    table.innerHTML = html;
+}
+
 function showResults() {
     const results = document.getElementById('results');
     results.classList.remove('hidden');

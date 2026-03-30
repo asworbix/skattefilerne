@@ -5,8 +5,12 @@
 (function () {
     const incomeInput = document.getElementById('income-input');
     const calculateBtn = document.getElementById('calculate-btn');
+    const recalculateBtn = document.getElementById('recalculate-btn');
     const churchTaxCheckbox = document.getElementById('church-tax');
     const quickBtns = document.querySelectorAll('.quick-btn');
+    const householdSection = document.getElementById('household-section');
+
+    let lastTaxResult = null;
 
     // Format input as user types (Danish number format)
     incomeInput.addEventListener('input', function () {
@@ -28,6 +32,14 @@
     // Calculate button
     calculateBtn.addEventListener('click', runCalculation);
 
+    // Recalculate value comparison when household changes
+    recalculateBtn.addEventListener('click', function () {
+        if (lastTaxResult) {
+            renderValueComparison(lastTaxResult.totalTax);
+            document.getElementById('value-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
     // Enter key
     incomeInput.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
@@ -41,7 +53,7 @@
 
         if (!income || income <= 0) {
             incomeInput.focus();
-            incomeInput.style.borderColor = '#ef4444';
+            incomeInput.closest('.input-wrapper').style.borderColor = '#ef4444';
             setTimeout(() => {
                 incomeInput.closest('.input-wrapper').style.borderColor = '';
             }, 1500);
@@ -53,10 +65,16 @@
         };
 
         const result = calculateDanishTax(income, options);
+        lastTaxResult = result;
 
         renderTaxSummary(result);
         renderBreakdown(result.totalTax);
+        renderValueComparison(result.totalTax);
         renderImpact(result.totalTax);
+
+        // Show household section
+        householdSection.classList.remove('hidden');
+
         showResults();
     }
 })();

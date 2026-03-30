@@ -16,7 +16,7 @@
                 <span class="logo-icon">🇩🇰</span>
                 <h1>Transparent<span class="highlight">Tax</span></h1>
             </div>
-            <p class="tagline">Se præcis hvor dine skattekroner går hen — og hvad de skaber for Danmark</p>
+            <p class="tagline">Se præcis hvor dine skattekroner går hen — og om du betaler for meget</p>
         </div>
     </header>
 
@@ -45,6 +45,101 @@
                 </div>
                 <button id="calculate-btn" class="btn-primary">Beregn Min Skat</button>
             </div>
+        </section>
+
+        <!-- Household Profile - what services do you use? -->
+        <section id="household-section" class="card hidden">
+            <h2>Din Husstand — Hvad Bruger Du?</h2>
+            <p class="section-desc">Vælg hvilke offentlige services din husstand bruger, så vi kan beregne hvad det ville koste dig privat.</p>
+
+            <div class="household-grid">
+                <div class="household-item">
+                    <label>Antal voksne i husstand</label>
+                    <select id="hh-adults">
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Børn i vuggestue/dagpleje (0-2 år)</label>
+                    <select id="hh-nursery">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Børn i børnehave (3-5 år)</label>
+                    <select id="hh-kindergarten">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Børn i folkeskole (6-15 år)</label>
+                    <select id="hh-school">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Børn/unge i gymnasium/erhvervsudd.</label>
+                    <select id="hh-highschool">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Universitetsstuderende i husstand</label>
+                    <select id="hh-university">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Bruger offentlig transport dagligt?</label>
+                    <select id="hh-transport">
+                        <option value="0">Nej</option>
+                        <option value="1" selected>Ja, 1 person</option>
+                        <option value="2">Ja, 2 personer</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Lægebesøg pr. år (hele husstand)</label>
+                    <select id="hh-doctor">
+                        <option value="2">1-2</option>
+                        <option value="5" selected>3-5</option>
+                        <option value="8">6-8</option>
+                        <option value="12">9-12</option>
+                        <option value="20">13+</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Hospitalsbesøg/indlæggelser pr. år</label>
+                    <select id="hh-hospital">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3+</option>
+                    </select>
+                </div>
+                <div class="household-item">
+                    <label>Bruger bibliotek?</label>
+                    <select id="hh-library">
+                        <option value="0">Nej</option>
+                        <option value="1" selected>Ja</option>
+                    </select>
+                </div>
+            </div>
+            <button id="recalculate-btn" class="btn-primary">Beregn Min Værdi</button>
         </section>
 
         <!-- Results Section (hidden until calculated) -->
@@ -127,6 +222,40 @@
                 <div id="breakdown-grid" class="breakdown-grid">
                     <!-- Filled by JS -->
                 </div>
+            </section>
+
+            <!-- VALUE COMPARISON - The core "am I paying too much?" section -->
+            <section id="value-section" class="card">
+                <h2>Betaler Du For Meget?</h2>
+                <p class="section-desc">Her sammenligner vi din skat med hvad de samme services ville koste dig privat — uden det offentlige system.</p>
+
+                <!-- The verdict -->
+                <div id="verdict-box" class="verdict-box">
+                    <div class="verdict-header">
+                        <span id="verdict-icon" class="verdict-icon"></span>
+                        <span id="verdict-label" class="verdict-label"></span>
+                    </div>
+                    <div class="verdict-numbers">
+                        <div class="verdict-col">
+                            <span class="verdict-sublabel">Du betaler i skat</span>
+                            <span class="verdict-amount verdict-tax" id="verdict-tax">0 kr.</span>
+                        </div>
+                        <div class="verdict-vs">vs.</div>
+                        <div class="verdict-col">
+                            <span class="verdict-sublabel">Privat pris for samme services</span>
+                            <span class="verdict-amount verdict-private" id="verdict-private">0 kr.</span>
+                        </div>
+                    </div>
+                    <div class="verdict-diff" id="verdict-diff"></div>
+                </div>
+
+                <!-- Line-by-line comparison -->
+                <h3 class="comparison-title">Linje-for-linje sammenligning</h3>
+                <div id="comparison-table" class="comparison-table">
+                    <!-- Filled by JS -->
+                </div>
+
+                <p class="comparison-footnote">* Private priser er baseret på gennemsnitlige danske markedspriser 2025. Sundhedsforsikring er baseret på sammenlignelige internationale private systemer (USA/CH). Infrastruktur, forsvar, politi m.fl. er beregnet som din andel af befolkningens samlede omkostning.</p>
             </section>
 
             <!-- Impact Section - What your tax creates -->
