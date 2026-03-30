@@ -1,5 +1,5 @@
 /**
- * UI rendering functions for TransparentTax
+ * UI rendering functions for TransparentSkat
  */
 
 /**
@@ -155,7 +155,7 @@ function renderQuarterlyFlow() {
     });
 
     chartHtml += '</div>';
-    chartHtml += `<div class="q-baseline"><span>Jaevn fordeling ville vaere 25% pr. kvartal</span></div>`;
+    chartHtml += `<div class="q-baseline"><span>Jævn fordeling ville være 25% pr. kvartal</span></div>`;
 
     chart.innerHTML = chartHtml;
     details.innerHTML = detailsHtml;
@@ -163,7 +163,7 @@ function renderQuarterlyFlow() {
     // Q4 insight
     const q4 = QUARTERLY_FLOW.pattern[3];
     document.getElementById('quarterly-insight').innerHTML =
-        `I Q4 bruges ${q4.percentSpent}% af det samlede arsbudget - ${q4.percentSpent - 25} procentpoint mere end ved en jaevn fordeling. ${QUARTERLY_FLOW.carryoverExplanation}`;
+        `I Q4 bruges ${q4.percentSpent}% af det samlede årsbudget - ${q4.percentSpent - 25} procentpoint mere end ved en jævn fordeling. ${QUARTERLY_FLOW.carryoverExplanation}`;
 
     // Carryover
     document.getElementById('carryover-text').textContent = QUARTERLY_FLOW.carryoverExplanation;
@@ -186,11 +186,11 @@ function renderAppropriationRules() {
         return `
             <div class="rule-card ${canCarry ? 'rule-carry' : 'rule-lapse'}">
                 <div class="rule-header">
-                    <span class="rule-status">${canCarry ? '🔄 Kan viderefores' : '⛔ Bortfalder'}</span>
+                    <span class="rule-status">${canCarry ? '🔄 Kan videreføres' : '⛔ Bortfalder'}</span>
                 </div>
                 <h5>${rule.name}</h5>
                 <p class="rule-name-en">${rule.nameEn}</p>
-                <p class="rule-limit"><strong>Begraensning:</strong> ${rule.limit}</p>
+                <p class="rule-limit"><strong>Begrænsning:</strong> ${rule.limit}</p>
                 <p class="rule-lapse-text"><strong>Ubrugte midler:</strong> ${rule.lapse}</p>
                 <p class="rule-source">${rule.source}</p>
             </div>`;
@@ -275,7 +275,7 @@ function renderCaseStudies() {
                 <span class="case-expand-icon">+</span>
             </div>
             <div class="case-body">
-                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt vaerdi:</strong> ${cs.lostValue}</div>` : ''}
+                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt værdi:</strong> ${cs.lostValue}</div>` : ''}
                 <h5>Tidslinje</h5>
                 <div class="case-timeline">
                     ${cs.timeline.map(t => `
@@ -362,12 +362,12 @@ function renderSavingsCalculator() {
     container.innerHTML = `
         <div class="savings-grid">
             <div class="savings-card savings-waste">
-                <div class="savings-label">Arligt spildt pa fejlslagne IT-projekter</div>
+                <div class="savings-label">Årligt spildt på fejlslagne IT-projekter</div>
                 <div class="savings-amount">${annualITWaste.toFixed(1)} mia. kr.</div>
-                <div class="savings-note">Baseret pa ~${s.totalWastedBn} mia. kr. spildt over 15 ar</div>
+                <div class="savings-note">Baseret på ~${s.totalWastedBn} mia. kr. spildt over 15 år</div>
             </div>
             <div class="savings-card savings-consultant">
-                <div class="savings-label">Arlige konsulentudgifter</div>
+                <div class="savings-label">Årlige konsulentudgifter</div>
                 <div class="savings-amount">${s.annualConsultantBn} mia. kr.</div>
                 <div class="savings-note">Eksterne konsulenter til offentlige IT-projekter</div>
             </div>
@@ -394,7 +394,7 @@ function renderSavingsCalculator() {
                 <div class="sb-amount sb-green">-${consultSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row sb-total">
-                <div class="sb-label"><strong>Potentiel arlig besparelse</strong></div>
+                <div class="sb-label"><strong>Potentiel årlig besparelse</strong></div>
                 <div class="sb-amount sb-green"><strong>${totalSaving.toFixed(1)} mia. kr.</strong></div>
             </div>
         </div>
@@ -410,11 +410,11 @@ function renderSavingsCalculator() {
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsFlagged}/${s.projectsMonitored}</div>
-                <div class="savings-stat-label">Projekter med advarselslamper (IT-radet)</div>
+                <div class="savings-stat-label">Projekter med advarselslamper (IT-rådet)</div>
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsRedLight}</div>
-                <div class="savings-stat-label">Projekter med rod status (kritisk)</div>
+                <div class="savings-stat-label">Projekter med rød status (kritisk)</div>
             </div>
         </div>
 
@@ -422,7 +422,7 @@ function renderSavingsCalculator() {
             <span class="insight-icon">💡</span>
             <div>
                 <strong>Norge vs. Danmark</strong>
-                <p>Norge har 8% gennemsnitlig budgetoverskridelse pa offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest - praecis det AI kan accelerere og skalere.</p>
+                <p>Norge har 8% gennemsnitlig budgetoverskridelse på offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest - præcis det AI kan accelerere og skalere.</p>
             </div>
         </div>
     `;
@@ -438,7 +438,7 @@ function renderITDeepDive() {
 
 
 /**
- * Kontanthjaelp Section rendering
+ * Kontanthjælp Section rendering
  */
 
 function renderKontanthjaelp() {
@@ -489,7 +489,7 @@ function renderKHOverview() {
             </div>
             <div class="kh-stat-card kh-stat-cost">
                 <div class="kh-stat-value">~${d.annualCostBn} mia. kr.</div>
-                <div class="kh-stat-label">Arlig udgift</div>
+                <div class="kh-stat-label">Årlig udgift</div>
                 <div class="kh-stat-note">Halvdelen af forsvarsbudgettet</div>
             </div>
         </div>
@@ -518,7 +518,7 @@ function renderKHOverview() {
             `).join('')}
         </div>
 
-        <h3 class="kh-sub-heading">Hvad koster kontanthjaelpen?</h3>
+        <h3 class="kh-sub-heading">Hvad koster kontanthjælpen?</h3>
         <div class="kh-cost-breakdown">
             ${KONTANTHJAELP_DATA.costBreakdown.items.map(item => `
                 <div class="kh-cost-row">
@@ -540,7 +540,7 @@ function renderKHOverview() {
             <span class="insight-icon">📊</span>
             <div>
                 <strong>Demografisk fordeling</strong>
-                <p>${d.nonWesternPct}% af ikke-vestlige indvandrere i den erhvervsaktive alder er pa kontanthjaelp, mod ${d.danishOriginPct}% af danskere med dansk oprindelse. ${d.mindstesatsNonWesternPct}% af modtagere pa mindstesatsen har ikke-vestlig baggrund.</p>
+                <p>${d.nonWesternPct}% af ikke-vestlige indvandrere i den erhvervsaktive alder er på kontanthjælp, mod ${d.danishOriginPct}% af danskere med dansk oprindelse. ${d.mindstesatsNonWesternPct}% af modtagere på mindstesatsen har ikke-vestlig baggrund.</p>
             </div>
         </div>
     `;
@@ -576,7 +576,7 @@ function renderKHReform() {
     container.innerHTML = `
         <div class="kh-reform-header">
             <h3>${r.title}</h3>
-            <span class="kh-reform-date">Traedte i kraft: ${r.effectiveDate}</span>
+            <span class="kh-reform-date">Trådte i kraft: ${r.effectiveDate}</span>
         </div>
 
         <div class="kh-reform-changes">
