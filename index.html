@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransparentTax - Se Hvor Dine Skattekroner Ender</title>
+    <title>Skattefilerne - Grav i Den Offentlige Sektors Mørkeste Hjørner</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,74 +13,65 @@
     <header>
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🇩🇰</span>
-                <h1>Transparent<span class="highlight">Tax</span></h1>
+                <h1>Skatte<span class="highlight">filerne</span></h1>
             </div>
-            <p class="tagline">Fuld gennemsigtighed i det danske skattesystem. Se hvor pengene ender, hvad der fejler, og hvem der betaler.</p>
+            <p class="tagline">Dine skattekroner. Deres spild. Grav i skandalerne, konsulentregningerne og de ansvarlige. Og se hvordan AI kan stoppe det.</p>
         </div>
     </header>
 
     <main class="container">
 
-        <!-- IT DEEP-DIVE - Scandals & Modern Solutions (HERO) -->
+        <!-- HERO: THE SCANDAL FILES -->
         <section id="it-deepdive-section" class="card">
-            <h2>IT-Skandalerne - Milliarder Spildt på Projekter Der Aldrig Virkede</h2>
-            <p class="section-desc">Danmark har brugt milliarder af dine skattekroner pa IT-projekter der aldrig virkede. Her er de detaljerede historier, og hvordan AI og moderne metoder kunne have forhindret det.</p>
+            <h2>IT-Skandalerne - Milliarder Spildt, Ingen Holdt Ansvarlig</h2>
+            <p class="section-desc">Danmark har brændt milliarder af dine skattekroner på IT-projekter der aldrig virkede. Konsulentfirmaer fik millionhonorarer for at levere ingenting. Her er navnene, tallene og hvem der trak i trådene.</p>
 
-            <!-- Deep-dive tabs -->
             <div class="spending-tabs">
                 <button class="spending-tab active" data-tab="cases">Sagerne</button>
-                <button class="spending-tab" data-tab="rootcauses">Systemiske Arsager</button>
-                <button class="spending-tab" data-tab="solutions">En Bedre Vej</button>
+                <button class="spending-tab" data-tab="consultants">Konsulentregningen</button>
+                <button class="spending-tab" data-tab="rootcauses">Systemiske Årsager</button>
+                <button class="spending-tab" data-tab="solutions">AI Som Løsning</button>
                 <button class="spending-tab" data-tab="savings">Hvad Kunne Vi Spare?</button>
             </div>
 
-            <!-- Tab: Case Studies -->
             <div id="tab-cases" class="spending-tab-content active">
-                <p class="tab-intro">Klik pa en sag for at se den fulde tidslinje og hvad der gik galt.</p>
-                <div id="case-studies-list" class="case-studies-list">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">Klik på en sag for at se den fulde tidslinje, hvem der tjente pengene, og hvad der gik galt.</p>
+                <div id="case-studies-list" class="case-studies-list"></div>
             </div>
 
-            <!-- Tab: Root Causes -->
+            <div id="tab-consultants" class="spending-tab-content">
+                <p class="tab-intro">Staten bruger over 4 milliarder kroner om året på IT-konsulenter. Her er hvem der får pengene, og hvad vi får for dem.</p>
+                <div id="consultant-breakdown"></div>
+            </div>
+
             <div id="tab-rootcauses" class="spending-tab-content">
-                <p class="tab-intro">ITU-professor Soren Lauesen analyserede 5 store offentlige IT-projekter og fandt 36 fejl. Her er de 8 systemiske arsager der gik igen.</p>
-                <div id="root-causes-grid" class="root-causes-grid">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">ITU-professor Søren Lauesen analyserede 5 store offentlige IT-projekter og fandt 36 fejl. Her er de 8 systemiske årsager der gik igen.</p>
+                <div id="root-causes-grid" class="root-causes-grid"></div>
             </div>
 
-            <!-- Tab: Modern Solutions -->
             <div id="tab-solutions" class="spending-tab-content">
-                <p class="tab-intro">Moderne teknologi, isaer AI, kan adressere hver eneste af de systemiske fejl. Her er hvordan.</p>
-                <div id="solutions-list" class="solutions-list">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">Moderne AI-teknologi kan adressere hver eneste af de systemiske fejl. Det kræver bare vilje til at bruge den.</p>
+                <div id="solutions-list" class="solutions-list"></div>
                 <div class="orbix-banner">
                     <div class="orbix-banner-content">
-                        <h3>Orbix - AI-drevet softwareudvikling</h3>
-                        <p>Orbix bygger software med AI i kernen af processen: fra kravanalyse og arkitektur til test og deployment. Resultatet er hurtigere levering, faerre fejl og fuld gennemsigtighed.</p>
-                        <a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-link">Besog orbixcore.ai</a>
+                        <h3>Orbix Core - AI-drevet softwareudvikling</h3>
+                        <p>Orbix Core bygger software med AI i kernen: fra kravanalyse og arkitektur til test og deployment. Hurtigere levering, færre fejl, fuld gennemsigtighed. Alt det de offentlige IT-skandaler manglede.</p>
+                        <a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-link">Se hvordan på orbixcore.ai</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab: Savings Calculator -->
             <div id="tab-savings" class="spending-tab-content">
-                <p class="tab-intro">Hvis Danmark havde brugt moderne AI-drevne metoder, hvor mange skattekroner kunne vaere sparet?</p>
-                <div id="savings-calculator" class="savings-calculator">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">Hvis Danmark havde brugt AI-drevne metoder, hvor mange milliarder kunne vi have sparet?</p>
+                <div id="savings-calculator" class="savings-calculator"></div>
             </div>
         </section>
 
-        <!-- KONTANTHJAELP - Welfare Dependency Analysis -->
+        <!-- KONTANTHJAELP -->
         <section id="kontanthjaelp-section" class="card">
-            <h2>Kontanthjaelp - Hvem Arbejder, og Hvem Gor Ikke?</h2>
-            <p class="section-desc">86.100 danskere modtager kontanthjaelp. 14.500 er vurderet jobparate, men kun 27% finder job inden for 6 maneder. Hvad sker der med resten?</p>
+            <h2>Kontanthjælp - Hvem Arbejder, og Hvem Gør Ikke?</h2>
+            <p class="section-desc">86.100 danskere modtager kontanthjælp. 14.500 er vurderet jobparate, men kun 27% finder job inden for 6 måneder. Hvad sker der med resten?</p>
 
-            <!-- Kontanthjaelp tabs -->
             <div class="spending-tabs">
                 <button class="spending-tab active" data-tab="kh-overview">Overblik</button>
                 <button class="spending-tab" data-tab="kh-problem">Problemet</button>
@@ -89,167 +80,128 @@
                 <button class="spending-tab" data-tab="kh-whatworks">Hvad Virker?</button>
             </div>
 
-            <!-- Tab: Overview -->
             <div id="tab-kh-overview" class="spending-tab-content active">
-                <div id="kh-overview-content">
-                    <!-- Filled by JS -->
-                </div>
+                <div id="kh-overview-content"></div>
             </div>
-
-            <!-- Tab: The Problem -->
             <div id="tab-kh-problem" class="spending-tab-content">
-                <div id="kh-problem-content">
-                    <!-- Filled by JS -->
-                </div>
+                <div id="kh-problem-content"></div>
             </div>
-
-            <!-- Tab: Reform 2025 -->
             <div id="tab-kh-reform" class="spending-tab-content">
-                <div id="kh-reform-content">
-                    <!-- Filled by JS -->
-                </div>
+                <div id="kh-reform-content"></div>
             </div>
-
-            <!-- Tab: Research -->
             <div id="tab-kh-research" class="spending-tab-content">
-                <div id="kh-research-content">
-                    <!-- Filled by JS -->
-                </div>
+                <div id="kh-research-content"></div>
             </div>
-
-            <!-- Tab: What Works -->
             <div id="tab-kh-whatworks" class="spending-tab-content">
-                <div id="kh-whatworks-content">
-                    <!-- Filled by JS -->
-                </div>
+                <div id="kh-whatworks-content"></div>
             </div>
         </section>
 
-        <!-- PUBLIC SPENDING INSIGHTS - Follow the money -->
+        <!-- PUBLIC SPENDING -->
         <section id="spending-section" class="card">
-            <h2>Folg Pengene - Hvad Gor Den Offentlige Sektor Med Dem?</h2>
+            <h2>Følg Pengene - Hvad Gør Den Offentlige Sektor Med Dem?</h2>
             <p class="section-desc">Dine skattekroner lander i den offentlige sektor. Men hvad sker der derefter? Her er indsigt i budget vs. virkelighed, kvartalsforbrug og kendte problemer.</p>
 
-            <!-- Tab navigation -->
             <div class="spending-tabs">
                 <button class="spending-tab active" data-tab="budget-actual">Budget vs. Virkelighed</button>
-                <button class="spending-tab" data-tab="operational">Hvad Bruges Pengene Pa?</button>
+                <button class="spending-tab" data-tab="operational">Hvad Bruges Pengene På?</button>
                 <button class="spending-tab" data-tab="quarterly">Kvartalsforbrug</button>
                 <button class="spending-tab" data-tab="issues">Kendte Problemer</button>
             </div>
 
-            <!-- Tab: Budget vs Actual -->
             <div id="tab-budget-actual" class="spending-tab-content active">
-                <p class="tab-intro">Hvert ar vedtages Finansloven med et budget for hvert omrade. Statsregnskabet viser hvad der faktisk blev brugt. Forskellen afslorer forsinkelser, fejlbudgettering og ubrugte midler.</p>
-                <div id="budget-actual-table" class="budget-actual-table">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">Hvert år vedtages Finansloven med et budget for hvert område. Statsregnskabet viser hvad der faktisk blev brugt. Forskellen afslører forsinkelser, fejlbudgettering og ubrugte midler.</p>
+                <div id="budget-actual-table" class="budget-actual-table"></div>
                 <div class="spending-insight-box">
-                    <span class="insight-icon">💡</span>
+                    <span class="insight-icon"></span>
                     <div>
                         <strong>Hvad sker med ubrugte penge?</strong>
-                        <p>Statslige institutioner ma overfore op til 2% af deres bevilling til naeste ar. Alt derudover bortfalder. Det skaber et incitament til at bruge pengene op, uanset om behovet er der.</p>
+                        <p>Statslige institutioner må overføre op til 2% af deres bevilling til næste år. Alt derudover bortfalder. Det skaber et incitament til at bruge pengene op, uanset om behovet er der.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab: Operational Breakdown -->
             <div id="tab-operational" class="spending-tab-content">
-                <p class="tab-intro">Nar et ministerium modtager sin bevilling, hvor ender pengene sa? Her ser du den typiske fordeling af driftsudgifter.</p>
-
+                <p class="tab-intro">Når et ministerium modtager sin bevilling, hvor ender pengene så? Her ser du den typiske fordeling af driftsudgifter.</p>
                 <div class="op-selector">
-                    <label>Vaelg sektor:</label>
+                    <label>Vælg sektor:</label>
                     <select id="op-sector-select">
                         <option value="overall">Gennemsnit (hele den offentlige sektor)</option>
-                        <option value="healthcare">Sundhedsvaesen</option>
+                        <option value="healthcare">Sundhedsvæsen</option>
                         <option value="education">Uddannelse</option>
                         <option value="administration">Offentlig administration</option>
                         <option value="defense">Forsvar</option>
                     </select>
                 </div>
-
-                <div id="operational-breakdown" class="operational-breakdown">
-                    <!-- Filled by JS -->
-                </div>
-
+                <div id="operational-breakdown" class="operational-breakdown"></div>
                 <div class="spending-insight-box insight-warn">
-                    <span class="insight-icon">⚠️</span>
+                    <span class="insight-icon"></span>
                     <div>
                         <strong>Konsulenter vs. fastansatte</strong>
-                        <p>Den offentlige sektor bruger 12-15 mia. kr. arligt pa eksterne konsulenter. Det svarer til ca. 4,5% af driftsbudgettet, og konsulenthonorarer er typisk 3-5x dyrere end fastansatte for sammenlignelige opgaver.</p>
+                        <p>Den offentlige sektor bruger 12-15 mia. kr. årligt på eksterne konsulenter. Det svarer til ca. 4,5% af driftsbudgettet, og konsulenthonorarer er typisk 3-5x dyrere end fastansatte for sammenlignelige opgaver.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab: Quarterly Flow -->
             <div id="tab-quarterly" class="spending-tab-content">
-                <p class="tab-intro">Pengene flyder ikke jaevnt gennem aret. Her ser du det typiske monster, og det problematiske Q4-forbrug.</p>
-
-                <div id="quarterly-chart" class="quarterly-chart">
-                    <!-- Filled by JS -->
-                </div>
-
-                <div id="quarterly-details" class="quarterly-details">
-                    <!-- Filled by JS -->
-                </div>
-
+                <p class="tab-intro">Pengene flyder ikke jævnt gennem året. Her ser du det typiske mønster, og det problematiske Q4-forbrug.</p>
+                <div id="quarterly-chart" class="quarterly-chart"></div>
+                <div id="quarterly-details" class="quarterly-details"></div>
                 <div class="spending-insight-box insight-warn">
-                    <span class="insight-icon">📅</span>
+                    <span class="insight-icon"></span>
                     <div>
                         <strong>December-feber</strong>
                         <p id="quarterly-insight"></p>
                     </div>
                 </div>
-
                 <div class="carryover-box">
-                    <h4>Overforsel mellem ar - Bevillingsreglerne</h4>
+                    <h4>Overførsel mellem år - Bevillingsreglerne</h4>
                     <p id="carryover-text"></p>
                     <div class="carryover-amount">
-                        <span>Estimeret arlig overforsel:</span>
+                        <span>Estimeret årlig overførsel:</span>
                         <strong id="carryover-amount-value"></strong>
                     </div>
                 </div>
-
-                <!-- Appropriation rules breakdown -->
                 <div class="rules-box">
                     <h4>De 4 bevillingstyper - og hvad der sker med ubrugte penge</h4>
-                    <p class="rules-intro">Ikke alle bevillinger fungerer ens. Her er de fire typer og deres regler for overforsel:</p>
-                    <div id="appropriation-rules" class="rules-grid">
-                        <!-- Filled by JS -->
-                    </div>
+                    <p class="rules-intro">Ikke alle bevillinger fungerer ens. Her er de fire typer og deres regler for overførsel:</p>
+                    <div id="appropriation-rules" class="rules-grid"></div>
                 </div>
             </div>
 
-            <!-- Tab: Known Issues -->
             <div id="tab-issues" class="spending-tab-content">
-                <p class="tab-intro">Rigsrevisionen, medierne og uafhaengige analyser har dokumenteret en raekke tilbagevendende problemer med offentligt forbrug.</p>
-                <div id="issues-list" class="issues-list">
-                    <!-- Filled by JS -->
-                </div>
+                <p class="tab-intro">Rigsrevisionen, medierne og uafhængige analyser har dokumenteret en række tilbagevendende problemer med offentligt forbrug.</p>
+                <div id="issues-list" class="issues-list"></div>
             </div>
         </section>
 
-        <!-- The Bigger Picture -->
-        <section id="perspective-section" class="card">
-            <h2>Det Store Billede</h2>
-            <p class="section-desc">Gennemsigtighed er forudsaetningen for tillid mellem borgere og stat.</p>
-            <div class="perspective-content">
-                <div class="perspective-item">
-                    <h3>💡 Vaerdien af gennemsigtighed</h3>
-                    <p>Nar vi kan se hvor pengene gar, kan vi fore informerede samtaler om prioriteringer. Gennemsigtighed er forudsaetningen for tillid mellem borgere og stat.</p>
+        <!-- CALL TO ACTION: AI & YOUR POWER -->
+        <section id="cta-section" class="card cta-card">
+            <h2>Stop Med At Acceptere Det. Lær AI. Tag Kontrol.</h2>
+            <p class="section-desc">Skandalerne gentager sig fordi systemet ikke har incitament til at ændre sig. Men teknologien til at løse det findes allerede. Spørgsmålet er om du vil bruge den.</p>
+
+            <div class="cta-content">
+                <div class="cta-item">
+                    <h3>AI kan erstatte de dyre konsulenter</h3>
+                    <p>Staten betaler 4+ mia. kr. om året til IT-konsulenter. AI-agenter kan automatisere kravanalyse, kodegennemgang og projektovervågning til en brøkdel af prisen. Netcompany får 734 mio. kr. om året fra staten. En AI-agent koster en brøkdel.</p>
                 </div>
-                <div class="perspective-item">
-                    <h3>📊 Hvor gar pengene hen?</h3>
-                    <p>Danmark bruger ca. 1.357 mia. kr. arligt pa offentlige udgifter. Det er ca. 46% af BNP. Denne side viser dig de konkrete eksempler pa hvad der gar galt.</p>
+                <div class="cta-item">
+                    <h3>AI-agenter fanger fejl før de koster milliarder</h3>
+                    <p>EFI, POLSAG og Sundhedsplatformen fejlede alle fordi problemer først blev opdaget efter go-live. AI-drevet test og monitorering opdager fejl i realtid, ikke efter 5 år og 1 milliard kroner.</p>
                 </div>
-                <div class="perspective-item">
-                    <h3>🔍 Krav om ansvarlighed</h3>
-                    <p>Milliarder spildt pa IT-skandaler, kontanthjaelpsmodtagere der ikke soger job, og et offentligt forbrug der eksploderer i december. Det fortjener opmærksomhed.</p>
+                <div class="cta-item">
+                    <h3>Du kan lære det selv</h3>
+                    <p>AI og agenter er ikke forbeholdt tech-giganter. Enhver borger kan lære at bruge AI-værktøjer til at analysere offentlige data, holde politikere ansvarlige og kræve gennemsigtighed. Tag sagen i egen hånd.</p>
                 </div>
-                <div class="perspective-item">
-                    <h3>🏗️ Losninger findes</h3>
-                    <p>AI-drevet kravanalyse, privat virksomhedspraktik, IPS-metoden. Forskningen viser hvad der virker. Sporgsmaalet er om vi gor det.</p>
+                <div class="cta-item cta-orbix">
+                    <h3>Orbix Core viser vejen</h3>
+                    <p><a href="https://orbixcore.ai" target="_blank" rel="noopener">Orbix Core</a> bygger software med AI-agenter i kernen. Ikke som et buzzword, men som en fundamental anderledes måde at udvikle på: hurtigere, billigere, med fuld gennemsigtighed og kvalitetskontrol i hvert trin. Det er præcis den tilgang den offentlige sektor mangler.</p>
+                    <a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-link">Udforsk Orbix Core</a>
                 </div>
+            </div>
+
+            <div class="cta-bottom">
+                <p class="cta-final">Skattefilerne er åben kildekode. Dataen er offentlig. Kilderne er verificerbare. Del den her side. Kræv svar. Lær AI. Byg fremtiden selv.</p>
             </div>
         </section>
 
@@ -257,8 +209,8 @@
 
     <footer>
         <div class="container">
-            <p>TransparentTax - Aben data, aben debat. Data er baseret pa Finansloven, Statsregnskabet, Danmarks Statistik og uafhaengig forskning.</p>
-            <p class="disclaimer">Kilder: skat.dk, Skatteministeriet, oes.dk (Statsregnskabet 2024), Rigsrevisionen, OECD, Dansk Arbejdsgiverforening, Beskæftigelsesministeriet.</p>
+            <p>Skattefilerne - Åben data, åben debat. Data er baseret på Finansloven, Statsregnskabet, Danmarks Statistik og uafhængig forskning.</p>
+            <p class="disclaimer">Kilder: skat.dk, Skatteministeriet, oes.dk (Statsregnskabet 2024), Rigsrevisionen, OECD, Dansk Arbejdsgiverforening, Beskæftigelsesministeriet, Version2, DigiTech/Ingeniøren.</p>
         </div>
     </footer>
 

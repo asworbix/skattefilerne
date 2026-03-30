@@ -1,5 +1,5 @@
 /**
- * UI rendering functions for TransparentTax
+ * UI rendering functions for TransparentSkat
  */
 
 /**
@@ -103,7 +103,7 @@ function renderOperationalBreakdown(sectorKey) {
 
     const customLabels = sector.customLabels || {};
 
-    let html = `<h4>${sector.icon || '📊'} ${sector.label}</h4><div class="op-bars">`;
+    let html = `<h4>${sector.icon ? sector.icon + ' ' : ''}${sector.label}</h4><div class="op-bars">`;
 
     entries.forEach(([key, pct]) => {
         const label = customLabels[key] || COST_LABELS[key] || key;
@@ -155,7 +155,7 @@ function renderQuarterlyFlow() {
     });
 
     chartHtml += '</div>';
-    chartHtml += `<div class="q-baseline"><span>Jaevn fordeling ville vaere 25% pr. kvartal</span></div>`;
+    chartHtml += `<div class="q-baseline"><span>Jævn fordeling ville være 25% pr. kvartal</span></div>`;
 
     chart.innerHTML = chartHtml;
     details.innerHTML = detailsHtml;
@@ -163,7 +163,7 @@ function renderQuarterlyFlow() {
     // Q4 insight
     const q4 = QUARTERLY_FLOW.pattern[3];
     document.getElementById('quarterly-insight').innerHTML =
-        `I Q4 bruges ${q4.percentSpent}% af det samlede arsbudget - ${q4.percentSpent - 25} procentpoint mere end ved en jaevn fordeling. ${QUARTERLY_FLOW.carryoverExplanation}`;
+        `I Q4 bruges ${q4.percentSpent}% af det samlede årsbudget - ${q4.percentSpent - 25} procentpoint mere end ved en jævn fordeling. ${QUARTERLY_FLOW.carryoverExplanation}`;
 
     // Carryover
     document.getElementById('carryover-text').textContent = QUARTERLY_FLOW.carryoverExplanation;
@@ -186,11 +186,11 @@ function renderAppropriationRules() {
         return `
             <div class="rule-card ${canCarry ? 'rule-carry' : 'rule-lapse'}">
                 <div class="rule-header">
-                    <span class="rule-status">${canCarry ? '🔄 Kan viderefores' : '⛔ Bortfalder'}</span>
+                    <span class="rule-status">${canCarry ? 'Kan videreføres' : 'Bortfalder'}</span>
                 </div>
                 <h5>${rule.name}</h5>
                 <p class="rule-name-en">${rule.nameEn}</p>
-                <p class="rule-limit"><strong>Begraensning:</strong> ${rule.limit}</p>
+                <p class="rule-limit"><strong>Begrænsning:</strong> ${rule.limit}</p>
                 <p class="rule-lapse-text"><strong>Ubrugte midler:</strong> ${rule.lapse}</p>
                 <p class="rule-source">${rule.source}</p>
             </div>`;
@@ -275,7 +275,7 @@ function renderCaseStudies() {
                 <span class="case-expand-icon">+</span>
             </div>
             <div class="case-body">
-                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt vaerdi:</strong> ${cs.lostValue}</div>` : ''}
+                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt værdi:</strong> ${cs.lostValue}</div>` : ''}
                 <h5>Tidslinje</h5>
                 <div class="case-timeline">
                     ${cs.timeline.map(t => `
@@ -341,7 +341,7 @@ function renderSolutions() {
                 ${sol.howItWorks.map(step => `<li>${step}</li>`).join('')}
             </ul>
             <div class="solution-orbix">
-                <strong>Orbix-tilgangen:</strong> ${sol.orbixAngle}
+                <strong><a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-inline-link">Orbix Core</a>:</strong> ${sol.orbixAngle}
             </div>
         </div>
     `).join('');
@@ -362,12 +362,12 @@ function renderSavingsCalculator() {
     container.innerHTML = `
         <div class="savings-grid">
             <div class="savings-card savings-waste">
-                <div class="savings-label">Arligt spildt pa fejlslagne IT-projekter</div>
+                <div class="savings-label">Årligt spildt på fejlslagne IT-projekter</div>
                 <div class="savings-amount">${annualITWaste.toFixed(1)} mia. kr.</div>
-                <div class="savings-note">Baseret pa ~${s.totalWastedBn} mia. kr. spildt over 15 ar</div>
+                <div class="savings-note">Baseret på ~${s.totalWastedBn} mia. kr. spildt over 15 år</div>
             </div>
             <div class="savings-card savings-consultant">
-                <div class="savings-label">Arlige konsulentudgifter</div>
+                <div class="savings-label">Årlige konsulentudgifter</div>
                 <div class="savings-amount">${s.annualConsultantBn} mia. kr.</div>
                 <div class="savings-note">Eksterne konsulenter til offentlige IT-projekter</div>
             </div>
@@ -377,24 +377,24 @@ function renderSavingsCalculator() {
         <div class="savings-breakdown">
             <div class="sb-row">
                 <div class="sb-label">
-                    <span>🤖</span> AI-kravanalyse (sparer 40% af fejlslagne projekter)
+                    AI-kravanalyse (sparer 40% af fejlslagne projekter)
                 </div>
                 <div class="sb-amount sb-green">-${reqSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row">
                 <div class="sb-label">
-                    <span>🔄</span> Trinvis levering + AI-test (sparer 30% yderligere)
+                    Trinvis levering + AI-test (sparer 30% yderligere)
                 </div>
                 <div class="sb-amount sb-green">-${devSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row">
                 <div class="sb-label">
-                    <span>🏛️</span> AI erstatter konsulenter (50% reduktion)
+                    AI erstatter konsulenter (50% reduktion)
                 </div>
                 <div class="sb-amount sb-green">-${consultSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row sb-total">
-                <div class="sb-label"><strong>Potentiel arlig besparelse</strong></div>
+                <div class="sb-label"><strong>Potentiel årlig besparelse</strong></div>
                 <div class="sb-amount sb-green"><strong>${totalSaving.toFixed(1)} mia. kr.</strong></div>
             </div>
         </div>
@@ -410,27 +410,108 @@ function renderSavingsCalculator() {
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsFlagged}/${s.projectsMonitored}</div>
-                <div class="savings-stat-label">Projekter med advarselslamper (IT-radet)</div>
+                <div class="savings-stat-label">Projekter med advarselslamper (IT-rådet)</div>
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsRedLight}</div>
-                <div class="savings-stat-label">Projekter med rod status (kritisk)</div>
+                <div class="savings-stat-label">Projekter med rød status (kritisk)</div>
             </div>
         </div>
 
         <div class="spending-insight-box">
-            <span class="insight-icon">💡</span>
+            <span class="insight-icon"></span>
             <div>
                 <strong>Norge vs. Danmark</strong>
-                <p>Norge har 8% gennemsnitlig budgetoverskridelse pa offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest - praecis det AI kan accelerere og skalere.</p>
+                <p>Norge har 8% gennemsnitlig budgetoverskridelse på offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest - præcis det AI kan accelerere og skalere.</p>
             </div>
         </div>
     `;
 }
 
+function renderConsultantBreakdown() {
+    const container = document.getElementById('consultant-breakdown');
+    if (!container || typeof CONSULTANT_DATA === 'undefined') return;
+
+    const d = CONSULTANT_DATA;
+
+    let html = `
+        <div class="kh-stats-grid">
+            <div class="kh-stat-card kh-stat-primary">
+                <div class="kh-stat-value">${d.totalAnnualSpendBn} mia. kr.</div>
+                <div class="kh-stat-label">Statens IT-konsulentforbrug (${d.totalAnnualSpendYear})</div>
+                <div class="kh-stat-note">Steg ${d.growthPct}% på ét år</div>
+            </div>
+            <div class="kh-stat-card kh-stat-cost">
+                <div class="kh-stat-value">${d.managementConsultants.consultantMultiplier}</div>
+                <div class="kh-stat-label">Konsulent vs. fastansat</div>
+                <div class="kh-stat-note">En konsulent koster ${d.managementConsultants.civilServantHourlyRate} vs. 3.000-15.000 kr./time</div>
+            </div>
+        </div>
+
+        <h3 class="kh-sub-heading">Hvem får pengene? Top IT-konsulentleverandører til staten</h3>
+        <div class="consultant-list">
+            ${d.topSuppliers.map(s => `
+                <div class="consultant-card ${s.controversy ? 'consultant-flagged' : ''}">
+                    <div class="consultant-header">
+                        <div class="consultant-rank">#${s.rank}</div>
+                        <div class="consultant-info">
+                            <h4>${s.name}</h4>
+                            <span class="consultant-amount">${s.annualStateLabel}/år (${s.pctOfTotal}% af markedet)</span>
+                        </div>
+                    </div>
+                    <p class="consultant-note">${s.note}</p>
+                    ${s.controversy ? `<p class="consultant-controversy">${s.controversy}</p>` : ''}
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading">Hvem tjente på skandalerne?</h3>
+        <div class="scandal-consultant-list">
+            ${d.scandalInvolvement.map(s => `
+                <div class="scandal-consultant-card">
+                    <div class="scandal-consultant-header">
+                        <h4>${s.scandal}</h4>
+                        <span class="scandal-cost">${s.totalCost} tabt</span>
+                    </div>
+                    <div class="scandal-details">
+                        <p><strong>Konsulenter:</strong> ${s.consultants}</p>
+                        <p><strong>Ansvarlig:</strong> ${s.whoDecided}</p>
+                        <p class="scandal-what-happened">${s.whatHappened}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading">Management-konsulenterne: Strategirådgivning til millioner</h3>
+        <div class="mgmt-consultant-list">
+            ${d.managementConsultants.topFirms.map(f => `
+                <div class="mgmt-consultant-row">
+                    <div class="mgmt-consultant-info">
+                        <strong>${f.name}</strong>
+                        <span>${f.role}</span>
+                    </div>
+                    <div class="mgmt-consultant-rate">${f.hourlyRate}</div>
+                    ${f.controversy ? `<p class="mgmt-consultant-controversy">${f.controversy}</p>` : ''}
+                </div>
+            `).join('')}
+        </div>
+
+        <div class="spending-insight-box insight-warn">
+            <span class="insight-icon"></span>
+            <div>
+                <strong>Regeringens brudte løfte</strong>
+                <p>${d.concentrationNote}</p>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
 function renderITDeepDive() {
     initDeepDiveTabs();
     renderCaseStudies();
+    renderConsultantBreakdown();
     renderRootCauses();
     renderSolutions();
     renderSavingsCalculator();
@@ -438,7 +519,7 @@ function renderITDeepDive() {
 
 
 /**
- * Kontanthjaelp Section rendering
+ * Kontanthjælp Section rendering
  */
 
 function renderKontanthjaelp() {
@@ -489,7 +570,7 @@ function renderKHOverview() {
             </div>
             <div class="kh-stat-card kh-stat-cost">
                 <div class="kh-stat-value">~${d.annualCostBn} mia. kr.</div>
-                <div class="kh-stat-label">Arlig udgift</div>
+                <div class="kh-stat-label">Årlig udgift</div>
                 <div class="kh-stat-note">Halvdelen af forsvarsbudgettet</div>
             </div>
         </div>
@@ -518,7 +599,7 @@ function renderKHOverview() {
             `).join('')}
         </div>
 
-        <h3 class="kh-sub-heading">Hvad koster kontanthjaelpen?</h3>
+        <h3 class="kh-sub-heading">Hvad koster kontanthjælpen?</h3>
         <div class="kh-cost-breakdown">
             ${KONTANTHJAELP_DATA.costBreakdown.items.map(item => `
                 <div class="kh-cost-row">
@@ -537,10 +618,10 @@ function renderKHOverview() {
         </div>
 
         <div class="spending-insight-box">
-            <span class="insight-icon">📊</span>
+            <span class="insight-icon"></span>
             <div>
                 <strong>Demografisk fordeling</strong>
-                <p>${d.nonWesternPct}% af ikke-vestlige indvandrere i den erhvervsaktive alder er pa kontanthjaelp, mod ${d.danishOriginPct}% af danskere med dansk oprindelse. ${d.mindstesatsNonWesternPct}% af modtagere pa mindstesatsen har ikke-vestlig baggrund.</p>
+                <p>${d.nonWesternPct}% af ikke-vestlige indvandrere i den erhvervsaktive alder er på kontanthjælp, mod ${d.danishOriginPct}% af danskere med dansk oprindelse. ${d.mindstesatsNonWesternPct}% af modtagere på mindstesatsen har ikke-vestlig baggrund.</p>
             </div>
         </div>
     `;
@@ -576,7 +657,7 @@ function renderKHReform() {
     container.innerHTML = `
         <div class="kh-reform-header">
             <h3>${r.title}</h3>
-            <span class="kh-reform-date">Traedte i kraft: ${r.effectiveDate}</span>
+            <span class="kh-reform-date">Trådte i kraft: ${r.effectiveDate}</span>
         </div>
 
         <div class="kh-reform-changes">
@@ -606,7 +687,7 @@ function renderKHResearch() {
         <div class="kh-research-list">
             ${research.findings.map(f => `
                 <div class="kh-research-card ${f.positive ? 'kh-research-positive' : 'kh-research-negative'}">
-                    <div class="kh-research-indicator">${f.positive ? '✅' : '❌'}</div>
+                    <div class="kh-research-indicator">${f.positive ? '+' : '-'}</div>
                     <div class="kh-research-content">
                         <h4>${f.finding}</h4>
                         <p>${f.detail}</p>
