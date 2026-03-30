@@ -6,7 +6,7 @@
 function calculateDanishTax(grossIncome, options = {}) {
     const { churchTax = true } = options;
 
-    // Step 1: AM-bidrag (labor market contribution) — 8% of gross
+    // Step 1: AM-bidrag (labor market contribution) - 8% of gross
     const amBidrag = Math.round(grossIncome * TAX_RATES.amBidrag);
 
     // Step 2: Taxable income after AM-bidrag
@@ -28,7 +28,7 @@ function calculateDanishTax(grossIncome, options = {}) {
     // Step 7: Kommuneskat (municipal tax)
     const kommuneskat = Math.round(taxableIncome * TAX_RATES.kommuneskat);
 
-    // Step 8: Kirkeskat (church tax) — optional
+    // Step 8: Kirkeskat (church tax) - optional
     const kirkeskat = churchTax ? Math.round(taxableIncome * TAX_RATES.kirkeskat) : 0;
 
     // Total income tax (bundskat + topskat + kommuneskat + kirkeskat)

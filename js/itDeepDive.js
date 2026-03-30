@@ -17,7 +17,7 @@
 const IT_CASE_STUDIES = [
     {
         id: "efi",
-        name: "EFI — Et Fælles Inddrivelsessystem",
+        name: "EFI: Et Fælles Inddrivelsessystem",
         icon: "💀",
         org: "SKAT (nu Gældsstyrelsen)",
         years: "2005–2015",
@@ -30,9 +30,9 @@ const IT_CASE_STUDIES = [
             { year: "2005", event: "Projektet startes. Målet: ét samlet system til at inddrive al offentlig gæld." },
             { year: "2007", event: "Første planlagte go-live. Mistes." },
             { year: "2009", event: "Anden planlagte go-live. Mistes igen. Internt kaldet '7-9-13'." },
-            { year: "2010", event: "SKAT skæres fra 10.000 til 7.500 ansatte — med EFI som forudsætning for at det kan fungere." },
-            { year: "2013", event: "EFI lanceres endelig — med alvorlige fejl. Det gamle system er allerede nedlagt." },
-            { year: "2015", event: "EFI skrottes efter kun 2 års drift. Ingen vej tilbage — det gamle system er væk." },
+            { year: "2010", event: "SKAT skæres fra 10.000 til 7.500 ansatte, med EFI som forudsætning for at det kan fungere." },
+            { year: "2013", event: "EFI lanceres endelig, men med alvorlige fejl. Det gamle system er allerede nedlagt." },
+            { year: "2015", event: "EFI skrottes efter kun 2 års drift. Ingen vej tilbage. Det gamle system er væk." },
             { year: "2017", event: "SKAT opløses og erstattes af 7 nye styrelser. 114 mia. kr. i gæld kan ikke inddrives." },
         ],
         rootCauses: [
@@ -50,17 +50,17 @@ const IT_CASE_STUDIES = [
             },
             {
                 cause: "Leverandør-optimisme",
-                detail: "'Den der vinder er den der lyver' — leverandøren undervurderede systematisk omfanget for at vinde kontrakten."
+                detail: "'Den der vinder er den der lyver.' Leverandøren undervurderede systematisk omfanget for at vinde kontrakten."
             },
             {
                 cause: "Ingen iterativ udvikling",
-                detail: "Udbudsregler tvang en lineær vandfaldsproces. IT blev behandlet som at bygge en motorvej — men krav ændrer sig løbende."
+                detail: "Udbudsregler tvang en lineær vandfaldsproces. IT blev behandlet som at bygge en motorvej, men krav ændrer sig løbende."
             },
         ],
     },
     {
         id: "polsag",
-        name: "POLSAG — Politiets Sagsbehandlingssystem",
+        name: "POLSAG: Politiets Sagsbehandlingssystem",
         icon: "🚔",
         org: "Rigspolitiet",
         years: "2007–2012",
@@ -103,7 +103,7 @@ const IT_CASE_STUDIES = [
         years: "2012–nu",
         budgetOriginal: "2,8 mia. kr.",
         budgetFinal: "3,8+ mia. kr.",
-        outcome: "I drift — men stærkt kritiseret",
+        outcome: "I drift, men stærkt kritiseret",
         lostValue: "Produktivitetstab, personaleflugt, patientsikkerhedsrisici",
         severity: "critical",
         timeline: [
@@ -138,7 +138,7 @@ const IT_CASE_STUDIES = [
     },
     {
         id: "amanda",
-        name: "Amanda — Arbejdsmarkedsstyrelsen",
+        name: "Amanda: Arbejdsmarkedsstyrelsen",
         icon: "📋",
         org: "Arbejdsmarkedsstyrelsen",
         years: "2002–2008",
@@ -190,7 +190,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         id: "procurement",
         icon: "⚖️",
         title: "Udbudsregler tvinger vandfald",
-        description: "EU-udbudsregler behandler IT som byggeri. Lineær proces med fastlåst scope — men software kræver iteration.",
+        description: "EU-udbudsregler behandler IT som byggeri. Lineær proces med fastlåst scope, men software kræver iteration.",
         frequency: "4 af 5 skandaler",
         color: "#eab308"
     },
@@ -246,15 +246,15 @@ const MODERN_SOLUTIONS = [
         icon: "🤖",
         title: "AI-drevet kravanalyse",
         rootCauses: ["requirements", "megaproject"],
-        description: "AI kan analysere eksisterende arbejdsgange, dokumentation og brugeradfærd for automatisk at kortlægge processer — det POLSAG manglede fuldstændigt.",
+        description: "AI kan analysere eksisterende arbejdsgange, dokumentation og brugeradfærd for automatisk at kortlægge processer. Det er præcis det POLSAG manglede fuldstændigt.",
         savings: "Reducer kravspecifikation fra 2 år til 2-3 måneder",
         howItWorks: [
             "Natural Language Processing analyserer tusindvis af eksisterende dokumenter, mails og sagsgange for at kortlægge reelle processer.",
             "AI-agenter kan simulere brugere og finde edge cases før en eneste linje kode er skrevet.",
             "Process mining identificerer automatisk flaskehalse og undtagelser i eksisterende systemer.",
-            "Kravdokumentation genereres automatisk fra analyse — ikke fra konsulenter der gætter.",
+            "Kravdokumentation genereres automatisk fra analyse, ikke fra konsulenter der gætter.",
         ],
-        orbixAngle: "Orbix bruger AI til at forstå komplekse systemer og generere præcis kravspecifikation baseret på data — ikke gætværk."
+        orbixAngle: "Orbix bruger AI til at forstå komplekse systemer og generere præcis kravspecifikation baseret på data, ikke gætværk."
     },
     {
         id: "incremental",
@@ -269,29 +269,29 @@ const MODERN_SOLUTIONS = [
             "AI-drevet monitoring: overvåger automatisk patientsikkerhed, brugerklager og systemfejl i realtid.",
             "Automatisk rollback: hvis AI opdager kritiske problemer, ruller systemet automatisk tilbage.",
         ],
-        orbixAngle: "Orbix bygger software i korte sprints med løbende AI-kvalitetskontrol — problemer fanges i dage, ikke år."
+        orbixAngle: "Orbix bygger software i korte sprints med løbende AI-kvalitetskontrol. Problemer fanges i dage, ikke år."
     },
     {
         id: "ai-testing",
         icon: "🧪",
         title: "AI-drevet test & kvalitetssikring",
         rootCauses: ["testing", "vendor"],
-        description: "AI kan generere og køre tusindvis af tests automatisk — det der manglede i EFI, POLSAG og Sundhedsplatformen.",
+        description: "AI kan generere og køre tusindvis af tests automatisk. Det er det der manglede i EFI, POLSAG og Sundhedsplatformen.",
         savings: "80-90% reduktion i uopdagede fejl ved go-live",
         howItWorks: [
             "AI genererer automatisk testcases baseret på kravspecifikation og brugerhistorier.",
-            "Simulerede brugerflows tester systemet med realistiske data — 24/7, ikke kun i en uge på Bornholm.",
+            "Simulerede brugerflows tester systemet med realistiske data, 24/7, ikke kun i en uge på Bornholm.",
             "Regressionstesting: AI sikrer at nye funktioner ikke ødelægger eksisterende.",
             "Performance-test: AI simulerer belastning fra 40.000 brugere (som Sundhedsplatformen) før go-live.",
         ],
-        orbixAngle: "Orbix integrerer AI-testing i hele udviklingsprocessen — ikke bare som en eftertanke ved go-live."
+        orbixAngle: "Orbix integrerer AI-testing i hele udviklingsprocessen, ikke bare som en eftertanke ved go-live."
     },
     {
         id: "ai-procurement",
         icon: "📊",
         title: "Data-drevet budgettering & risikostyring",
         rootCauses: ["procurement", "vendor"],
-        description: "AI kan analysere historiske projektdata for at give realistiske budgetter og tidlige advarsler — modgiften til leverandør-optimisme.",
+        description: "AI kan analysere historiske projektdata for at give realistiske budgetter og tidlige advarsler. Det er modgiften til leverandør-optimisme.",
         savings: "Reducer budgetoverskridelser fra 108% til under 20%",
         howItWorks: [
             "Machine learning på 1000+ offentlige IT-projekter giver realistiske estimater baseret på projektets karakteristika.",
@@ -329,7 +329,7 @@ const MODERN_SOLUTIONS = [
             "Anomali-detektion: AI flager automatisk projekter der afviger fra planen.",
             "Ansvarlighedsmekanisme: Transparens gør det umuligt at skjule problemer i årevis.",
         ],
-        orbixAngle: "Orbix tror på fuld gennemsigtighed — det er hele fundamentet bag TransparentTax."
+        orbixAngle: "Orbix tror på fuld gennemsigtighed. Det er hele fundamentet bag TransparentTax."
     },
 ];
 

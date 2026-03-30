@@ -20,7 +20,7 @@
  */
 
 /**
- * BEVILLINGSREGLER (Appropriation Rules) — Reference Data
+ * BEVILLINGSREGLER (Appropriation Rules) - Reference Data
  *
  * The Danish appropriation system has several types of bevillinger,
  * each with different carry-forward rules:
@@ -30,7 +30,7 @@
  *    - Carried-forward surplus becomes "overført overskud" (transferred surplus)
  *      on the institution's equity.
  *    - NET consumption of accumulated savings across a ministry area must be
- *      zero or negative — ministries cannot spend down their savings pool
+ *      zero or negative. Ministries cannot spend down their savings pool
  *      without Finansministeriet dispensation.
  *    - This creates the "use-it-or-risk-losing-influence" dynamic.
  *
@@ -76,7 +76,7 @@ const APPROPRIATION_RULES = {
         name: "Lovbunden bevilling",
         nameEn: "Statutory/Demand-driven Appropriation",
         carryForward: false,
-        limit: "None — demand-driven (pensions, dagpenge, SU)",
+        limit: "None. Demand-driven (pensions, dagpenge, SU)",
         lapse: "Unspent funds return to Treasury immediately",
         source: "Budgetvejledning 2021, ØAV §2.9"
     },
@@ -115,7 +115,7 @@ const BUDGET_VS_ACTUAL = [
         budgetBn: 283.0,  // ~278 actual + slight budget overestimate; health expenditure rose 4% in 2024
         actualBn: 278.0,  // DST: healthcare expenditures 278 mia. kr in 2024; hospitals ~128 mia. (46%)
         color: "#ef4444",
-        note: "Sundhedsudgifterne steg 4% i 2024 — den første stigning siden 2021. Hospitaler tegner sig for 46% (128 mia. kr). Underforbrug skyldes forsinkede sygehusbyggerier og ubesatte stillinger."
+        note: "Sundhedsudgifterne steg 4% i 2024. Det er den første stigning siden 2021. Hospitaler tegner sig for 46% (128 mia. kr). Underforbrug skyldes forsinkede sygehusbyggerier og ubesatte stillinger."
     },
     {
         sector: "Social beskyttelse",
@@ -176,7 +176,7 @@ const BUDGET_VS_ACTUAL = [
 ];
 
 /**
- * Operational cost breakdown — how money is actually spent INSIDE the public sector.
+ * Operational cost breakdown: how money is actually spent INSIDE the public sector.
  * When a sector receives its budget, here's the typical split.
  *
  * Sources:
@@ -202,7 +202,7 @@ const OPERATIONAL_BREAKDOWN = {
     // Average across all public sector OPERATIONAL spending (excl. pure transfers)
     overall: {
         label: "Gennemsnit for hele den offentlige sektor (drift)",
-        salaries: 52.0,        // Lønninger — largest cost; ~432 mia./yr for general gov
+        salaries: 52.0,        // Lønninger - largest cost; ~432 mia./yr for general gov
         transfers: 22.0,       // Overførsler til borgere (in relevant sectors)
         buildings: 6.5,        // Bygninger, husleje, vedligeholdelse
         equipment: 4.0,        // Udstyr, materialer, inventar
@@ -211,7 +211,7 @@ const OPERATIONAL_BREAKDOWN = {
         other: 5.5,            // Transport, rejser, diverse
     },
 
-    // Per-sector breakdown — where the money goes INSIDE each sector
+    // Per-sector breakdown: where the money goes INSIDE each sector
     healthcare: {
         label: "Sundhedsvæsen (278 mia. kr i 2024)",
         icon: "🏥",
@@ -229,7 +229,7 @@ const OPERATIONAL_BREAKDOWN = {
     education: {
         label: "Uddannelse (156,5 mia. kr i 2024)",
         icon: "🎓",
-        salaries: 72.0,        // Highest salary share — teachers, professors
+        salaries: 72.0,        // Highest salary share - teachers, professors
         su: 8.0,               // SU-udbetalinger
         buildings: 7.0,        // School and university buildings
         equipment: 3.5,
@@ -246,7 +246,7 @@ const OPERATIONAL_BREAKDOWN = {
         salaries: 48.0,
         buildings: 8.0,
         equipment: 2.5,
-        it: 18.0,              // IT is the big cost driver here — MitID, Borger.dk, NemID, etc.
+        it: 18.0,              // IT is the big cost driver here: MitID, Borger.dk, NemID, etc.
         consultants: 14.0,     // Highest consultant share of any sector
         other: 9.5,
     },
@@ -296,7 +296,7 @@ const COST_COLORS = {
 };
 
 /**
- * Quarterly spending flow — how money moves through the fiscal year.
+ * Quarterly spending flow: how money moves through the fiscal year.
  *
  * Danish fiscal year = calendar year (January-December).
  * Clear seasonal pattern visible in DST quarterly accounts (OFF3K):
@@ -317,7 +317,7 @@ const QUARTERLY_FLOW = {
             quarter: "Q1 (jan-mar)",
             percentSpent: 22,
             cumulative: 22,
-            note: "Langsom start. Nye bevillinger skal fordeles, ansættelsesprocesser kører, udbud igangsættes. Q1 2025 viste -1,1% fald i offentligt forbrug — det skarpeste fald siden Q4 2023.",
+            note: "Langsom start. Nye bevillinger skal fordeles, ansættelsesprocesser kører, udbud igangsættes. Q1 2025 viste -1,1% fald i offentligt forbrug. Det var det skarpeste fald siden Q4 2023.",
             status: "under"
         },
         {
@@ -331,7 +331,7 @@ const QUARTERLY_FLOW = {
             quarter: "Q3 (jul-sep)",
             percentSpent: 23,
             cumulative: 69,
-            note: "Sommerperiode. Lavere aktivitet pga. ferie. Q3 2025: samlede udgifter 349,9 mia. kr — aflønning 108,0 mia. + overførsler 107,8 mia.",
+            note: "Sommerperiode. Lavere aktivitet pga. ferie. Q3 2025: samlede udgifter 349,9 mia. kr. Aflønning 108,0 mia. + overførsler 107,8 mia.",
             status: "under"
         },
         {
@@ -342,7 +342,7 @@ const QUARTERLY_FLOW = {
             status: "over"
         }
     ],
-    carryoverExplanation: "Driftsbevillinger kan videreføre overskud til næste år, men nettoforbrug af ministerområdets opsparede midler skal være nul eller negativt — dvs. man kan spare op, men ikke bruge opsparingen uden Finansministeriets dispensation. Lovbundne bevillinger (pension, dagpenge, SU) kan IKKE videreføres — ubrugte midler tilgår statskassen. Reservationsbevillinger bortfalder efter 2 år uden aktivitet. Regionerne og kommunerne har kassekreditreglen, som kræver positiv gennemsnitslikviditet over 12 måneder.",
+    carryoverExplanation: "Driftsbevillinger kan videreføre overskud til næste år, men nettoforbrug af ministerområdets opsparede midler skal være nul eller negativt. Det vil sige, man kan spare op, men ikke bruge opsparingen uden Finansministeriets dispensation. Lovbundne bevillinger (pension, dagpenge, SU) kan IKKE videreføres. Ubrugte midler tilgår statskassen. Reservationsbevillinger bortfalder efter 2 år uden aktivitet. Regionerne og kommunerne har kassekreditreglen, som kræver positiv gennemsnitslikviditet over 12 måneder.",
     totalCarryoverBn: 18.5, // Estimated annual carryover across state institutions
     /** Detailed carry-forward rules reference */
     carryoverRules: {
@@ -356,13 +356,13 @@ const QUARTERLY_FLOW = {
 };
 
 /**
- * Known spending issues — concrete examples of waste, overhead and inefficiency.
+ * Known spending issues: concrete examples of waste, overhead and inefficiency.
  *
  * Sources:
  * - DR: "Her er 8 store offentlige it-skandaler til milliarder" (dr.dk)
  * - Version2: "Statens it-projekter er skredet med tre milliarder på fire år" (version2.dk)
  * - Version2: "Samlet regning for EFI-skandale: Over én milliard kroner"
- * - Aarhus University: "Cost Performance in Major Public IT Projects" — Denmark
+ * - Aarhus University: "Cost Performance in Major Public IT Projects" - Denmark
  *   average cost overrun 108%, max 414%; Norway avg 8%, max 84%.
  * - Finansministeriet: "Regeringen når 2 mia. i besparelser på det offentlige
  *   konsulentforbrug" (fm.dk, 2020)
@@ -375,7 +375,7 @@ const SPENDING_ISSUES = [
         title: "IT-skandaler",
         amount: "Statens IT-projekter skredet med 3,5 mia. kr over 4 år (97 projekter)",
         examples: [
-            "EFI (Et Fælles Inddrivelsessystem): SKATs inddrivelsessystem kostede over 1 mia. kr og blev skrottet efter 2 år. Ca. 114 mia. kr i uinddrevet gæld ophobede sig. Kaldt \"verdens dyreste IT-lektion\". Skulle have virket i 2007, derefter 2009 — lanceret 2013 med fejl. Internt kaldet \"7-9-13\".",
+            "EFI (Et Fælles Inddrivelsessystem): SKATs inddrivelsessystem kostede over 1 mia. kr og blev skrottet efter 2 år. Ca. 114 mia. kr i uinddrevet gæld ophobede sig. Kaldt \"verdens dyreste IT-lektion\". Skulle have virket i 2007, derefter 2009. Lanceret 2013 med fejl. Internt kaldet \"7-9-13\".",
             "Amanda (Arbejdsmarkedsstyrelsen): Skrottet 2008. Kostede ca. 1 mia. kr. 5 års forsinkelse.",
             "Polsag (Politiets sagsbehandling): Skrottet 2012. Ca. 400-500 mio. kr. Fungerede ikke efter pilottest på Bornholm.",
             "DeMars (Forsvarets IT): 6 års forsinkelse, budgetoverskridelse på min. 400 mio. kr.",
@@ -393,7 +393,7 @@ const SPENDING_ISSUES = [
         examples: [
             "Staten bruger ~4-5 mia. kr./år på konsulenter (McKinsey, Deloitte, PwC, Accenture m.fl.). Besparelse aftalt: 0,9 mia. kr./år fra FL2020.",
             "Kommunerne bruger ~8-10 mia. kr./år. Besparelse: fra 0,5 mia. (2021) stigende til 1,0 mia. (2025).",
-            "Regeringens ambition var 3 mia. kr./år i konsulentbesparelser — kun 2 mia. er realiseret (fm.dk, 2020).",
+            "Regeringens ambition var 3 mia. kr./år i konsulentbesparelser, men kun 2 mia. er realiseret (fm.dk, 2020).",
             "Offentlig sektor mangler intern IT-ekspertise efter outsourcing i 1990'erne. Eksperterne sidder hos konsulentfirmaer.",
             "Mange konsulenthonorarer ligger 3-5x over hvad en fastansat ville koste for samme arbejde."
         ],
@@ -405,10 +405,10 @@ const SPENDING_ISSUES = [
         amount: "Typisk 20-40% budgetoverskridelse på store projekter",
         examples: [
             "Signalprogrammet (DSB/Banedanmark): Fra 22 mia. til 30+ mia. kr. og 7+ års forsinkelse.",
-            "Supersygehuse: Nyt Aalborg Universitetshospital, Nyt OUH — alle overskredet budget med milliarder.",
+            "Supersygehuse: Nyt Aalborg Universitetshospital, Nyt OUH. Alle har overskredet budget med milliarder.",
             "Femern-forbindelsen: Oprindeligt budget 55 mia. kr., nu estimeret til 80+ mia. kr.",
             "Cityringen (M3): Fra 15 mia. til 24+ mia. kr.",
-            "Vurderingsstyrelsens ejendomsvurdering: Oprindeligt <100 mio. kr — nu estimeret til 3+ mia. kr."
+            "Vurderingsstyrelsens ejendomsvurdering: Oprindeligt <100 mio. kr, nu estimeret til 3+ mia. kr."
         ],
         severity: "high"
     },
@@ -417,12 +417,12 @@ const SPENDING_ISSUES = [
         title: "Administrativ vækst",
         amount: "Offentlig beskæftigelsesandel rekordlav (27,2%), men ledere steget 30% på 15 år",
         examples: [
-            "Danmark har ca. 800.000 offentligt ansatte — næstflest pr. indbygger i OECD.",
+            "Danmark har ca. 800.000 offentligt ansatte. Det er næstflest pr. indbygger i OECD.",
             "Den offentlige andel af beskæftigelsen er rekordlav: 27,2% vs. gennemsnit 28,7% siden 1980 (AE-rådet, 2024).",
             "Antallet af chefer og mellemledere er steget langt hurtigere end frontmedarbejdere (sygeplejersker, lærere, pædagoger).",
             "Inden for undervisning, sundhed og social beskyttelse er antallet af ansatte ift. brugerne faldet siden 2008.",
-            "Dokumentationskrav og kontrol er steget markant — mere tid bruges på at rapportere end på kerneopgaven.",
-            "32% af centralt ansatte er unge 18-34 (OECD gns: 19%) — men udskiftning er høj og institutionel viden tabes."
+            "Dokumentationskrav og kontrol er steget markant. Mere tid bruges på at rapportere end på kerneopgaven.",
+            "32% af centralt ansatte er unge 18-34 (OECD gns: 19%), men udskiftning er høj og institutionel viden tabes."
         ],
         severity: "medium"
     },
@@ -433,7 +433,7 @@ const SPENDING_ISSUES = [
         examples: [
             "Q4 2024: udgiftsvækst accelererede til +1,6% qoq. Q1 2025: -1,1% qoq fald (skarpeste siden Q4 2023).",
             "Bevillingsreglerne skaber incitament: driftsbevillinger kan videreføres, men nettoforbrug af opsparing skal godkendes af FM.",
-            "Lovbundne bevillinger bortfalder helt — ubrugte midler tilgår statskassen.",
+            "Lovbundne bevillinger bortfalder helt. Ubrugte midler tilgår statskassen.",
             "Konsulentkøb stiger markant i oktober-december.",
             "Rigsrevisionen har gentagne gange påpeget at indkøb i Q4 ofte har lavere kvalitetskontrol."
         ],
@@ -447,15 +447,15 @@ const SPENDING_ISSUES = [
             "Samme borger registreres i flere systemer der ikke taler sammen.",
             "Sundheds-IT: Regionerne har forskellige systemer der ikke er kompatible. Sundhedsplatformen (Region Hovedstaden): 3,8 mia. kr, massivt kritiseret.",
             "Beskæftigelsesindsatsen: Kommuner, A-kasser og Jobnet overlapper.",
-            "Kontrolinstanser kontrollerer hinanden — lag-på-lag af tilsyn.",
-            "Strukturreformen i 2007 lovede færre administratorer — resultatet blev det modsatte."
+            "Kontrolinstanser kontrollerer hinanden. Lag-på-lag af tilsyn.",
+            "Strukturreformen i 2007 lovede færre administratorer. Resultatet blev det modsatte."
         ],
         severity: "medium"
     },
 ];
 
 /**
- * KEY DATA SOURCES — for transparency and further development.
+ * KEY DATA SOURCES - for transparency and further development.
  * These are the authoritative sources for Danish public spending data.
  */
 const DATA_SOURCES = {

@@ -2,199 +2,6 @@
  * UI rendering functions for TransparentTax
  */
 
-function renderTaxSummary(result) {
-    document.getElementById('gross-income').textContent = formatDKK(result.grossIncome);
-    document.getElementById('am-bidrag').textContent = '−' + formatDKK(result.amBidrag);
-    document.getElementById('income-after-am').textContent = formatDKK(result.incomeAfterAM);
-    document.getElementById('personfradrag').textContent = '−' + formatDKK(result.personfradrag);
-    document.getElementById('bundskat').textContent = formatDKK(result.bundskat);
-    document.getElementById('topskat').textContent = formatDKK(result.topskat);
-    document.getElementById('kommuneskat').textContent = formatDKK(result.kommuneskat);
-    document.getElementById('kirkeskat').textContent = formatDKK(result.kirkeskat);
-    document.getElementById('total-tax').textContent = formatDKK(result.totalTax);
-    document.getElementById('net-income').textContent = formatDKK(result.netIncome);
-    document.getElementById('effective-rate').textContent = result.effectiveRate.toFixed(1) + '%';
-
-    // Show/hide kirkeskat row
-    document.getElementById('kirkeskat-row').style.display =
-        result.kirkeskat > 0 ? 'flex' : 'none';
-
-    // Update the tax bar
-    renderTaxBar(result);
-}
-
-function renderTaxBar(result) {
-    const gross = result.grossIncome;
-    if (gross === 0) return;
-
-    const segments = [
-        { id: 'bar-net', value: result.netIncome },
-        { id: 'bar-am', value: result.amBidrag },
-        { id: 'bar-bund', value: result.bundskat },
-        { id: 'bar-top', value: result.topskat },
-        { id: 'bar-kommune', value: result.kommuneskat },
-        { id: 'bar-kirke', value: result.kirkeskat },
-    ];
-
-    segments.forEach(seg => {
-        const el = document.getElementById(seg.id);
-        const pct = (seg.value / gross) * 100;
-        el.style.width = pct + '%';
-        el.style.display = pct < 0.5 ? 'none' : 'flex';
-    });
-}
-
-function renderBreakdown(totalTax) {
-    const allocations = calculateBudgetAllocation(totalTax);
-    const grid = document.getElementById('breakdown-grid');
-    document.getElementById('breakdown-total-tax').textContent = formatDKK(totalTax);
-
-    // Find max percentage for bar scaling
-    const maxPercent = Math.max(...allocations.map(a => a.percent));
-
-    grid.innerHTML = allocations.map(cat => `
-        <div class="breakdown-card">
-            <div class="card-header">
-                <span class="card-icon">${cat.icon}</span>
-                <span class="card-title">${cat.name}</span>
-            </div>
-            <div class="card-amount">${formatDKK(cat.amount)}</div>
-            <div class="card-percent">${cat.percent}% af din skat</div>
-            <div class="card-bar">
-                <div class="card-bar-fill" style="width: ${(cat.percent / maxPercent) * 100}%; background: ${cat.color};"></div>
-            </div>
-            <div class="card-desc">${cat.description}</div>
-        </div>
-    `).join('');
-}
-
-function renderImpact(totalTax) {
-    const list = document.getElementById('impact-list');
-
-    const relevantExamples = IMPACT_EXAMPLES.filter(ex => totalTax >= ex.threshold);
-
-    list.innerHTML = relevantExamples.map(ex => `
-        <div class="impact-item">
-            <span class="impact-icon">${ex.icon}</span>
-            <div class="impact-text">
-                <h4>${ex.titleFn(totalTax)}</h4>
-                <p>${ex.descFn(totalTax)}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function getHouseholdProfile() {
-    return {
-        adults: parseInt(document.getElementById('hh-adults').value),
-        nursery: parseInt(document.getElementById('hh-nursery').value),
-        kindergarten: parseInt(document.getElementById('hh-kindergarten').value),
-        school: parseInt(document.getElementById('hh-school').value),
-        highschool: parseInt(document.getElementById('hh-highschool').value),
-        university: parseInt(document.getElementById('hh-university').value),
-        transport: parseInt(document.getElementById('hh-transport').value),
-        doctorVisits: parseInt(document.getElementById('hh-doctor').value),
-        hospitalVisits: parseInt(document.getElementById('hh-hospital').value),
-        library: parseInt(document.getElementById('hh-library').value) === 1,
-    };
-}
-
-function renderValueComparison(totalTax) {
-    const household = getHouseholdProfile();
-    const { items, totalPrivate } = calculatePrivateCost(household, totalTax);
-
-    // Verdict
-    const diff = totalPrivate - totalTax;
-    const verdictBox = document.getElementById('verdict-box');
-    const verdictIcon = document.getElementById('verdict-icon');
-    const verdictLabel = document.getElementById('verdict-label');
-    const verdictDiff = document.getElementById('verdict-diff');
-
-    document.getElementById('verdict-tax').textContent = formatDKK(totalTax);
-    document.getElementById('verdict-private').textContent = formatDKK(totalPrivate);
-
-    if (diff > 0) {
-        verdictBox.className = 'verdict-box verdict-positive';
-        verdictIcon.textContent = '✅';
-        verdictLabel.textContent = 'Du sparer penge på det offentlige system';
-        verdictDiff.innerHTML = `Du ville betale <strong>${formatDKK(diff)}</strong> mere om året for de samme services privat. Det svarer til <strong>${formatDKK(Math.round(diff / 12))}/md.</strong> ekstra.`;
-    } else {
-        verdictBox.className = 'verdict-box verdict-negative';
-        verdictIcon.textContent = '⚠️';
-        verdictLabel.textContent = 'Du betaler mere end den direkte private pris';
-        verdictDiff.innerHTML = `Forskellen er <strong>${formatDKK(Math.abs(diff))}</strong> om året. Men husk: du finansierer også et sikkerhedsnet du kan falde tilbage på, og services for hele samfundet — inkl. ældre, børn og fremtidige generationer.`;
-    }
-
-    // Comparison table
-    const table = document.getElementById('comparison-table');
-
-    // Split into direct services and shared services
-    const directItems = items.filter(i => !i.isShared && i.privateCost > 0);
-    const sharedItems = items.filter(i => i.isShared);
-    const sharedTotal = sharedItems.reduce((sum, i) => sum + i.privateCost, 0);
-
-    let html = '';
-
-    // Direct services header
-    html += '<div class="comp-section-header">Services du bruger direkte</div>';
-    directItems.forEach(item => {
-        const saving = item.privateCost;
-        html += `
-            <div class="comp-row">
-                <div class="comp-service">
-                    <span class="comp-icon">${item.icon}</span>
-                    <div>
-                        <div class="comp-name">${item.name}</div>
-                        <div class="comp-note">${item.note}</div>
-                    </div>
-                </div>
-                <div class="comp-price">${formatDKK(saving)}</div>
-            </div>`;
-    });
-
-    // Shared services header
-    html += '<div class="comp-section-header">Fælles services (din andel som borger)</div>';
-    sharedItems.forEach(item => {
-        html += `
-            <div class="comp-row comp-row-shared">
-                <div class="comp-service">
-                    <span class="comp-icon">${item.icon}</span>
-                    <div>
-                        <div class="comp-name">${item.name}</div>
-                        <div class="comp-note">${item.note}</div>
-                    </div>
-                </div>
-                <div class="comp-price">${formatDKK(item.privateCost)}</div>
-            </div>`;
-    });
-
-    // Total row
-    html += `
-        <div class="comp-row comp-total">
-            <div class="comp-service">
-                <span class="comp-icon">📊</span>
-                <div><div class="comp-name">Samlet privat pris</div></div>
-            </div>
-            <div class="comp-price comp-price-total">${formatDKK(totalPrivate)}</div>
-        </div>
-        <div class="comp-row comp-your-tax">
-            <div class="comp-service">
-                <span class="comp-icon">🧾</span>
-                <div><div class="comp-name">Din faktiske skat</div></div>
-            </div>
-            <div class="comp-price">${formatDKK(totalTax)}</div>
-        </div>
-        <div class="comp-row comp-diff ${diff > 0 ? 'comp-diff-positive' : 'comp-diff-negative'}">
-            <div class="comp-service">
-                <span class="comp-icon">${diff > 0 ? '💰' : '📌'}</span>
-                <div><div class="comp-name">${diff > 0 ? 'Du sparer' : 'Du betaler mere'}</div></div>
-            </div>
-            <div class="comp-price">${formatDKK(Math.abs(diff))}</div>
-        </div>`;
-
-    table.innerHTML = html;
-}
-
 /**
  * Public Spending Section rendering
  */
@@ -203,10 +10,13 @@ function initSpendingTabs() {
     const tabs = document.querySelectorAll('.spending-tab');
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
-            tabs.forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.spending-tab-content').forEach(c => c.classList.remove('active'));
+            const parent = this.closest('.card') || this.parentElement.parentElement;
+            const siblingTabs = this.parentElement.querySelectorAll('.spending-tab');
+            siblingTabs.forEach(t => t.classList.remove('active'));
+            parent.querySelectorAll('.spending-tab-content').forEach(c => c.classList.remove('active'));
             this.classList.add('active');
-            document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+            const tabContent = parent.querySelector('#tab-' + this.dataset.tab);
+            if (tabContent) tabContent.classList.add('active');
         });
     });
 
@@ -219,14 +29,13 @@ function initSpendingTabs() {
     }
 }
 
-function renderBudgetVsActual(totalTax) {
+function renderBudgetVsActual() {
     const table = document.getElementById('budget-actual-table');
+    if (!table) return;
+
     const totalBudget = BUDGET_VS_ACTUAL.reduce((s, r) => s + r.budgetBn, 0);
     const totalActual = BUDGET_VS_ACTUAL.reduce((s, r) => s + r.actualBn, 0);
     const totalUnused = totalBudget - totalActual;
-
-    // User's share scaling factor (their tax as fraction of total public expenditure ~1,357 mia)
-    const userShare = totalTax / 1357000000000;
 
     let html = `
         <div class="ba-header">
@@ -240,7 +49,6 @@ function renderBudgetVsActual(totalTax) {
     BUDGET_VS_ACTUAL.forEach(row => {
         const unused = row.budgetBn - row.actualBn;
         const pctUsed = (row.actualBn / row.budgetBn) * 100;
-        const yourUnused = Math.round((unused / totalBudget) * totalTax);
 
         html += `
         <div class="ba-row">
@@ -258,12 +66,11 @@ function renderBudgetVsActual(totalTax) {
                 <span class="ba-pct">${pctUsed.toFixed(0)}%</span>
             </div>
         </div>
-        <div class="ba-note">${row.note} <em>— af dine skattekroner blev ${formatDKK(yourUnused)} ikke brugt her.</em></div>`;
+        <div class="ba-note">${row.note}</div>`;
     });
 
     // Total row
     const totalPct = (totalActual / totalBudget) * 100;
-    const yourTotalUnused = Math.round((totalUnused / totalBudget) * totalTax);
     html += `
         <div class="ba-row ba-row-total">
             <div class="ba-col-name"><strong>I alt (disse sektorer)</strong></div>
@@ -278,7 +85,7 @@ function renderBudgetVsActual(totalTax) {
             </div>
         </div>
         <div class="ba-your-share">
-            Af dine <strong>${formatDKK(totalTax)}</strong> i skat blev ca. <strong>${formatDKK(yourTotalUnused)}</strong> ikke brugt som planlagt i disse sektorer.
+            I alt blev <strong>${totalUnused.toFixed(1)} mia. kr.</strong> ikke brugt som planlagt i disse sektorer.
         </div>`;
 
     table.innerHTML = html;
@@ -289,7 +96,6 @@ function renderOperationalBreakdown(sectorKey) {
     const sector = OPERATIONAL_BREAKDOWN[sectorKey];
     if (!sector) return;
 
-    // Get all cost keys (exclude label, icon, customLabels)
     const metaKeys = ['label', 'icon', 'customLabels'];
     const entries = Object.entries(sector)
         .filter(([k]) => !metaKeys.includes(k))
@@ -319,10 +125,10 @@ function renderOperationalBreakdown(sectorKey) {
     container.innerHTML = html;
 }
 
-function renderQuarterlyFlow(totalTax) {
+function renderQuarterlyFlow() {
     const chart = document.getElementById('quarterly-chart');
     const details = document.getElementById('quarterly-details');
-    const expectedPerQ = 25; // 25% per quarter if even
+    const expectedPerQ = 25;
 
     let chartHtml = '<div class="q-bars">';
     let detailsHtml = '';
@@ -330,7 +136,6 @@ function renderQuarterlyFlow(totalTax) {
     QUARTERLY_FLOW.pattern.forEach(q => {
         const isOver = q.percentSpent > expectedPerQ;
         const barClass = isOver ? 'q-bar-over' : 'q-bar-under';
-        const yourShare = Math.round(totalTax * (q.percentSpent / 100));
 
         chartHtml += `
             <div class="q-bar-col">
@@ -343,30 +148,28 @@ function renderQuarterlyFlow(totalTax) {
             <div class="q-detail ${isOver ? 'q-detail-warn' : ''}">
                 <div class="q-detail-header">
                     <strong>${q.quarter}</strong>
-                    <span>${q.percentSpent}% af budget (${formatDKK(yourShare)} af din skat)</span>
+                    <span>${q.percentSpent}% af budget</span>
                 </div>
                 <p>${q.note}</p>
             </div>`;
     });
 
     chartHtml += '</div>';
-    chartHtml += `<div class="q-baseline"><span>Jævn fordeling ville være 25% pr. kvartal</span></div>`;
+    chartHtml += `<div class="q-baseline"><span>Jaevn fordeling ville vaere 25% pr. kvartal</span></div>`;
 
     chart.innerHTML = chartHtml;
     details.innerHTML = detailsHtml;
 
     // Q4 insight
-    const q4Share = Math.round(totalTax * 0.31);
-    const q4Excess = Math.round(totalTax * 0.06); // 31% - 25% = 6% excess
+    const q4 = QUARTERLY_FLOW.pattern[3];
     document.getElementById('quarterly-insight').innerHTML =
-        `I Q4 bruges ${QUARTERLY_FLOW.pattern[3].percentSpent}% af det samlede årsbudget — ${QUARTERLY_FLOW.pattern[3].percentSpent - 25} procentpoint mere end ved en jævn fordeling. Af dine skattekroner svarer det til at <strong>${formatDKK(q4Excess)}</strong> bruges i et haste-kvartal med lavere kvalitetskontrol. ${QUARTERLY_FLOW.carryoverExplanation}`;
+        `I Q4 bruges ${q4.percentSpent}% af det samlede arsbudget - ${q4.percentSpent - 25} procentpoint mere end ved en jaevn fordeling. ${QUARTERLY_FLOW.carryoverExplanation}`;
 
     // Carryover
     document.getElementById('carryover-text').textContent = QUARTERLY_FLOW.carryoverExplanation;
     document.getElementById('carryover-amount-value').textContent =
         QUARTERLY_FLOW.totalCarryoverBn + ' mia. kr.';
 
-    // Appropriation rules
     renderAppropriationRules();
 }
 
@@ -383,11 +186,11 @@ function renderAppropriationRules() {
         return `
             <div class="rule-card ${canCarry ? 'rule-carry' : 'rule-lapse'}">
                 <div class="rule-header">
-                    <span class="rule-status">${canCarry ? '🔄 Kan videreføres' : '⛔ Bortfalder'}</span>
+                    <span class="rule-status">${canCarry ? '🔄 Kan viderefores' : '⛔ Bortfalder'}</span>
                 </div>
                 <h5>${rule.name}</h5>
                 <p class="rule-name-en">${rule.nameEn}</p>
-                <p class="rule-limit"><strong>Begrænsning:</strong> ${rule.limit}</p>
+                <p class="rule-limit"><strong>Begraensning:</strong> ${rule.limit}</p>
                 <p class="rule-lapse-text"><strong>Ubrugte midler:</strong> ${rule.lapse}</p>
                 <p class="rule-source">${rule.source}</p>
             </div>`;
@@ -413,11 +216,11 @@ function renderSpendingIssues() {
     `).join('');
 }
 
-function renderPublicSpending(totalTax) {
+function renderPublicSpending() {
     initSpendingTabs();
-    renderBudgetVsActual(totalTax);
+    renderBudgetVsActual();
     renderOperationalBreakdown('overall');
-    renderQuarterlyFlow(totalTax);
+    renderQuarterlyFlow();
     renderSpendingIssues();
 }
 
@@ -452,7 +255,7 @@ function renderCaseStudies() {
                     <span class="case-icon">${cs.icon}</span>
                     <div>
                         <h4>${cs.name}</h4>
-                        <span class="case-org">${cs.org} — ${cs.years}</span>
+                        <span class="case-org">${cs.org} - ${cs.years}</span>
                     </div>
                 </div>
                 <div class="case-stats">
@@ -472,7 +275,7 @@ function renderCaseStudies() {
                 <span class="case-expand-icon">+</span>
             </div>
             <div class="case-body">
-                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt værdi:</strong> ${cs.lostValue}</div>` : ''}
+                ${cs.lostValue ? `<div class="case-lost"><strong>Tabt vaerdi:</strong> ${cs.lostValue}</div>` : ''}
                 <h5>Tidslinje</h5>
                 <div class="case-timeline">
                     ${cs.timeline.map(t => `
@@ -544,34 +347,29 @@ function renderSolutions() {
     `).join('');
 }
 
-function renderSavingsCalculator(totalTax) {
+function renderSavingsCalculator() {
     const container = document.getElementById('savings-calculator');
     if (!container) return;
 
     const s = IT_WASTE_SUMMARY;
-    // User's proportional share of IT waste (25 mia over 15 years = ~1.67 mia/year)
-    const annualITWaste = s.totalWastedBn / 15; // ~1.67 mia/year
-    const totalPublicExpenditure = 1357; // mia
-    const userITWasteShare = Math.round((annualITWaste / totalPublicExpenditure) * totalTax);
-    const userConsultantShare = Math.round((s.annualConsultantBn / totalPublicExpenditure) * totalTax);
+    const annualITWaste = s.totalWastedBn / 15;
 
-    // Savings with AI
-    const reqSaving = Math.round(userITWasteShare * s.potentialSavingsAI.requirementsPhase);
-    const devSaving = Math.round(userITWasteShare * s.potentialSavingsAI.developmentPhase);
-    const consultSaving = Math.round(userConsultantShare * s.potentialSavingsAI.consultantReduction);
+    const reqSaving = annualITWaste * s.potentialSavingsAI.requirementsPhase;
+    const devSaving = annualITWaste * s.potentialSavingsAI.developmentPhase;
+    const consultSaving = s.annualConsultantBn * s.potentialSavingsAI.consultantReduction;
     const totalSaving = reqSaving + devSaving + consultSaving;
 
     container.innerHTML = `
         <div class="savings-grid">
             <div class="savings-card savings-waste">
-                <div class="savings-label">Din andel af spildte IT-midler pr. år</div>
-                <div class="savings-amount">${formatDKK(userITWasteShare)}</div>
-                <div class="savings-note">Baseret på ~${annualITWaste.toFixed(1)} mia. kr./år i fejlslagne IT-projekter</div>
+                <div class="savings-label">Arligt spildt pa fejlslagne IT-projekter</div>
+                <div class="savings-amount">${annualITWaste.toFixed(1)} mia. kr.</div>
+                <div class="savings-note">Baseret pa ~${s.totalWastedBn} mia. kr. spildt over 15 ar</div>
             </div>
             <div class="savings-card savings-consultant">
-                <div class="savings-label">Din andel af konsulentudgifter pr. år</div>
-                <div class="savings-amount">${formatDKK(userConsultantShare)}</div>
-                <div class="savings-note">Baseret på ${s.annualConsultantBn} mia. kr./år til eksterne konsulenter</div>
+                <div class="savings-label">Arlige konsulentudgifter</div>
+                <div class="savings-amount">${s.annualConsultantBn} mia. kr.</div>
+                <div class="savings-note">Eksterne konsulenter til offentlige IT-projekter</div>
             </div>
         </div>
 
@@ -581,23 +379,23 @@ function renderSavingsCalculator(totalTax) {
                 <div class="sb-label">
                     <span>🤖</span> AI-kravanalyse (sparer 40% af fejlslagne projekter)
                 </div>
-                <div class="sb-amount sb-green">−${formatDKK(reqSaving)}</div>
+                <div class="sb-amount sb-green">-${reqSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row">
                 <div class="sb-label">
                     <span>🔄</span> Trinvis levering + AI-test (sparer 30% yderligere)
                 </div>
-                <div class="sb-amount sb-green">−${formatDKK(devSaving)}</div>
+                <div class="sb-amount sb-green">-${devSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row">
                 <div class="sb-label">
                     <span>🏛️</span> AI erstatter konsulenter (50% reduktion)
                 </div>
-                <div class="sb-amount sb-green">−${formatDKK(consultSaving)}</div>
+                <div class="sb-amount sb-green">-${consultSaving.toFixed(1)} mia. kr.</div>
             </div>
             <div class="sb-row sb-total">
-                <div class="sb-label"><strong>Din potentielle besparelse pr. år</strong></div>
-                <div class="sb-amount sb-green"><strong>${formatDKK(totalSaving)}</strong></div>
+                <div class="sb-label"><strong>Potentiel arlig besparelse</strong></div>
+                <div class="sb-amount sb-green"><strong>${totalSaving.toFixed(1)} mia. kr.</strong></div>
             </div>
         </div>
 
@@ -612,11 +410,11 @@ function renderSavingsCalculator(totalTax) {
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsFlagged}/${s.projectsMonitored}</div>
-                <div class="savings-stat-label">Projekter med advarselslamper (IT-rådet)</div>
+                <div class="savings-stat-label">Projekter med advarselslamper (IT-radet)</div>
             </div>
             <div class="savings-stat">
                 <div class="savings-stat-value">${s.projectsRedLight}</div>
-                <div class="savings-stat-label">Projekter med rød status (kritisk)</div>
+                <div class="savings-stat-label">Projekter med rod status (kritisk)</div>
             </div>
         </div>
 
@@ -624,25 +422,231 @@ function renderSavingsCalculator(totalTax) {
             <span class="insight-icon">💡</span>
             <div>
                 <strong>Norge vs. Danmark</strong>
-                <p>Norge har 8% gennemsnitlig budgetoverskridelse på offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest — præcis det AI kan accelerere og skalere.</p>
+                <p>Norge har 8% gennemsnitlig budgetoverskridelse pa offentlige IT-projekter. Danmark har 108%. Forskellen? Norge bruger trinvis levering, intern ekspertise og tidlig brugertest - praecis det AI kan accelerere og skalere.</p>
             </div>
         </div>
     `;
 }
 
-function renderITDeepDive(totalTax) {
+function renderITDeepDive() {
     initDeepDiveTabs();
     renderCaseStudies();
     renderRootCauses();
     renderSolutions();
-    renderSavingsCalculator(totalTax);
+    renderSavingsCalculator();
 }
 
-function showResults() {
-    const results = document.getElementById('results');
-    results.classList.remove('hidden');
-    // Smooth scroll to results
-    setTimeout(() => {
-        document.getElementById('tax-summary').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+
+/**
+ * Kontanthjaelp Section rendering
+ */
+
+function renderKontanthjaelp() {
+    const section = document.getElementById('kontanthjaelp-section');
+    if (!section) return;
+
+    // Init tabs for this section
+    const tabs = section.querySelectorAll('.spending-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            tabs.forEach(t => t.classList.remove('active'));
+            section.querySelectorAll('.spending-tab-content').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            section.querySelector('#tab-' + this.dataset.tab).classList.add('active');
+        });
+    });
+
+    renderKHOverview();
+    renderKHProblem();
+    renderKHReform();
+    renderKHResearch();
+    renderKHWhatWorks();
+}
+
+function renderKHOverview() {
+    const container = document.getElementById('kh-overview-content');
+    if (!container) return;
+
+    const d = KONTANTHJAELP_DATA.overview;
+    const cats = KONTANTHJAELP_DATA.categories;
+
+    container.innerHTML = `
+        <div class="kh-stats-grid">
+            <div class="kh-stat-card kh-stat-primary">
+                <div class="kh-stat-value">${formatNumber(d.totalRecipients)}</div>
+                <div class="kh-stat-label">Modtagere i alt (${d.totalRecipientsYear})</div>
+                <div class="kh-stat-note">Halveret siden ${d.peakYear} (${formatNumber(d.peakRecipients)})</div>
+            </div>
+            <div class="kh-stat-card">
+                <div class="kh-stat-value">${formatNumber(d.jobparateCount)}</div>
+                <div class="kh-stat-label">Jobparate</div>
+                <div class="kh-stat-note">Vurderet klar til at tage et job</div>
+            </div>
+            <div class="kh-stat-card">
+                <div class="kh-stat-value">${formatNumber(d.aktivitetsparateCount)}</div>
+                <div class="kh-stat-label">Aktivitetsparate</div>
+                <div class="kh-stat-note">Ikke job-klar pga. udfordringer</div>
+            </div>
+            <div class="kh-stat-card kh-stat-cost">
+                <div class="kh-stat-value">~${d.annualCostBn} mia. kr.</div>
+                <div class="kh-stat-label">Arlig udgift</div>
+                <div class="kh-stat-note">Halvdelen af forsvarsbudgettet</div>
+            </div>
+        </div>
+
+        <h3 class="kh-sub-heading">De to kategorier</h3>
+        <div class="kh-categories">
+            ${cats.map(cat => `
+                <div class="kh-category-card">
+                    <div class="kh-cat-header">
+                        <span class="kh-cat-icon">${cat.icon}</span>
+                        <div>
+                            <h4>${cat.name} <span class="kh-cat-en">(${cat.nameEn})</span></h4>
+                            <span class="kh-cat-count">${formatNumber(cat.count)} personer</span>
+                        </div>
+                    </div>
+                    <p class="kh-cat-desc">${cat.description}</p>
+                    <p class="kh-cat-req"><strong>Krav:</strong> ${cat.requirement}</p>
+                    <div class="kh-cat-stats">
+                        <div class="kh-cat-stat">
+                            <span class="kh-cat-stat-value">${cat.inJobAfter6Months}%</span>
+                            <span class="kh-cat-stat-label">I job efter 6 mdr.</span>
+                        </div>
+                    </div>
+                    <p class="kh-cat-trend">${cat.trend}</p>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading">Hvad koster kontanthjaelpen?</h3>
+        <div class="kh-cost-breakdown">
+            ${KONTANTHJAELP_DATA.costBreakdown.items.map(item => `
+                <div class="kh-cost-row">
+                    <div class="kh-cost-info">
+                        <span class="kh-cost-name">${item.name}</span>
+                        <span class="kh-cost-desc">${item.description}</span>
+                    </div>
+                    <div class="kh-cost-bar-wrap">
+                        <div class="kh-cost-bar">
+                            <div class="kh-cost-bar-fill" style="width: ${item.pctOfTotal}%;"></div>
+                        </div>
+                        <span class="kh-cost-pct">${item.pctOfTotal}%</span>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+
+        <div class="spending-insight-box">
+            <span class="insight-icon">📊</span>
+            <div>
+                <strong>Demografisk fordeling</strong>
+                <p>${d.nonWesternPct}% af ikke-vestlige indvandrere i den erhvervsaktive alder er pa kontanthjaelp, mod ${d.danishOriginPct}% af danskere med dansk oprindelse. ${d.mindstesatsNonWesternPct}% af modtagere pa mindstesatsen har ikke-vestlig baggrund.</p>
+            </div>
+        </div>
+    `;
+}
+
+function renderKHProblem() {
+    const container = document.getElementById('kh-problem-content');
+    if (!container) return;
+
+    const p = KONTANTHJAELP_DATA.theProblem;
+
+    container.innerHTML = `
+        <p class="kh-intro-text">${p.intro}</p>
+
+        <div class="kh-problem-stats">
+            ${p.stats.map(stat => `
+                <div class="kh-problem-stat">
+                    <div class="kh-problem-stat-value">${stat.value}</div>
+                    <div class="kh-problem-stat-label">${stat.label}</div>
+                    <p class="kh-problem-stat-context">${stat.context}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function renderKHReform() {
+    const container = document.getElementById('kh-reform-content');
+    if (!container) return;
+
+    const r = KONTANTHJAELP_DATA.reform2025;
+
+    container.innerHTML = `
+        <div class="kh-reform-header">
+            <h3>${r.title}</h3>
+            <span class="kh-reform-date">Traedte i kraft: ${r.effectiveDate}</span>
+        </div>
+
+        <div class="kh-reform-changes">
+            ${r.keyChanges.map(change => `
+                <div class="kh-reform-card">
+                    <h4>${change.change}</h4>
+                    <p>${change.detail}</p>
+                </div>
+            `).join('')}
+        </div>
+
+        <div class="kh-quote-box">
+            <blockquote>"${r.governmentQuote}"</blockquote>
+            <cite>- ${r.quoteSource}</cite>
+        </div>
+    `;
+}
+
+function renderKHResearch() {
+    const container = document.getElementById('kh-research-content');
+    if (!container) return;
+
+    const research = KONTANTHJAELP_DATA.research;
+
+    container.innerHTML = `
+        <p class="tab-intro">${research.title}</p>
+        <div class="kh-research-list">
+            ${research.findings.map(f => `
+                <div class="kh-research-card ${f.positive ? 'kh-research-positive' : 'kh-research-negative'}">
+                    <div class="kh-research-indicator">${f.positive ? '✅' : '❌'}</div>
+                    <div class="kh-research-content">
+                        <h4>${f.finding}</h4>
+                        <p>${f.detail}</p>
+                        <span class="kh-research-source">Kilde: ${f.source}</span>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function renderKHWhatWorks() {
+    const container = document.getElementById('kh-whatworks-content');
+    if (!container) return;
+
+    const ww = KONTANTHJAELP_DATA.whatWorks;
+
+    container.innerHTML = `
+        <h3 class="kh-sub-heading" style="color: var(--green);">Det der virker</h3>
+        <div class="kh-methods-grid">
+            ${ww.effective.map(m => `
+                <div class="kh-method-card kh-method-effective">
+                    <span class="kh-method-icon">${m.icon}</span>
+                    <h4>${m.method}</h4>
+                    <p class="kh-method-effect">${m.effect}</p>
+                    <p class="kh-method-detail">${m.detail}</p>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="kh-sub-heading" style="color: var(--accent-light);">Det der IKKE virker</h3>
+        <div class="kh-methods-grid">
+            ${ww.ineffective.map(m => `
+                <div class="kh-method-card kh-method-ineffective">
+                    <span class="kh-method-icon">${m.icon}</span>
+                    <h4>${m.method}</h4>
+                    <p class="kh-method-effect">${m.effect}</p>
+                    <p class="kh-method-detail">${m.detail}</p>
+                </div>
+            `).join('')}
+        </div>
+    `;
 }

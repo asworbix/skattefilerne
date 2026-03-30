@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TransparentTax - Se Hvor Din Skat Går Hen</title>
+    <title>TransparentTax - Se Hvor Dine Skattekroner Ender</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,450 +16,256 @@
                 <span class="logo-icon">🇩🇰</span>
                 <h1>Transparent<span class="highlight">Tax</span></h1>
             </div>
-            <p class="tagline">Se præcis hvor dine skattekroner går hen — og om du betaler for meget</p>
+            <p class="tagline">Fuld gennemsigtighed i det danske skattesystem. Se hvor pengene ender, hvad der fejler, og hvem der betaler.</p>
         </div>
     </header>
 
     <main class="container">
-        <!-- Income Input Section -->
-        <section id="income-section" class="card">
-            <h2>Indtast Din Indkomst</h2>
-            <p class="section-desc">Indtast din årlige bruttoindkomst for at se din skatteberegning og hvor pengene ender.</p>
 
-            <div class="input-group">
-                <label for="income-input">Årlig bruttoindkomst (kr.)</label>
-                <div class="input-wrapper">
-                    <input type="text" id="income-input" placeholder="f.eks. 450.000" inputmode="numeric">
-                    <span class="input-suffix">kr./år</span>
+        <!-- IT DEEP-DIVE - Scandals & Modern Solutions (HERO) -->
+        <section id="it-deepdive-section" class="card">
+            <h2>IT-Skandalerne - Milliarder Spildt på Projekter Der Aldrig Virkede</h2>
+            <p class="section-desc">Danmark har brugt milliarder af dine skattekroner pa IT-projekter der aldrig virkede. Her er de detaljerede historier, og hvordan AI og moderne metoder kunne have forhindret det.</p>
+
+            <!-- Deep-dive tabs -->
+            <div class="spending-tabs">
+                <button class="spending-tab active" data-tab="cases">Sagerne</button>
+                <button class="spending-tab" data-tab="rootcauses">Systemiske Arsager</button>
+                <button class="spending-tab" data-tab="solutions">En Bedre Vej</button>
+                <button class="spending-tab" data-tab="savings">Hvad Kunne Vi Spare?</button>
+            </div>
+
+            <!-- Tab: Case Studies -->
+            <div id="tab-cases" class="spending-tab-content active">
+                <p class="tab-intro">Klik pa en sag for at se den fulde tidslinje og hvad der gik galt.</p>
+                <div id="case-studies-list" class="case-studies-list">
+                    <!-- Filled by JS -->
                 </div>
-                <div class="quick-amounts">
-                    <button class="quick-btn" data-amount="250000">250.000</button>
-                    <button class="quick-btn" data-amount="350000">350.000</button>
-                    <button class="quick-btn" data-amount="450000">450.000</button>
-                    <button class="quick-btn" data-amount="550000">550.000</button>
-                    <button class="quick-btn" data-amount="700000">700.000</button>
+            </div>
+
+            <!-- Tab: Root Causes -->
+            <div id="tab-rootcauses" class="spending-tab-content">
+                <p class="tab-intro">ITU-professor Soren Lauesen analyserede 5 store offentlige IT-projekter og fandt 36 fejl. Her er de 8 systemiske arsager der gik igen.</p>
+                <div id="root-causes-grid" class="root-causes-grid">
+                    <!-- Filled by JS -->
                 </div>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" id="church-tax" checked> Kirkeskat (gennemsnit 0,88%)</label>
-                    <label><input type="checkbox" id="is-member-atp"> ATP-medlem</label>
+            </div>
+
+            <!-- Tab: Modern Solutions -->
+            <div id="tab-solutions" class="spending-tab-content">
+                <p class="tab-intro">Moderne teknologi, isaer AI, kan adressere hver eneste af de systemiske fejl. Her er hvordan.</p>
+                <div id="solutions-list" class="solutions-list">
+                    <!-- Filled by JS -->
                 </div>
-                <button id="calculate-btn" class="btn-primary">Beregn Min Skat</button>
+                <div class="orbix-banner">
+                    <div class="orbix-banner-content">
+                        <h3>Orbix - AI-drevet softwareudvikling</h3>
+                        <p>Orbix bygger software med AI i kernen af processen: fra kravanalyse og arkitektur til test og deployment. Resultatet er hurtigere levering, faerre fejl og fuld gennemsigtighed.</p>
+                        <a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-link">Besog orbixcore.ai</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Savings Calculator -->
+            <div id="tab-savings" class="spending-tab-content">
+                <p class="tab-intro">Hvis Danmark havde brugt moderne AI-drevne metoder, hvor mange skattekroner kunne vaere sparet?</p>
+                <div id="savings-calculator" class="savings-calculator">
+                    <!-- Filled by JS -->
+                </div>
             </div>
         </section>
 
-        <!-- Household Profile - what services do you use? -->
-        <section id="household-section" class="card hidden">
-            <h2>Din Husstand — Hvad Bruger Du?</h2>
-            <p class="section-desc">Vælg hvilke offentlige services din husstand bruger, så vi kan beregne hvad det ville koste dig privat.</p>
+        <!-- KONTANTHJAELP - Welfare Dependency Analysis -->
+        <section id="kontanthjaelp-section" class="card">
+            <h2>Kontanthjaelp - Hvem Arbejder, og Hvem Gor Ikke?</h2>
+            <p class="section-desc">86.100 danskere modtager kontanthjaelp. 14.500 er vurderet jobparate, men kun 27% finder job inden for 6 maneder. Hvad sker der med resten?</p>
 
-            <div class="household-grid">
-                <div class="household-item">
-                    <label>Antal voksne i husstand</label>
-                    <select id="hh-adults">
-                        <option value="1">1</option>
-                        <option value="2" selected>2</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Børn i vuggestue/dagpleje (0-2 år)</label>
-                    <select id="hh-nursery">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Børn i børnehave (3-5 år)</label>
-                    <select id="hh-kindergarten">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Børn i folkeskole (6-15 år)</label>
-                    <select id="hh-school">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Børn/unge i gymnasium/erhvervsudd.</label>
-                    <select id="hh-highschool">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Universitetsstuderende i husstand</label>
-                    <select id="hh-university">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Bruger offentlig transport dagligt?</label>
-                    <select id="hh-transport">
-                        <option value="0">Nej</option>
-                        <option value="1" selected>Ja, 1 person</option>
-                        <option value="2">Ja, 2 personer</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Lægebesøg pr. år (hele husstand)</label>
-                    <select id="hh-doctor">
-                        <option value="2">1-2</option>
-                        <option value="5" selected>3-5</option>
-                        <option value="8">6-8</option>
-                        <option value="12">9-12</option>
-                        <option value="20">13+</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Hospitalsbesøg/indlæggelser pr. år</label>
-                    <select id="hh-hospital">
-                        <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3+</option>
-                    </select>
-                </div>
-                <div class="household-item">
-                    <label>Bruger bibliotek?</label>
-                    <select id="hh-library">
-                        <option value="0">Nej</option>
-                        <option value="1" selected>Ja</option>
-                    </select>
+            <!-- Kontanthjaelp tabs -->
+            <div class="spending-tabs">
+                <button class="spending-tab active" data-tab="kh-overview">Overblik</button>
+                <button class="spending-tab" data-tab="kh-problem">Problemet</button>
+                <button class="spending-tab" data-tab="kh-reform">Reformen 2025</button>
+                <button class="spending-tab" data-tab="kh-research">Forskning</button>
+                <button class="spending-tab" data-tab="kh-whatworks">Hvad Virker?</button>
+            </div>
+
+            <!-- Tab: Overview -->
+            <div id="tab-kh-overview" class="spending-tab-content active">
+                <div id="kh-overview-content">
+                    <!-- Filled by JS -->
                 </div>
             </div>
-            <button id="recalculate-btn" class="btn-primary">Beregn Min Værdi</button>
+
+            <!-- Tab: The Problem -->
+            <div id="tab-kh-problem" class="spending-tab-content">
+                <div id="kh-problem-content">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Tab: Reform 2025 -->
+            <div id="tab-kh-reform" class="spending-tab-content">
+                <div id="kh-reform-content">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Tab: Research -->
+            <div id="tab-kh-research" class="spending-tab-content">
+                <div id="kh-research-content">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Tab: What Works -->
+            <div id="tab-kh-whatworks" class="spending-tab-content">
+                <div id="kh-whatworks-content">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
         </section>
 
-        <!-- Results Section (hidden until calculated) -->
-        <div id="results" class="hidden">
+        <!-- PUBLIC SPENDING INSIGHTS - Follow the money -->
+        <section id="spending-section" class="card">
+            <h2>Folg Pengene - Hvad Gor Den Offentlige Sektor Med Dem?</h2>
+            <p class="section-desc">Dine skattekroner lander i den offentlige sektor. Men hvad sker der derefter? Her er indsigt i budget vs. virkelighed, kvartalsforbrug og kendte problemer.</p>
 
-            <!-- Tax Summary -->
-            <section id="tax-summary" class="card">
-                <h2>Din Skatteberegning</h2>
-                <div class="summary-grid">
-                    <div class="summary-item gross">
-                        <span class="label">Bruttoindkomst</span>
-                        <span class="value" id="gross-income">0 kr.</span>
-                    </div>
-                    <div class="summary-item deduction">
-                        <span class="label">AM-bidrag (8%)</span>
-                        <span class="value" id="am-bidrag">0 kr.</span>
-                    </div>
-                    <div class="summary-item deduction">
-                        <span class="label">A-indkomst efter AM</span>
-                        <span class="value" id="income-after-am">0 kr.</span>
-                    </div>
-                    <div class="summary-item deduction">
-                        <span class="label">Personfradrag</span>
-                        <span class="value" id="personfradrag">0 kr.</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Bundskat (12,01%)</span>
-                        <span class="value" id="bundskat">0 kr.</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Topskat (15%)</span>
-                        <span class="value" id="topskat">0 kr.</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Kommuneskat (gns. 25,07%)</span>
-                        <span class="value" id="kommuneskat">0 kr.</span>
-                    </div>
-                    <div class="summary-item" id="kirkeskat-row">
-                        <span class="label">Kirkeskat (gns. 0,87%)</span>
-                        <span class="value" id="kirkeskat">0 kr.</span>
-                    </div>
-                    <div class="summary-item total-tax">
-                        <span class="label">Samlet skat</span>
-                        <span class="value" id="total-tax">0 kr.</span>
-                    </div>
-                    <div class="summary-item net">
-                        <span class="label">Udbetalt (netto)</span>
-                        <span class="value" id="net-income">0 kr.</span>
-                    </div>
-                    <div class="summary-item rate">
-                        <span class="label">Effektiv skatteprocent</span>
-                        <span class="value" id="effective-rate">0%</span>
-                    </div>
-                </div>
+            <!-- Tab navigation -->
+            <div class="spending-tabs">
+                <button class="spending-tab active" data-tab="budget-actual">Budget vs. Virkelighed</button>
+                <button class="spending-tab" data-tab="operational">Hvad Bruges Pengene Pa?</button>
+                <button class="spending-tab" data-tab="quarterly">Kvartalsforbrug</button>
+                <button class="spending-tab" data-tab="issues">Kendte Problemer</button>
+            </div>
 
-                <!-- Tax bar visualization -->
-                <div class="tax-bar-container">
-                    <h3>Din indkomst fordelt</h3>
-                    <div class="tax-bar">
-                        <div class="bar-segment bar-net" id="bar-net"><span>Udbetalt</span></div>
-                        <div class="bar-segment bar-am" id="bar-am"><span>AM</span></div>
-                        <div class="bar-segment bar-bund" id="bar-bund"><span>Bund</span></div>
-                        <div class="bar-segment bar-top" id="bar-top"><span>Top</span></div>
-                        <div class="bar-segment bar-kommune" id="bar-kommune"><span>Komm.</span></div>
-                        <div class="bar-segment bar-kirke" id="bar-kirke"><span>Kirke</span></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- WHERE YOUR TAX GOES - The core transparency section -->
-            <section id="breakdown-section" class="card">
-                <h2>Hvor Går Dine Skattekroner Hen?</h2>
-                <p class="section-desc">Baseret på Finansloven og det danske statsbudget — her er præcis hvad din skat finansierer.</p>
-
-                <div class="breakdown-total">
-                    <span>Din samlede skat:</span>
-                    <strong id="breakdown-total-tax">0 kr.</strong>
-                </div>
-
-                <div id="breakdown-grid" class="breakdown-grid">
+            <!-- Tab: Budget vs Actual -->
+            <div id="tab-budget-actual" class="spending-tab-content active">
+                <p class="tab-intro">Hvert ar vedtages Finansloven med et budget for hvert omrade. Statsregnskabet viser hvad der faktisk blev brugt. Forskellen afslorer forsinkelser, fejlbudgettering og ubrugte midler.</p>
+                <div id="budget-actual-table" class="budget-actual-table">
                     <!-- Filled by JS -->
                 </div>
-            </section>
-
-            <!-- VALUE COMPARISON - The core "am I paying too much?" section -->
-            <section id="value-section" class="card">
-                <h2>Betaler Du For Meget?</h2>
-                <p class="section-desc">Her sammenligner vi din skat med hvad de samme services ville koste dig privat — uden det offentlige system.</p>
-
-                <!-- The verdict -->
-                <div id="verdict-box" class="verdict-box">
-                    <div class="verdict-header">
-                        <span id="verdict-icon" class="verdict-icon"></span>
-                        <span id="verdict-label" class="verdict-label"></span>
+                <div class="spending-insight-box">
+                    <span class="insight-icon">💡</span>
+                    <div>
+                        <strong>Hvad sker med ubrugte penge?</strong>
+                        <p>Statslige institutioner ma overfore op til 2% af deres bevilling til naeste ar. Alt derudover bortfalder. Det skaber et incitament til at bruge pengene op, uanset om behovet er der.</p>
                     </div>
-                    <div class="verdict-numbers">
-                        <div class="verdict-col">
-                            <span class="verdict-sublabel">Du betaler i skat</span>
-                            <span class="verdict-amount verdict-tax" id="verdict-tax">0 kr.</span>
-                        </div>
-                        <div class="verdict-vs">vs.</div>
-                        <div class="verdict-col">
-                            <span class="verdict-sublabel">Privat pris for samme services</span>
-                            <span class="verdict-amount verdict-private" id="verdict-private">0 kr.</span>
-                        </div>
-                    </div>
-                    <div class="verdict-diff" id="verdict-diff"></div>
+                </div>
+            </div>
+
+            <!-- Tab: Operational Breakdown -->
+            <div id="tab-operational" class="spending-tab-content">
+                <p class="tab-intro">Nar et ministerium modtager sin bevilling, hvor ender pengene sa? Her ser du den typiske fordeling af driftsudgifter.</p>
+
+                <div class="op-selector">
+                    <label>Vaelg sektor:</label>
+                    <select id="op-sector-select">
+                        <option value="overall">Gennemsnit (hele den offentlige sektor)</option>
+                        <option value="healthcare">Sundhedsvaesen</option>
+                        <option value="education">Uddannelse</option>
+                        <option value="administration">Offentlig administration</option>
+                        <option value="defense">Forsvar</option>
+                    </select>
                 </div>
 
-                <!-- Line-by-line comparison -->
-                <h3 class="comparison-title">Linje-for-linje sammenligning</h3>
-                <div id="comparison-table" class="comparison-table">
+                <div id="operational-breakdown" class="operational-breakdown">
                     <!-- Filled by JS -->
                 </div>
 
-                <p class="comparison-footnote">* Private priser er baseret på gennemsnitlige danske markedspriser 2025. Sundhedsforsikring er baseret på sammenlignelige internationale private systemer (USA/CH). Infrastruktur, forsvar, politi m.fl. er beregnet som din andel af befolkningens samlede omkostning.</p>
-            </section>
-
-            <!-- IT DEEP-DIVE - Scandals & Modern Solutions -->
-            <section id="it-deepdive-section" class="card">
-                <h2>IT-Skandalerne — Hvad Gik Galt, og Hvad Kan Gøres Bedre?</h2>
-                <p class="section-desc">Danmark har brugt milliarder på IT-projekter der aldrig virkede. Her er de detaljerede historier — og hvordan AI og moderne metoder kunne have forhindret det.</p>
-
-                <!-- Deep-dive tabs -->
-                <div class="spending-tabs">
-                    <button class="spending-tab active" data-tab="cases">Sagerne</button>
-                    <button class="spending-tab" data-tab="rootcauses">Systemiske Årsager</button>
-                    <button class="spending-tab" data-tab="solutions">En Bedre Vej</button>
-                    <button class="spending-tab" data-tab="savings">Hvad Kunne Vi Spare?</button>
-                </div>
-
-                <!-- Tab: Case Studies -->
-                <div id="tab-cases" class="spending-tab-content active">
-                    <p class="tab-intro">Klik på en sag for at se den fulde tidslinje og hvad der gik galt.</p>
-                    <div id="case-studies-list" class="case-studies-list">
-                        <!-- Filled by JS -->
+                <div class="spending-insight-box insight-warn">
+                    <span class="insight-icon">⚠️</span>
+                    <div>
+                        <strong>Konsulenter vs. fastansatte</strong>
+                        <p>Den offentlige sektor bruger 12-15 mia. kr. arligt pa eksterne konsulenter. Det svarer til ca. 4,5% af driftsbudgettet, og konsulenthonorarer er typisk 3-5x dyrere end fastansatte for sammenlignelige opgaver.</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Tab: Root Causes -->
-                <div id="tab-rootcauses" class="spending-tab-content">
-                    <p class="tab-intro">ITU-professor Søren Lauesen analyserede 5 store offentlige IT-projekter og fandt 36 fejl. Her er de 8 systemiske årsager der gik igen.</p>
-                    <div id="root-causes-grid" class="root-causes-grid">
-                        <!-- Filled by JS -->
-                    </div>
-                </div>
+            <!-- Tab: Quarterly Flow -->
+            <div id="tab-quarterly" class="spending-tab-content">
+                <p class="tab-intro">Pengene flyder ikke jaevnt gennem aret. Her ser du det typiske monster, og det problematiske Q4-forbrug.</p>
 
-                <!-- Tab: Modern Solutions -->
-                <div id="tab-solutions" class="spending-tab-content">
-                    <p class="tab-intro">Moderne teknologi — især AI — kan adressere hver eneste af de systemiske fejl. Her er hvordan.</p>
-                    <div id="solutions-list" class="solutions-list">
-                        <!-- Filled by JS -->
-                    </div>
-                    <div class="orbix-banner">
-                        <div class="orbix-banner-content">
-                            <h3>Orbix — AI-drevet softwareudvikling</h3>
-                            <p>Orbix bygger software med AI i kernen af processen: fra kravanalyse og arkitektur til test og deployment. Resultatet er hurtigere levering, færre fejl og fuld gennemsigtighed — alt det de offentlige IT-skandaler manglede.</p>
-                            <a href="https://orbixcore.ai" target="_blank" rel="noopener" class="orbix-link">Besøg orbixcore.ai</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Savings Calculator -->
-                <div id="tab-savings" class="spending-tab-content">
-                    <p class="tab-intro">Hvis Danmark havde brugt moderne AI-drevne metoder, hvor mange af dine skattekroner kunne være sparet?</p>
-                    <div id="savings-calculator" class="savings-calculator">
-                        <!-- Filled by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- PUBLIC SPENDING INSIGHTS - Follow the money -->
-            <section id="spending-section" class="card">
-                <h2>Følg Pengene — Hvad Gør Den Offentlige Sektor Med Dem?</h2>
-                <p class="section-desc">Din skat lander i den offentlige sektor. Men hvad sker der derefter? Her er indsigt i budget vs. virkelighed, kvartalsforbrug og kendte problemer.</p>
-
-                <!-- Tab navigation -->
-                <div class="spending-tabs">
-                    <button class="spending-tab active" data-tab="budget-actual">Budget vs. Virkelighed</button>
-                    <button class="spending-tab" data-tab="operational">Hvad Bruges Pengene På?</button>
-                    <button class="spending-tab" data-tab="quarterly">Kvartalsforbrug</button>
-                    <button class="spending-tab" data-tab="issues">Kendte Problemer</button>
-                </div>
-
-                <!-- Tab: Budget vs Actual -->
-                <div id="tab-budget-actual" class="spending-tab-content active">
-                    <p class="tab-intro">Hvert år vedtages Finansloven med et budget for hvert område. Statsregnskabet viser hvad der faktisk blev brugt. Forskellen afslører forsinkelser, fejlbudgettering og ubrugte midler.</p>
-                    <div id="budget-actual-table" class="budget-actual-table">
-                        <!-- Filled by JS -->
-                    </div>
-                    <div class="spending-insight-box">
-                        <span class="insight-icon">💡</span>
-                        <div>
-                            <strong>Hvad sker med ubrugte penge?</strong>
-                            <p>Statslige institutioner må overføre op til 2% af deres bevilling til næste år. Alt derudover bortfalder — det forsvinder simpelthen fra deres budget. Det skaber et incitament til at bruge pengene op, uanset om behovet er der.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Operational Breakdown -->
-                <div id="tab-operational" class="spending-tab-content">
-                    <p class="tab-intro">Når et ministerium modtager sin bevilling, hvor ender pengene så? Her ser du den typiske fordeling af driftsudgifter.</p>
-
-                    <div class="op-selector">
-                        <label>Vælg sektor:</label>
-                        <select id="op-sector-select">
-                            <option value="overall">Gennemsnit (hele den offentlige sektor)</option>
-                            <option value="healthcare">Sundhedsvæsen</option>
-                            <option value="education">Uddannelse</option>
-                            <option value="administration">Offentlig administration</option>
-                            <option value="defense">Forsvar</option>
-                        </select>
-                    </div>
-
-                    <div id="operational-breakdown" class="operational-breakdown">
-                        <!-- Filled by JS -->
-                    </div>
-
-                    <div class="spending-insight-box insight-warn">
-                        <span class="insight-icon">⚠️</span>
-                        <div>
-                            <strong>Konsulenter vs. fastansatte</strong>
-                            <p>Den offentlige sektor bruger 12-15 mia. kr. årligt på eksterne konsulenter. Det svarer til ca. 4,5% af driftsbudgettet — og konsulenthonorarer er typisk 3-5x dyrere end fastansatte for sammenlignelige opgaver.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Quarterly Flow -->
-                <div id="tab-quarterly" class="spending-tab-content">
-                    <p class="tab-intro">Pengene flyder ikke jævnt gennem året. Her ser du det typiske mønster — og det problematiske Q4-forbrug.</p>
-
-                    <div id="quarterly-chart" class="quarterly-chart">
-                        <!-- Filled by JS -->
-                    </div>
-
-                    <div id="quarterly-details" class="quarterly-details">
-                        <!-- Filled by JS -->
-                    </div>
-
-                    <div class="spending-insight-box insight-warn">
-                        <span class="insight-icon">📅</span>
-                        <div>
-                            <strong>December-feber</strong>
-                            <p id="quarterly-insight"></p>
-                        </div>
-                    </div>
-
-                    <div class="carryover-box">
-                        <h4>Overførsler mellem år — Bevillingsreglerne</h4>
-                        <p id="carryover-text"></p>
-                        <div class="carryover-amount">
-                            <span>Estimeret årlig overførsel:</span>
-                            <strong id="carryover-amount-value"></strong>
-                        </div>
-                    </div>
-
-                    <!-- Appropriation rules breakdown -->
-                    <div class="rules-box">
-                        <h4>De 4 bevillingstyper — og hvad der sker med ubrugte penge</h4>
-                        <p class="rules-intro">Ikke alle bevillinger fungerer ens. Her er de fire typer og deres regler for overførsel:</p>
-                        <div id="appropriation-rules" class="rules-grid">
-                            <!-- Filled by JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Known Issues -->
-                <div id="tab-issues" class="spending-tab-content">
-                    <p class="tab-intro">Rigsrevisionen, medierne og uafhængige analyser har dokumenteret en række tilbagevendende problemer med offentligt forbrug.</p>
-                    <div id="issues-list" class="issues-list">
-                        <!-- Filled by JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Impact Section - What your tax creates -->
-            <section id="impact-section" class="card">
-                <h2>Hvad Skaber Dine Skattekroner?</h2>
-                <p class="section-desc">Konkrete eksempler på hvad dit bidrag dækker i det danske samfund.</p>
-                <div id="impact-list" class="impact-list">
+                <div id="quarterly-chart" class="quarterly-chart">
                     <!-- Filled by JS -->
                 </div>
-            </section>
 
-            <!-- The Bigger Picture -->
-            <section id="perspective-section" class="card">
-                <h2>Det Store Billede</h2>
-                <p class="section-desc">Skat er ikke bare et tal der forsvinder — det er fundamentet for det samfund vi alle lever i.</p>
-                <div class="perspective-content">
-                    <div class="perspective-item">
-                        <h3>📊 Alle bidrager</h3>
-                        <p>Uanset indkomstniveau bidrager alle skatteydere til det fælles samfund. En person der tjener 250.000 kr. betaler skat der finansierer skoler, hospitaler og veje — præcis som en der tjener 700.000 kr.</p>
-                    </div>
-                    <div class="perspective-item">
-                        <h3>🔄 Det cirkulære kredsløb</h3>
-                        <p>Skatten kommer tilbage som services: gratis sundhedsvæsen, uddannelse, børnepasning, infrastruktur, sikkerhed og et socialt sikkerhedsnet. Disse services ville koste langt mere hvis de var privatfinansierede.</p>
-                    </div>
-                    <div class="perspective-item">
-                        <h3>💡 Værdien af gennemsigtighed</h3>
-                        <p>Når vi kan se hvor pengene går, kan vi føre informerede samtaler om prioriteringer. Gennemsigtighed er forudsætningen for tillid mellem borgere og stat.</p>
-                    </div>
-                    <div class="perspective-item">
-                        <h3>🤝 Socialt sammenhold</h3>
-                        <p>Det danske velfærdssamfund bygger på solidaritet. Alle — uanset social klasse — bidrager til og nyder godt af det fælles system. Det er ikke "dem og os" — det er os alle sammen.</p>
+                <div id="quarterly-details" class="quarterly-details">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div class="spending-insight-box insight-warn">
+                    <span class="insight-icon">📅</span>
+                    <div>
+                        <strong>December-feber</strong>
+                        <p id="quarterly-insight"></p>
                     </div>
                 </div>
-            </section>
-        </div>
+
+                <div class="carryover-box">
+                    <h4>Overforsel mellem ar - Bevillingsreglerne</h4>
+                    <p id="carryover-text"></p>
+                    <div class="carryover-amount">
+                        <span>Estimeret arlig overforsel:</span>
+                        <strong id="carryover-amount-value"></strong>
+                    </div>
+                </div>
+
+                <!-- Appropriation rules breakdown -->
+                <div class="rules-box">
+                    <h4>De 4 bevillingstyper - og hvad der sker med ubrugte penge</h4>
+                    <p class="rules-intro">Ikke alle bevillinger fungerer ens. Her er de fire typer og deres regler for overforsel:</p>
+                    <div id="appropriation-rules" class="rules-grid">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Known Issues -->
+            <div id="tab-issues" class="spending-tab-content">
+                <p class="tab-intro">Rigsrevisionen, medierne og uafhaengige analyser har dokumenteret en raekke tilbagevendende problemer med offentligt forbrug.</p>
+                <div id="issues-list" class="issues-list">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- The Bigger Picture -->
+        <section id="perspective-section" class="card">
+            <h2>Det Store Billede</h2>
+            <p class="section-desc">Gennemsigtighed er forudsaetningen for tillid mellem borgere og stat.</p>
+            <div class="perspective-content">
+                <div class="perspective-item">
+                    <h3>💡 Vaerdien af gennemsigtighed</h3>
+                    <p>Nar vi kan se hvor pengene gar, kan vi fore informerede samtaler om prioriteringer. Gennemsigtighed er forudsaetningen for tillid mellem borgere og stat.</p>
+                </div>
+                <div class="perspective-item">
+                    <h3>📊 Hvor gar pengene hen?</h3>
+                    <p>Danmark bruger ca. 1.357 mia. kr. arligt pa offentlige udgifter. Det er ca. 46% af BNP. Denne side viser dig de konkrete eksempler pa hvad der gar galt.</p>
+                </div>
+                <div class="perspective-item">
+                    <h3>🔍 Krav om ansvarlighed</h3>
+                    <p>Milliarder spildt pa IT-skandaler, kontanthjaelpsmodtagere der ikke soger job, og et offentligt forbrug der eksploderer i december. Det fortjener opmærksomhed.</p>
+                </div>
+                <div class="perspective-item">
+                    <h3>🏗️ Losninger findes</h3>
+                    <p>AI-drevet kravanalyse, privat virksomhedspraktik, IPS-metoden. Forskningen viser hvad der virker. Sporgsmaalet er om vi gor det.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <div class="container">
-            <p>TransparentTax — Åben data, åben debat. Beregningerne er baseret på danske skatteregler 2025 og Finansloven.</p>
-            <p class="disclaimer">Bemærk: Dette er en forenkling af det danske skattesystem og er ikke en officiel skatteberegning. Brug <a href="https://skat.dk" target="_blank" rel="noopener">skat.dk</a> for præcise beregninger.</p>
+            <p>TransparentTax - Aben data, aben debat. Data er baseret pa Finansloven, Statsregnskabet, Danmarks Statistik og uafhaengig forskning.</p>
+            <p class="disclaimer">Kilder: skat.dk, Skatteministeriet, oes.dk (Statsregnskabet 2024), Rigsrevisionen, OECD, Dansk Arbejdsgiverforening, Beskæftigelsesministeriet.</p>
         </div>
     </footer>
 
     <script src="js/taxData.js"></script>
     <script src="js/publicSpending.js"></script>
     <script src="js/itDeepDive.js"></script>
+    <script src="js/kontanthjaelp.js"></script>
     <script src="js/taxCalculator.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>

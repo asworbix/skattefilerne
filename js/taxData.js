@@ -58,7 +58,7 @@ const BUDGET_BREAKDOWN = [
         percent: 25.2,
         color: "#f97316",
         description: "Folkepension, førtidspension, kontanthjælp, dagpenge, sygedagpenge, boligstøtte og børnefamilieydelse.",
-        details: "Den største post. Inkluderer alle overførselsindkomster som sikrer borgere i sårbare situationer — arbejdsløshed, sygdom, alderdom."
+        details: "Den største post. Inkluderer alle overførselsindkomster som sikrer borgere i sårbare situationer: arbejdsløshed, sygdom, alderdom."
     },
     {
         id: "education",
@@ -138,7 +138,7 @@ const BUDGET_BREAKDOWN = [
         percent: 3.5,
         color: "#14b8a6",
         description: "Grundforskning, erhvervsforskning, innovation, teknologiudvikling og danske universiteter.",
-        details: "Danmark investerer ca. 3% af BNP i forskning — blandt de højeste i verden. Dækker alt fra kræftforskning til grøn teknologi."
+        details: "Danmark investerer ca. 3% af BNP i forskning. Det er blandt de højeste i verden. Dækker alt fra kræftforskning til grøn teknologi."
     },
     {
         id: "culture",
@@ -178,7 +178,7 @@ const BUDGET_BREAKDOWN = [
         percent: 1.5,
         color: "#94a3b8",
         description: "Rentebetalinger på den danske statsgæld.",
-        details: "Danmark har en af de laveste statsgældsrater i EU — under 30% af BNP. Renteudgifterne er derfor relativt lave."
+        details: "Danmark har en af de laveste statsgældsrater i EU, under 30% af BNP. Renteudgifterne er derfor relativt lave."
     },
     {
         id: "housing",
@@ -263,7 +263,7 @@ function calculatePrivateCost(household, totalTax) {
         name: "Sundhedsforsikring",
         publicCost: Math.round(totalTax * 0.158),
         privateCost: Math.round(healthInsurance),
-        note: `${adults} voksen(e)${totalChildren > 0 ? ' + ' + totalChildren + ' barn' : ''} — fuld privat dækning`
+        note: `${adults} voksen(e)${totalChildren > 0 ? ' + ' + totalChildren + ' barn' : ''}, fuld privat dækning`
     });
     items.push({
         icon: "👨‍⚕️",
@@ -280,7 +280,7 @@ function calculatePrivateCost(household, totalTax) {
             name: "Vuggestue/dagpleje",
             publicCost: Math.round(totalTax * 0.052 * (household.nursery / Math.max(1, totalChildren || 1))),
             privateCost: household.nursery * PRIVATE_COSTS.nurseryPerChild,
-            note: `${household.nursery} barn — fuld pris uden offentligt tilskud`
+            note: `${household.nursery} barn, fuld pris uden offentligt tilskud`
         });
     }
     if (household.kindergarten > 0) {
@@ -289,7 +289,7 @@ function calculatePrivateCost(household, totalTax) {
             name: "Børnehave",
             publicCost: Math.round(totalTax * 0.052 * (household.kindergarten / Math.max(1, totalChildren || 1))),
             privateCost: household.kindergarten * PRIVATE_COSTS.kindergartenPerChild,
-            note: `${household.kindergarten} barn — fuld pris uden offentligt tilskud`
+            note: `${household.kindergarten} barn, fuld pris uden offentligt tilskud`
         });
     }
 
@@ -318,7 +318,7 @@ function calculatePrivateCost(household, totalTax) {
             name: "Universitet (tuition + tabt SU)",
             publicCost: Math.round(totalTax * 0.124 * 0.35),
             privateCost: household.university * PRIVATE_COSTS.universityPerPerson,
-            note: `${household.university} studerende — privat tuition, ingen SU`
+            note: `${household.university} studerende, privat tuition, ingen SU`
         });
     }
 
@@ -329,7 +329,7 @@ function calculatePrivateCost(household, totalTax) {
             name: "Offentlig transport (subsidieandel)",
             publicCost: Math.round(totalTax * 0.051 * 0.3),
             privateCost: household.transport * PRIVATE_COSTS.publicTransportPerPerson,
-            note: `${household.transport} person(er) — den offentlige subsidie du mister`
+            note: `${household.transport} person(er), den offentlige subsidie du mister`
         });
     }
 
@@ -346,18 +346,18 @@ function calculatePrivateCost(household, totalTax) {
 
     // --- Shared services everyone uses ---
     const sharedServices = [
-        { icon: "🛡️", name: "Forsvar & sikkerhed", cost: PRIVATE_COSTS.perCapitaDefense, note: "Din andel af nationalt forsvar — kan ikke fravælges" },
+        { icon: "🛡️", name: "Forsvar & sikkerhed", cost: PRIVATE_COSTS.perCapitaDefense, note: "Din andel af nationalt forsvar. Kan ikke fravælges" },
         { icon: "⚖️", name: "Politi & retsvæsen", cost: PRIVATE_COSTS.perCapitaPolice, note: "Retssikkerhed, politibeskyttelse, domstole" },
-        { icon: "🛤️", name: "Veje & infrastruktur", cost: PRIVATE_COSTS.perCapitaInfrastructure, note: "Veje, broer, cykelstier — brugt af alle dagligt" },
+        { icon: "🛤️", name: "Veje & infrastruktur", cost: PRIVATE_COSTS.perCapitaInfrastructure, note: "Veje, broer, cykelstier. Brugt af alle dagligt" },
         { icon: "🌿", name: "Miljø & klima", cost: PRIVATE_COSTS.perCapitaEnvironment, note: "Rent vand, affald, grøn omstilling" },
         { icon: "🏛️", name: "Administration & digitalisering", cost: PRIVATE_COSTS.perCapitaAdministration, note: "MitID, Borger.dk, digital post, skatteadministration" },
         { icon: "🔬", name: "Forskning & innovation", cost: PRIVATE_COSTS.perCapitaResearch, note: "Medicinsk forskning, teknologi, universitetsforskning" },
-        { icon: "🤝", name: "Socialt sikkerhedsnet", cost: PRIVATE_COSTS.perCapitaSocialSafety, note: "Dagpenge, kontanthjælp, pension — din forsikring mod uforudsete hændelser" },
-        { icon: "👴", name: "Ældrepleje (din fremtidige pleje)", cost: PRIVATE_COSTS.perCapitaEldercare, note: "Du betaler nu — du bruger det når du bliver ældre" },
+        { icon: "🤝", name: "Socialt sikkerhedsnet", cost: PRIVATE_COSTS.perCapitaSocialSafety, note: "Dagpenge, kontanthjælp, pension. Din forsikring mod uforudsete hændelser" },
+        { icon: "👴", name: "Ældrepleje (din fremtidige pleje)", cost: PRIVATE_COSTS.perCapitaEldercare, note: "Du betaler nu. Du bruger det når du bliver ældre" },
         { icon: "🏠", name: "Boligstøtte & alment byggeri", cost: PRIVATE_COSTS.perCapitaHousing, note: "Holder boligmarkedet tilgængeligt for alle" },
         { icon: "🎭", name: "Kultur, sport & foreningsliv", cost: PRIVATE_COSTS.perCapitaCulture, note: "Museer, biblioteker, DR, sportsfaciliteter" },
         { icon: "🌍", name: "Udviklingsbistand", cost: PRIVATE_COSTS.perCapitaForeignAid, note: "Danmarks internationale forpligtelser" },
-        { icon: "📉", name: "Renter på statsgæld", cost: PRIVATE_COSTS.perCapitaDebt, note: "Lav gæld = lave renter — et tegn på sund økonomi" },
+        { icon: "📉", name: "Renter på statsgæld", cost: PRIVATE_COSTS.perCapitaDebt, note: "Lav gæld = lave renter. Et tegn på sund økonomi" },
     ];
 
     sharedServices.forEach(svc => {
@@ -388,7 +388,7 @@ const IMPACT_EXAMPLES = [
         titleFn: (tax) => `${formatDKK(tax * 0.158)} til sundhedsvæsenet`,
         descFn: (tax) => {
             const days = Math.max(1, Math.round((tax * 0.158) / 6800));
-            return `Dit sundhedsbidrag svarer til ca. ${days} dages hospitalsbehandling. Hver dansker bruger gennemsnitligt sundhedsvæsenet 7 gange om året — og det er gratis ved brug.`;
+            return `Dit sundhedsbidrag svarer til ca. ${days} dages hospitalsbehandling. Hver dansker bruger gennemsnitligt sundhedsvæsenet 7 gange om året, og det er gratis ved brug.`;
         }
     },
     {
@@ -397,7 +397,7 @@ const IMPACT_EXAMPLES = [
         titleFn: (tax) => `${formatDKK(tax * 0.124)} til uddannelse`,
         descFn: (tax) => {
             const months = Math.max(1, Math.round((tax * 0.124) / 8500));
-            return `Dit uddannelsesbidrag svarer til ca. ${months} måneders folkeskoleundervisning for ét barn. Du finansierer gratis uddannelse for alle — fra 1. klasse til ph.d.`;
+            return `Dit uddannelsesbidrag svarer til ca. ${months} måneders folkeskoleundervisning for ét barn. Du finansierer gratis uddannelse for alle, fra 1. klasse til ph.d.`;
         }
     },
     {

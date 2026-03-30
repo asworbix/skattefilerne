@@ -1,6 +1,6 @@
 # TransparentTax 🇩🇰
 
-**Se præcis hvor dine skattekroner går hen — og om du betaler for meget.**
+**Se præcis hvor dine skattekroner går hen, og om du betaler for meget.**
 
 ## [Åbn TransparentTax](https://asworbix.github.io/TransparentTax/)
 
@@ -10,14 +10,14 @@
 
 En webapp der giver fuld gennemsigtighed i det danske skattesystem:
 
-1. **Indtast din indkomst** — se præcis skatteberegning (AM-bidrag, bundskat, topskat, kommuneskat)
-2. **Se hvor pengene ender** — 15 budgetkategorier baseret på Finansloven
-3. **Betaler du for meget?** — sammenlign din skat med privat pris for samme services
-4. **Følg pengene** — budget vs. virkelighed, kvartalsforbrug, og kendte problemer
+1. **Indtast din indkomst** og se præcis skatteberegning (AM-bidrag, bundskat, topskat, kommuneskat)
+2. **Se hvor pengene ender** i 15 budgetkategorier baseret på Finansloven
+3. **Betaler du for meget?** Sammenlign din skat med privat pris for samme services
+4. **Følg pengene** med budget vs. virkelighed, kvartalsforbrug, og kendte problemer
 
 ### Hvorfor?
 
-Vi er en hel gruppe mennesker i Danmark der føler at vores skattepenge bare forsvinder uden vi ved hvor og til hvem de gik. Denne app viser det hele — åbent og ærligt.
+Vi er en hel gruppe mennesker i Danmark der føler at vores skattepenge bare forsvinder uden vi ved hvor og til hvem de gik. Denne app viser det hele, åbent og ærligt.
 
 ### Data & kilder
 
@@ -29,4 +29,4 @@ Vi er en hel gruppe mennesker i Danmark der føler at vores skattepenge bare for
 
 ### Teknologi
 
-Ren HTML/CSS/JS — ingen frameworks, ingen build step, ingen afhængigheder. Åbn `index.html` og det virker.
+Ren HTML/CSS/JS. Ingen frameworks, ingen build step, ingen afhængigheder. Åbn `index.html` og det virker.
