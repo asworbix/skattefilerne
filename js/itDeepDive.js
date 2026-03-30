@@ -196,38 +196,38 @@ const IT_CASE_STUDIES = [
     },
     {
         id: "ejendomsvurdering",
-        name: "Ejendomsvurderingssystemet",
+        name: "Ejendomsvurderingssystemet (ICE)",
         icon: "",
         org: "Skatteministeriet / Vurderingsstyrelsen",
-        years: "2017–nu",
-        budgetOriginal: "~1,3 mia. kr.",
-        budgetFinal: "3,4+ mia. kr.",
-        outcome: "Massivt forsinket, fejlbehæftet, stadig ikke færdigt",
-        lostValue: "Boligejere har ventet 10+ år på korrekte vurderinger. Tusindvis af fejlagtige vurderinger udsendt.",
+        years: "2014–nu",
+        budgetOriginal: "~200 mio. kr. (2014)",
+        budgetFinal: "5+ mia. kr.",
+        outcome: "Danmarks dyreste IT-system. Stadig ikke færdigt. Forventet 2028.",
+        lostValue: "Boligejere betalte ca. 13 mia. kr. for meget i ejendomsskat 2011-2020. Tusindvis af fejlagtige vurderinger.",
         severity: "catastrophic",
-        vendors: "KMD, Netcompany, NNIT, IBM (skiftende leverandører)",
+        vendors: "Skiftende leverandører (SAP-baseret)",
         timeline: [
-            { year: "2013", event: "Rigsrevisionen kritiserer de eksisterende ejendomsvurderinger som upålidelige. Nyt system loves." },
-            { year: "2017", event: "Nyt vurderingssystem påbegyndes. Budget: ~1,3 mia. kr." },
-            { year: "2019", event: "Første forsinkelse. Go-live udskydes." },
-            { year: "2020", event: "Yderligere forsinkelser. Budgettet stiger markant." },
-            { year: "2021", event: "Nye ejendomsvurderinger skulle have været klar. Udskydes igen." },
-            { year: "2022", event: "Interne papirer afslører system af 'forbløffende lav kvalitet'. Budget sprængt." },
-            { year: "2023", event: "De første nye vurderinger sendes ud - med tusindvis af fejl. 7.500 nye fejl opdages ifølge interne dokumenter." },
-            { year: "2024", event: "Budget nået 3,4+ mia. kr. Rigsrevisionen advarer fortsat om forsinkelser og mangelfuld styring." },
+            { year: "2013", event: "Rigsrevisionen kritiserer de eksisterende ejendomsvurderinger som upålidelige. Det gamle system suspenderes." },
+            { year: "2014", event: "Nyt vurderingssystem påbegyndes. Oprindeligt budget: ~200 mio. kr." },
+            { year: "2019", event: "Første forsinkelse. Go-live udskydes. Budgettet stiger." },
+            { year: "2021", event: "Statens IT-råd giver projektet rødt lys. Udskydes igen." },
+            { year: "2022", event: "Interne papirer afslører system af 'forbløffende lav kvalitet'. Regressionstest kørte samtidig med fejlretning." },
+            { year: "2023", event: "De første nye vurderinger sendes ud med tusindvis af fejl. 7.500 borgere fik besked men kunne ikke tilgå systemet. IT-rådet giver rødt lys igen." },
+            { year: "2024", event: "Budget over 5 mia. kr. - ca. 2.500% overskridelse. Skatteminister Jeppe Bruus indrømmer 'flere fejl end han var klar over'." },
+            { year: "2028?", event: "Nu forventet færdigt i 2028. 15 år efter det gamle system blev suspenderet." },
         ],
         rootCauses: [
             {
-                cause: "Evig forsinkelse, voksende budget",
-                detail: "Projektet er gået fra ~1,3 mia. til over 3,4 mia. kr. og er forsinket med årevis. Typisk mønster for offentlige megaprojekter."
+                cause: "Historiens største budgetoverskridelse",
+                detail: "Fra ~200 mio. til over 5 mia. kr. Ca. 2.500% overskridelse. Danmarks dyreste IT-system nogensinde."
             },
             {
                 cause: "Fejlbehæftede resultater",
-                detail: "De nye vurderinger der endelig blev sendt ud indeholdt tusindvis af fejl. Skatteminister indrømmede flere fejl end han 'var klar over'."
+                detail: "Regressionstests kørte samtidig med fejlretning - nye fejl blev ikke fanget. 13 mia. kr. i forkerte ejendomsskatter."
             },
             {
-                cause: "Skiftende leverandører",
-                detail: "Flere leverandører har været involveret gennem årene. Videnstab og omstarter ved hvert skift."
+                cause: "15 år uden fungerende system",
+                detail: "Det gamle system suspenderet i 2013. Det nye forventes tidligst 2028. En hel generation af boligejere ramt."
             },
         ],
     },
@@ -237,26 +237,27 @@ const IT_CASE_STUDIES = [
         icon: "",
         org: "Uddannelses- og Forskningsministeriet",
         years: "2018–nu",
-        budgetOriginal: "ikke offentliggjort præcist",
-        budgetFinal: "100+ mio. kr. i ekstraomkostninger for universiteterne alene",
-        outcome: "Stærkt forsinket, massiv kritik fra Rigsrevisionen (2025)",
-        lostValue: "Universiteterne tvunget til at betale 100 mio. kr. ekstra pga. ministeriets forsinkelser.",
+        budgetOriginal: "~730 mio. kr.",
+        budgetFinal: "~1,2 mia. kr. (65% overskridelse)",
+        outcome: "4,5 år forsinket. Rigsrevisionens skarpeste kritik i 2025.",
+        lostValue: "100 mio. kr. ekstra pålagt universiteterne. Ministeriet var 2 år for sent med aktstykke til Finansudvalget.",
         severity: "critical",
-        vendors: "Skiftende leverandører under ministeriets styring",
+        vendors: "Fluido (7 universiteter), Oracle Campus Solution (Aarhus Universitet gik solo)",
         timeline: [
             { year: "2018", event: "Projekt ESAS igangsættes. Skal erstatte det aldrende STADS-system på universiteterne." },
-            { year: "2020-2022", event: "Gentagne forsinkelser. Universiteterne betaler fortsat for det gamle system." },
-            { year: "2023", event: "Yderligere forsinkelser. Universiteterne belastes med ekstraomkostninger." },
-            { year: "2025", event: "Rigsrevisionen udgiver skarp kritik: 'yderst mangelfuld styring'. Regningen er 100+ mio. kr. dyrere end oplyst." },
+            { year: "2020-2022", event: "Gentagne forsinkelser. Ministeriet 2 år for sent med aktstykke til Finansudvalget. Budget vokser med ~480 mio. kr." },
+            { year: "2023", event: "Nu 3 år og 3 måneder forsinket. Universiteterne betaler ekstra for at holde det gamle system kørende." },
+            { year: "2025", event: "Rigsrevisionen: 'yderst mangelfuld styring'. Eneste ministerium der får eget kapitel i Rigsrevisionens rapport. Professor: '64% overskridelse viser usædvanlig dårlig forberedelse'." },
+            { year: "2027?", event: "Nu forventet færdigt i 2027. 4,5 år forsinket." },
         ],
         rootCauses: [
             {
                 cause: "Yderst mangelfuld styring",
-                detail: "Rigsrevisionens egne ord. Ministeriet formåede ikke at styre projektet, og universiteterne betaler prisen."
+                detail: "Rigsrevisionens egne ord. Det eneste ministerium der fik sit eget kapitel i statsregnskabsrapporten for 2024."
             },
             {
                 cause: "Udgifter væltet over på brugerne",
-                detail: "Ministeriets forsinkelser kostede universiteterne 100 mio. kr. ekstra. Dem der bestilte fejlen betaler ikke selv."
+                detail: "Ministeriets forsinkelser kostede universiteterne 100 mio. kr. ekstra fordi de selv glemte at indsende aktstykke i 2 år."
             },
         ],
     },
@@ -266,17 +267,17 @@ const IT_CASE_STUDIES = [
         icon: "",
         org: "KOMBIT / Kommunerne",
         years: "2019–nu",
-        budgetOriginal: "Fast kontrakt med Netcompany",
-        budgetFinal: "Prisen 'løber løbsk' ifølge kommunerne",
+        budgetOriginal: "350 mio. kr. (8 års kontrakt)",
+        budgetFinal: "Prisen 'løber løbsk'. Forlænget til 10 år med 42.000 kr./år stigning pr. kommune.",
         outcome: "I drift, men dyr og problematisk",
-        lostValue: "Databrud: Netcompany-fejl gav adgang til skolebørns data. KOMBIT overvejer at skifte leverandør.",
+        lostValue: "Databrud: Netcompany-fejl gav adgang til skolebørns data. Skoleledere bruger 2-4 ekstra timer/uge pga. ulogiske workflows.",
         severity: "critical",
         vendors: "Netcompany - eneleverandør",
         timeline: [
-            { year: "2019", event: "Aula lanceres som erstatning for SkoleIntra. Udviklet af Netcompany." },
-            { year: "2020", event: "Udrulles til dagtilbud. Brugere rapporterer problemer med brugervenlighed." },
+            { year: "2019", event: "Aula lanceres som erstatning for SkoleIntra. Udviklet af Netcompany. Uautoriserede personer kunne frit tilgå skolebørns data. Datatilsynet: 'alvorlig kritik'." },
+            { year: "2020", event: "Systemet bryder sammen under COVID-nedlukning da 600.000+ brugere logger på samtidig." },
             { year: "2021", event: "Hård kritik af Netcompanys 'store prestigeprojekt'. Prisstigninger begynder." },
-            { year: "2022", event: "Netcompany-fejl giver uautoriseret adgang til skolebørns Aula-data. KOMBIT kritiseres af Datatilsynet." },
+            { year: "2022", event: "Netcompany-fejl giver uautoriseret adgang til skolebørns Aula-data. Datatilsynet kritiserer KOMBIT." },
             { year: "2023", event: "Kommunerne: Aula-pris 'løber løbsk'. KOMBIT overvejer at finde ny leverandør. Vendor lock-in gør det svært." },
         ],
         rootCauses: [
@@ -285,12 +286,12 @@ const IT_CASE_STUDIES = [
                 detail: "Netcompany har eneleverandørrollen. Når prisen stiger har kommunerne intet alternativ. KOMBIT overvejer genudbud, men det er dyrt og risikabelt."
             },
             {
-                cause: "Datasikkerhed svigter",
-                detail: "Fejl i Netcompanys kode gav adgang til skolebørns persondata. Alvorlig kritik fra Datatilsynet."
+                cause: "Datasikkerhed svigter gentagne gange",
+                detail: "Allerede ved lancering i 2019 kunne uautoriserede tilgå børns data. Datatilsynet udstedte 'alvorlig kritik'. Samme type fejl gentog sig."
             },
             {
                 cause: "Monopolprissætning",
-                detail: "Når én leverandør sidder på alt, kan de sætte prisen. Netcompany er blevet 'for dyrt' ifølge KOMBIT."
+                detail: "Når én leverandør sidder på alt, kan de sætte prisen. Kontrakt forlænget fra 8 til 10 år med stigende priser. KOMBIT finder det 'alt for dyrt'."
             },
         ],
     },
@@ -300,31 +301,165 @@ const IT_CASE_STUDIES = [
         icon: "",
         org: "Digitaliseringsstyrelsen / Finansministeriet",
         years: "2021–nu",
-        budgetOriginal: "Kontrakt med Netcompany",
+        budgetOriginal: "Del af national digital infrastruktur",
         budgetFinal: "Ukendt (ikke offentliggjort fuldt)",
-        outcome: "I drift, men GDPR-problemer og brugerklager",
-        lostValue: "15 mio. kr. rekordbøde (GDPR). Hundredtusindvis af borgere med problemer i overgangsperioden.",
+        outcome: "I drift, men GDPR-bøde, sikkerhedshuller og datalæk",
+        lostValue: "15 mio. kr. rekordbøde (GDPR). Borgere kunne logge ind på andres konti. Netcompany ramt af datatyveri i 2024 (kildekode og passwords).",
         severity: "critical",
         vendors: "Netcompany - hovedleverandør af MitID og mit.dk (Digital Post)",
         timeline: [
             { year: "2021", event: "MitID lanceres som erstatning for NemID. Massiv overgangsperiode begynder." },
-            { year: "2022", event: "Digital Post flyttes fra e-Boks til mit.dk (Netcompany). Kaotisk overgang. Mange borgere mister adgang til post." },
-            { year: "2023", event: "Fortsat problemer med brugervenlighed. Sikkerhedsfejl opdages i MitID." },
-            { year: "2024", event: "Netcompany indstilles til rekordbot på 15 mio. kr. for GDPR-brud i Digital Post (mit.dk)." },
-            { year: "2025", event: "Stadig klager over MitID-fejl og Digital Post-problemer. Borgere udelukkes fra offentlige services." },
+            { year: "2022", event: "Digital Post flyttes fra e-Boks til mit.dk (Netcompany). Kaotisk overgang. Borgere mister adgang til post. Sikkerhedsbrud: borgere kunne logge ind på andres konti." },
+            { year: "2023", event: "Version2 afslører sårbarhed der giver adgang til 18.000 danskeres personlige brugernavne. ITU-professor: 'en skandale' og 'fuldstændig uacceptabelt'." },
+            { year: "2024", event: "Datatilsynet indstiller Netcompany til rekordbøde på 15 mio. kr. Netcompany ramt af datatyveri: kildekode, scripts og passwords stjålet." },
+            { year: "2025", event: "Stadig klager. Næsten hver femte borger finder digitale løsninger udfordrende." },
         ],
         rootCauses: [
             {
                 cause: "Tvungen overgang uden alternativer",
-                detail: "Alle borgere blev tvunget fra NemID til MitID og fra e-Boks til mit.dk. Dem der ikke kunne følge med blev afskåret fra offentlige tjenester."
+                detail: "Alle borgere tvunget fra NemID til MitID og fra e-Boks til mit.dk. Dem der ikke kan følge med afskæres fra offentlige tjenester."
             },
             {
                 cause: "Netcompany-monopol på kritisk infrastruktur",
-                detail: "Netcompany leverer MitID, Digital Post (mit.dk), borger.dk og NemLog-in. Én leverandør kontrollerer hele den digitale offentlige infrastruktur."
+                detail: "Netcompany leverer MitID, Digital Post (mit.dk), borger.dk og NemLog-in. Én leverandør kontrollerer hele den digitale offentlige infrastruktur. Ca. 33% af statens IT-projekter."
             },
             {
-                cause: "GDPR-brud",
-                detail: "Rekordbot på 15 mio. kr. for sikkerhedsfejl i Digital Post. Borgernes data blev ikke beskyttet tilstrækkeligt."
+                cause: "Sikkerhed som eftertanke",
+                detail: "Borgere kunne logge ind på andres konti. 18.000 brugernavne eksponeret. Rekordbøde på 15 mio. kr. Og i 2024 blev Netcompany selv hacket."
+            },
+        ],
+    },
+    {
+        id: "psrm",
+        name: "PSRM: Det nye inddrivelsessystem (EFI-erstatningen)",
+        icon: "",
+        org: "Skatteministeriet / Gældsstyrelsen",
+        years: "2017–nu",
+        budgetOriginal: "1,1 mia. kr.",
+        budgetFinal: "1,1+ mia. kr. (plus 822 mio. for EFI + 300 mio. til Kammeradvokaten)",
+        outcome: "I drift, men teknologien er allerede forældet. Leverandøren har stoppet sikkerhedsopdateringer.",
+        lostValue: "172,2 mia. kr. i offentlig gæld (ultimo 2023). Fuld kommuneintegration først 2026/2027.",
+        severity: "critical",
+        vendors: "Netcompany (hovedudvikler)",
+        timeline: [
+            { year: "2015", event: "EFI skrottes. 114 mia. kr. i uinddrevet gæld. Nyt system nødvendigt." },
+            { year: "2017", event: "PSRM-projektet startes. Budget: 1,1 mia. kr. Netcompany er hovedleverandør." },
+            { year: "2019", event: "Rigsrevisionen: Skatteministeriets planer er 'for optimistiske'. Kompleksiteten undervurderet." },
+            { year: "2022", event: "Ministeriet undlod at informere Folketinget om utilstrækkelig fremdrift." },
+            { year: "2024", event: "Rigsrevisionen advarer: den underliggende teknologi er nu forældet. Leverandøren har stoppet sikkerhedsopdateringer og bugfixes." },
+            { year: "2025", event: "System i drift men ikke fuldt udrullet. Kommuner først fuldt tilsluttet 2026/2027. Offentlig gæld: 172+ mia. kr." },
+        ],
+        rootCauses: [
+            {
+                cause: "Forældet teknologi før systemet er færdigt",
+                detail: "Den underliggende teknologi modtager ikke længere sikkerhedsopdateringer fra leverandøren. Et nyt system bygget på allerede forældet fundament."
+            },
+            {
+                cause: "Gentager EFI-mønsteret",
+                detail: "For optimistiske planer, undervurderet kompleksitet, manglende orientering af Folketinget. Præcis de samme fejl som EFI."
+            },
+        ],
+    },
+    {
+        id: "rejsekort",
+        name: "Rejsekort: Det nationale rejsekort",
+        icon: "",
+        org: "Transportministeriet / DSB / Regionale trafikselskaber",
+        years: "2005–nu",
+        budgetOriginal: "~1 mia. kr.",
+        budgetFinal: "2+ mia. kr.",
+        outcome: "I drift efter 6 års forsinkelse. Nu ved at blive erstattet af app.",
+        lostValue: "Omsætning 2011-2014 kun halvdelen af prognoserne. Gartner-rapport kaldte økonomien 'forrykt'. Ministeriet forsøgte at undertrykke rapporten i 2 år.",
+        severity: "critical",
+        vendors: "Thales Group, Accenture (original). Netcompany, Fairtiq, HaCon (nyere kontrakter)",
+        timeline: [
+            { year: "2005", event: "Rejsekort-projektet startes. Budget: ~1 mia. kr." },
+            { year: "2010", event: "Gartner-rapport kalder økonomien 'forrykt'. Transportministeriet forsøger at undertrykke rapporten i 2 år." },
+            { year: "2011", event: "Endelig lancering efter 6 års forsinkelse. Omsætning kun halvdelen af forventet." },
+            { year: "2015", event: "Rigsrevisionen: systemet er hverken brugervenligt eller økonomisk bæredygtigt. Konkurs kun undgået i sidste øjeblik." },
+            { year: "2024", event: "Ny app lanceres (Netcompany m.fl.). Klagenævnet annullerer kontrakt for brud på udbudsregler. Appen anonymiserer ikke lokationsdata trods løfter. App pauset pga. fejl." },
+            { year: "2026", event: "Fysisk Rejsekort forventes udfaset. ~10% af brugere mangler smartphone eller digital kompetence." },
+        ],
+        rootCauses: [
+            {
+                cause: "Undertrykt kritik",
+                detail: "Transportministeriet forsøgte at holde Gartner-rapporten hemmelig i 2 år. Rapporten kaldte økonomien 'forrykt'."
+            },
+            {
+                cause: "Hverken brugervenligt eller bæredygtigt",
+                detail: "Rigsrevisionens konklusion i 2015. Parterne brugte tid på interne uenigheder i stedet for at løse problemerne."
+            },
+            {
+                cause: "Digital eksklusion",
+                detail: "Overgang til app efterlader ~10% af brugerne uden smartphone eller digitale kompetencer. Igen tvungen digitalisering."
+            },
+        ],
+    },
+    {
+        id: "politiets-it",
+        name: "Politiets IT-katastrofer (2019-2025)",
+        icon: "",
+        org: "Rigspolitiet",
+        years: "2019–2025",
+        budgetOriginal: "Diverse",
+        budgetFinal: "Diverse",
+        outcome: "Slettet bevismateriale, fejlagtige teledata, ubrugelige systemer",
+        lostValue: "27 mio. filer slettet. 10.000+ straffesager måtte gennemgås pga. teledata-fejl. 35 personer løsladt fra varetægt.",
+        severity: "catastrophic",
+        vendors: "Netcompany (våbenregister), diverse",
+        timeline: [
+            { year: "2019", event: "Teledata-skandalen: software har produceret fejl i 8 år (2012-2019). Data kasseret, mobilmaster placeret forkert. 10.000+ sager skal gennemgås. 35 personer løslades." },
+            { year: "2022 jan", event: "Våbenregistret (PAC, Netcompany): System 'praktisk talt kollapset'. 17.000+ jægere kan ikke forny våbentilladelser. Ombudsmanden griber ind." },
+            { year: "2022 aug", event: "~27 millioner filer fra straffesager slettet ved en fejl under serverarbejde. Mobildata, computere, harddiske, GPS-enheder, SD-kort. 'Menneskelig fejl'." },
+            { year: "2023", event: "Våbenregistret formelt kritiseret efter 1,5+ års problemer." },
+            { year: "2025", event: "POLmedia (nyt medie/bevissystem): Intern undersøgelse kalder det 'et rent skraldesystem' og 'regulær IT-skandale'. Betjente springer over at tage fotos fordi systemet er for dårligt." },
+        ],
+        rootCauses: [
+            {
+                cause: "8 års uopdagede fejl i teledata",
+                detail: "Software producerede forkerte data i 8 år uden at nogen opdagede det. 10.000+ straffesager kompromitteret. Ingen kvalitetskontrol."
+            },
+            {
+                cause: "27 mio. filer slettet ved en fejl",
+                detail: "Rutinemæssigt serverarbejde resulterede i sletning af bevismateriale fra straffesager. Ingen backup-procedure fangede det."
+            },
+            {
+                cause: "Systemer ingen vil bruge",
+                detail: "Betjente springer bevisindsamling over fordi IT-systemerne er for dårlige. Det er en retssikkerhedsrisiko."
+            },
+        ],
+    },
+    {
+        id: "smittestop",
+        name: "Smittestop: Corona-appen",
+        icon: "",
+        org: "Sundheds- og Ældreministeriet / Sundhedsdatastyrelsen",
+        years: "2020–2022",
+        budgetOriginal: "35+ mio. kr.",
+        budgetFinal: "35+ mio. kr.",
+        outcome: "Fejlbehæftet under pandemien. Dekommissioneret.",
+        lostValue: "Kritikere: specialiserede firmaer kunne have bygget den for en femtedel. Appen virkede ikke da den var mest nødvendig.",
+        severity: "critical",
+        vendors: "Netcompany",
+        timeline: [
+            { year: "Jun 2020", event: "Smittestop lanceres. Budget: 35+ mio. kr. Netcompany udvikler." },
+            { year: "Sep 2020", event: "Første alvorlige fejl: appen informerer ikke nære kontakter til smittede." },
+            { year: "Nov 2020", event: "Android batterioptimering blokerer datahentning. Notifikationer virker ikke." },
+            { year: "Jan 2021", event: "Hurtigtest-resultater kan ikke registreres. Sikkerhedssårbarhed i Googles underliggende teknologi." },
+            { year: "2022", event: "Appen dekommissioneres efter pandemien. Lukket kildekode betød at kun få kunne finde fejl." },
+        ],
+        rootCauses: [
+            {
+                cause: "Virkede ikke da det gjaldt",
+                detail: "Appen fejlede med sin kernefunktion: at varsle nære kontakter. Både i september 2020 og under vinterbølgen."
+            },
+            {
+                cause: "Lukket kildekode",
+                detail: "Danmark valgte lukket kildekode modsat andre lande. Det betød at kun Netcompany kunne finde og rette fejl."
+            },
+            {
+                cause: "Overprissæt",
+                detail: "35+ mio. kr. for en app der ikke virkede. Kritikere sagde specialfirmaer kunne have bygget den for en femtedel."
             },
         ],
     },
@@ -340,7 +475,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Megaprojekt-fælden",
         description: "Store monolitiske systemer der skal løse alt på én gang. Ingen trinvis levering, ingen feedback loops.",
-        frequency: "Alle 8 sager",
+        frequency: "Alle 12 sager",
         color: "#ef4444"
     },
     {
@@ -348,7 +483,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Kravspecifikation i blinde",
         description: "Organisationer kender ikke deres egne processer. Krav skrives af konsulenter der ikke forstår domænet.",
-        frequency: "Alle 8 sager",
+        frequency: "Alle 12 sager",
         color: "#f97316"
     },
     {
@@ -356,7 +491,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Udbudsregler tvinger vandfald",
         description: "EU-udbudsregler behandler IT som byggeri. Lineær proces med fastlåst scope, men software kræver iteration.",
-        frequency: "6 af 8 sager",
+        frequency: "9 af 12 sager",
         color: "#eab308"
     },
     {
@@ -372,7 +507,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Besparelser før systemet virker",
         description: "Medarbejdere fyres og gamle systemer nedlægges FØR det nye system er testet og i drift. Ingen plan B.",
-        frequency: "5 af 8 sager",
+        frequency: "7 af 12 sager",
         color: "#ec4899"
     },
     {
@@ -380,7 +515,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Leverandør-optimisme",
         description: "'Den der vinder er den der lyver.' Leverandører underbudgetterer for at vinde, vel vidende at scope vil vokse.",
-        frequency: "6 af 8 sager",
+        frequency: "9 af 12 sager",
         color: "#06b6d4"
     },
     {
@@ -388,7 +523,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Ingen tidlig brugertest",
         description: "Systemer bygges i årevis uden at rigtige brugere tester dem. Problemer opdages først ved go-live.",
-        frequency: "Alle 8 sager",
+        frequency: "Alle 12 sager",
         color: "#22c55e"
     },
     {
@@ -396,7 +531,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Manglende gennemsigtighed",
         description: "Dokumenter holdes fortrolige. Fejl skjules. Ingen offentlig ansvarlighed eller læring.",
-        frequency: "5 af 8 sager",
+        frequency: "7 af 12 sager",
         color: "#94a3b8"
     },
 ];
@@ -502,13 +637,14 @@ const MODERN_SOLUTIONS = [
  * Summary statistics for the "what could have been saved" calculation
  */
 const IT_WASTE_SUMMARY = {
-    totalWastedBn: 30,           // Conservative estimate: 30 mia. kr. wasted on failed/overrun IT over 20 years
+    totalWastedBn: 40,           // Conservative estimate: 40+ mia. kr. wasted on failed/overrun IT over 25 years (12 documented cases)
     annualConsultantBn: 13.5,    // 12-15 mia. kr./year on consultants
     avgOverrunPct: 108,          // Danish average
     norwayOverrunPct: 8,         // Norway comparison
-    projectsMonitored: 40,       // By Statens IT-råd
-    projectsFlagged: 24,         // With warnings
-    projectsRedLight: 12,        // Critical status
+    projectsMonitored: 49,       // By Statens IT-råd (H2 2024: 28 grøn, 8 gul, 12 rød + yderligere)
+    projectsFlagged: 20,         // Yellow + Red warnings (H2 2024)
+    projectsRedLight: 12,        // Critical red status (H2 2024)
+    totalStateBudgetBn: 15.8,    // Total state IT project spending 2024 (up from 4.7 mia. in 2018)
     potentialSavingsAI: {
         requirementsPhase: 0.40, // 40% savings via AI requirements analysis
         developmentPhase: 0.30,  // 30% savings via incremental + AI testing
