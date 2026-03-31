@@ -909,6 +909,123 @@ const MODERN_SOLUTIONS = [
 ];
 
 /**
+ * Norway vs Denmark: Why Norway's public IT projects cost 8% over budget while Denmark's cost 108% over.
+ * Sources:
+ * - Aarhus Universitet / Bent Flyvbjerg: Cross-country IT project overrun study
+ * - NTNU Concept Research Programme (Trondheim): Quality Assurance of large public projects
+ * - Digitaliseringsdirektoratet (Norway): Medfinansieringsordningen
+ * - Rigsrevisionen (Denmark) & Riksrevisjonen (Norway): Audit comparisons
+ * - Version2: "Norge har 8% overskridelse - Danmark har 108%"
+ */
+const NORWAY_COMPARISON = {
+    headline: {
+        dk: { label: "Danmark", overrunPct: 108, color: "#c8102e" },
+        no: { label: "Norge", overrunPct: 8, color: "#00843d" },
+        multiplier: "13,5x",
+        source: "Aarhus Universitet / Bent Flyvbjerg, Oxford-studie af offentlige IT-projekter i 20+ lande",
+    },
+
+    keyDifferences: [
+        {
+            area: "Kvalitetssikring før projektstart",
+            norway: "Obligatorisk ekstern kvalitetssikring (KS1 & KS2) for alle projekter over 750 mio. NOK. Uafhængige eksperter vurderer business case, alternativer og risici FØR politisk beslutning.",
+            denmark: "Ingen obligatorisk ekstern kvalitetssikring. Statens IT-råd overvåger, men har ingen vetoret og blev først oprettet i 2011. Projekter godkendes politisk uden uafhængig vurdering.",
+            icon: "",
+        },
+        {
+            area: "Reference Class Forecasting",
+            norway: "Norge kræver 'reference class forecasting' (udviklet af Bent Flyvbjerg): budgetter baseres på hvad LIGNENDE projekter faktisk kostede, ikke hvad leverandøren lover. Obligatorisk siden 2005.",
+            denmark: "Danmark bruger leverandørens eget estimat. Leverandører underbudgetterer systematisk for at vinde udbud ('den der lyver bedst, vinder'). Ingen korrektion for optimismebias.",
+            icon: "",
+        },
+        {
+            area: "Intern IT-ekspertise",
+            norway: "Norge beholdt stærk intern IT-kapacitet i staten. Digitaliseringsdirektoratet har 400+ specialister. Departementer har egne IT-afdelinger med beslutningskompetence.",
+            denmark: "Danmark privatiserede Datacentralen (1996) og Kommunedata. Al IT-ekspertise forsvandt fra staten. Nu 100% afhængig af eksterne konsulenter til selv at specificere krav.",
+            icon: "",
+        },
+        {
+            area: "Medfinansiering & trinvis godkendelse",
+            norway: "Medfinansieringsordningen: Projekter får kun delvis statslig finansiering. Resten skal tjenes ind via dokumenterede gevinster. Bygget på trinvis godkendelse med stop/go-beslutninger.",
+            denmark: "Fuld bevilling vedtages med Finansloven. Ingen trinvis godkendelse. Når pengene er bevilget, er der intet incitament til at stoppe et fejlslagent projekt ('sunk cost fallacy').",
+            icon: "",
+        },
+        {
+            area: "Åbenhed og transparens",
+            norway: "Alle kvalitetssikringsrapporter (KS1/KS2) er offentligt tilgængelige. NTNU Concept-programmet publicerer løbende forskning. Medierne har adgang til projektdata.",
+            denmark: "Rapporter holdes fortrolige. Transportministeriet forsøgte at undertrykke Gartner-rapport om Rejsekort i 2 år. Justitsministeriet hemmeligholdt POLSAG-dokumenter. UFST nægter at udlevere Boligskat-data.",
+            icon: "",
+        },
+        {
+            area: "Konsekvenser ved fejl",
+            norway: "Ansvarlige ledere og projektchefer kan fjernes. Riksrevisjonen har stærkere sanktionsmuligheder. Projekter kan stoppes midtvejs uden politisk prestigetab.",
+            denmark: "Ingen er nogensinde fyret for en IT-skandale. Ministre, departementschefer og leverandører fortsætter uberørt. DSB brød kontrakten 7/8 år: 0 kr. i straf.",
+            icon: "",
+        },
+        {
+            area: "Projektsstørrelse og modularitet",
+            norway: "Norge foretrækker mindre, modulære projekter. Store behov opdeles i håndterbare dele med separate udbud og leverancer.",
+            denmark: "Danmark elsker megaprojekter: EFI (600 regler × 500 gældstyper), Signalprogrammet (alle signaler i hele landet), Ejendomsvurdering (alle boliger). Alt-eller-intet tænkning.",
+            icon: "",
+        },
+        {
+            area: "Leverandøransvar",
+            norway: "Kontrakter med klare milestone-betalinger. Leverandører betales KUN ved dokumenteret levering. Bøder og exit-klausuler er standard.",
+            denmark: "Rigsrevisionen fandt at POLSAG-betalinger IKKE var knyttet til leverancer. CSC fik betaling uanset resultat. DSB IC4-kontrakten manglede effektive bodsklausuler.",
+            icon: "",
+        },
+    ],
+
+    norwegianSuccesses: [
+        {
+            name: "Altinn (digital borgerplatform)",
+            description: "Norges svar på borger.dk/NemID. Modulært bygget, open source-komponenter, trinvist udrullet. Brugt af 4,5 mio. nordmænd. Koster en brøkdel af Danmarks digitale infrastruktur.",
+            result: "I drift siden 2003. Løbende moderniseret (Altinn 3.0 i 2023). Ingen megaskandale.",
+        },
+        {
+            name: "Helseplattformen (Midt-Norge)",
+            description: "Norges pendant til Sundhedsplatformen - også Epic-baseret. Men med stærkere intern styring, trinvis udrulning og hårde krav til leverandøren.",
+            result: "Problemer ved lancering (2022), men norske myndigheder stoppede udrulningen og krævede rettelser FØR videre implementering. I Danmark kørte man videre trods advarsler.",
+        },
+        {
+            name: "ID-porten (digital identitet)",
+            description: "Norges digitale identitetsløsning. Bygget med flere leverandører og åbne standarder, ikke ét firma der kontrollerer alt.",
+            result: "Fungerer stabilt. Ingen GDPR-bøder. Ingen sikkerhedsskandaler. Ingen monopol-problemer.",
+        },
+    ],
+
+    flyvbjergQuotes: [
+        {
+            quote: "Over budget, over time, under delivering, over and over again.",
+            source: "Bent Flyvbjerg, 'How Big Things Get Done' (2023)",
+            context: "Dansk-født Oxford-professor der har studeret 16.000+ megaprojekter globalt."
+        },
+        {
+            quote: "The cost overruns are not random. They are systematically biased by strategic misrepresentation - that is, lying.",
+            source: "Bent Flyvbjerg, 'Survival of the Unfittest' (2009)",
+            context: "Leverandører underbudgetterer bevidst. Politikere godkender fordi de VIL tro på det lave tal."
+        },
+        {
+            quote: "Reference class forecasting er det eneste dokumenterede middel mod optimismebias og strategisk fejlbudgettering.",
+            source: "Bent Flyvbjerg, NTNU/Oxford",
+            context: "Norge indførte det i 2005. Danmark har stadig ikke gjort det i 2025."
+        },
+    ],
+
+    bottomLine: {
+        title: "Hvad ville det betyde for Danmark?",
+        text: "Hvis Danmark havde Norges budgetoverskridelse på 8% i stedet for 108%, ville vi have sparet mindst 40-50 mia. kr. over de seneste 20 år - alene på de 20 dokumenterede sager. Det svarer til 2 nye superhospitaler, 5.000 ekstra sygeplejersker i 10 år, eller fuld modernisering af hele skatteministeriets IT.",
+        savingsEstimate: "40-50 mia. kr.",
+        equivalents: [
+            { label: "2 nye superhospitaler", icon: "" },
+            { label: "5.000 sygeplejersker i 10 år", icon: "" },
+            { label: "Fuld modernisering af skatteministeriets 230 IT-systemer", icon: "" },
+            { label: "Gratis tandlæge for alle danskere i 6 år", icon: "" },
+        ],
+    },
+};
+
+/**
  * Summary statistics for the "what could have been saved" calculation
  */
 const IT_WASTE_SUMMARY = {

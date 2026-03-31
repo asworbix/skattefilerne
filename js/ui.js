@@ -435,6 +435,95 @@ function renderSavingsCalculator() {
     `;
 }
 
+function renderNorwayComparison() {
+    const container = document.getElementById('norway-comparison');
+    if (!container || typeof NORWAY_COMPARISON === 'undefined') return;
+
+    const d = NORWAY_COMPARISON;
+
+    let html = `
+        <div class="norway-hero">
+            <div class="norway-hero-stat norway-dk">
+                <div class="norway-flag">${d.headline.dk.label}</div>
+                <div class="norway-pct" style="color: ${d.headline.dk.color}">${d.headline.dk.overrunPct}%</div>
+                <div class="norway-pct-label">budgetoverskridelse</div>
+            </div>
+            <div class="norway-hero-vs">
+                <div class="norway-vs-text">vs.</div>
+                <div class="norway-multiplier">${d.headline.multiplier} forskel</div>
+            </div>
+            <div class="norway-hero-stat norway-no">
+                <div class="norway-flag">${d.headline.no.label}</div>
+                <div class="norway-pct" style="color: ${d.headline.no.color}">${d.headline.no.overrunPct}%</div>
+                <div class="norway-pct-label">budgetoverskridelse</div>
+            </div>
+        </div>
+        <p class="norway-source">Kilde: ${d.headline.source}</p>
+
+        <h3 class="norway-section-title">8 forskelle der forklarer alt</h3>
+        <div class="norway-diff-grid">
+            ${d.keyDifferences.map(diff => `
+                <div class="norway-diff-card">
+                    <div class="norway-diff-header">
+                        <span class="norway-diff-icon">${diff.icon}</span>
+                        <h4>${diff.area}</h4>
+                    </div>
+                    <div class="norway-diff-body">
+                        <div class="norway-diff-col norway-diff-no">
+                            <div class="norway-diff-label" style="color: #00843d">Norge</div>
+                            <p>${diff.norway}</p>
+                        </div>
+                        <div class="norway-diff-col norway-diff-dk">
+                            <div class="norway-diff-label" style="color: #c8102e">Danmark</div>
+                            <p>${diff.denmark}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="norway-section-title">Norske succeser - det KAN lade sig gøre</h3>
+        <div class="norway-successes">
+            ${d.norwegianSuccesses.map(s => `
+                <div class="norway-success-card">
+                    <h4>${s.name}</h4>
+                    <p>${s.description}</p>
+                    <div class="norway-success-result">${s.result}</div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="norway-section-title">Bent Flyvbjerg - dansk professor der afslørede mønsteret</h3>
+        <div class="norway-quotes">
+            ${d.flyvbjergQuotes.map(q => `
+                <blockquote class="norway-quote">
+                    <p>"${q.quote}"</p>
+                    <footer>
+                        <cite>${q.source}</cite>
+                        <span class="norway-quote-ctx">${q.context}</span>
+                    </footer>
+                </blockquote>
+            `).join('')}
+        </div>
+
+        <div class="norway-bottom-line">
+            <h3>${d.bottomLine.title}</h3>
+            <p>${d.bottomLine.text}</p>
+            <div class="norway-savings-amount">${d.bottomLine.savingsEstimate}</div>
+            <div class="norway-equivalents">
+                ${d.bottomLine.equivalents.map(eq => `
+                    <div class="norway-equiv">
+                        <span class="norway-equiv-icon">${eq.icon}</span>
+                        <span>${eq.label}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
 function renderConsultantBreakdown() {
     const container = document.getElementById('consultant-breakdown');
     if (!container || typeof CONSULTANT_DATA === 'undefined') return;
@@ -692,6 +781,7 @@ function renderNetcompanyDeepDive() {
 function renderITDeepDive() {
     initDeepDiveTabs();
     renderCaseStudies();
+    renderNorwayComparison();
     renderConsultantBreakdown();
     renderNetcompanyDeepDive();
     renderRootCauses();
