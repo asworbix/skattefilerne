@@ -458,7 +458,11 @@ function renderNorwayComparison() {
                 <div class="norway-pct-label">budgetoverskridelse</div>
             </div>
         </div>
-        <p class="norway-source">Kilde: ${d.headline.source}</p>
+        <div class="norway-meta">
+            <p class="norway-source">Kilde: ${d.headline.source}</p>
+            <p class="norway-source">Stikprøve: ${d.headline.sampleSize}. Maksimal overskridelse: Danmark ${d.headline.dk.maxOverrun} vs. Norge ${d.headline.no.maxOverrun}.</p>
+            <p class="norway-source">${d.headline.broaderData}</p>
+        </div>
 
         <h3 class="norway-section-title">8 forskelle der forklarer alt</h3>
         <div class="norway-diff-grid">
@@ -489,6 +493,32 @@ function renderNorwayComparison() {
                     <h4>${s.name}</h4>
                     <p>${s.description}</p>
                     <div class="norway-success-result">${s.result}</div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="norway-section-title">Strukturel sammenligning - institutionerne</h3>
+        <div class="norway-struct-table">
+            <div class="norway-struct-header">
+                <div class="norway-struct-col-feature">Område</div>
+                <div class="norway-struct-col norway-struct-no">Norge</div>
+                <div class="norway-struct-col norway-struct-dk">Danmark</div>
+            </div>
+            ${d.structuralComparison.map(row => `
+                <div class="norway-struct-row">
+                    <div class="norway-struct-col-feature">${row.feature}</div>
+                    <div class="norway-struct-col norway-struct-no">${row.norway}</div>
+                    <div class="norway-struct-col norway-struct-dk">${row.denmark}</div>
+                </div>
+            `).join('')}
+        </div>
+
+        <h3 class="norway-section-title">Rigsrevisionens advarsler - ignoreret år efter år</h3>
+        <div class="norway-rr-timeline">
+            ${d.rigsrevisionenFindings.map(f => `
+                <div class="norway-rr-item">
+                    <div class="norway-rr-year">${f.year}</div>
+                    <div class="norway-rr-finding">${f.finding}</div>
                 </div>
             `).join('')}
         </div>

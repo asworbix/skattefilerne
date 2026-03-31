@@ -3003,6 +3003,103 @@ footer a:hover {
     font-size: 1.2rem;
 }
 
+.norway-meta {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.norway-meta .norway-source {
+    margin-bottom: 0.25rem;
+}
+
+/* Structural comparison table */
+.norway-struct-table {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1rem;
+}
+
+.norway-struct-header {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    background: rgba(255,255,255,0.06);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.norway-struct-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.norway-struct-row:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+.norway-struct-col-feature,
+.norway-struct-col {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.norway-struct-col-feature {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.norway-struct-no {
+    color: #4ade80;
+    border-left: 1px solid rgba(255,255,255,0.04);
+}
+
+.norway-struct-dk {
+    color: var(--text-muted);
+    border-left: 1px solid rgba(255,255,255,0.04);
+}
+
+.norway-struct-header .norway-struct-no {
+    color: #00843d;
+}
+
+.norway-struct-header .norway-struct-dk {
+    color: var(--accent);
+}
+
+/* Rigsrevisionen timeline */
+.norway-rr-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.norway-rr-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    background: var(--bg-card-hover);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+}
+
+.norway-rr-year {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--accent);
+    min-width: 50px;
+}
+
+.norway-rr-finding {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
 @media (max-width: 768px) {
     .norway-hero {
         flex-direction: column;
@@ -3025,5 +3122,35 @@ footer a:hover {
 
     .norway-savings-amount {
         font-size: 2.2rem;
+    }
+
+    .norway-struct-header,
+    .norway-struct-row {
+        grid-template-columns: 1fr;
+    }
+
+    .norway-struct-no,
+    .norway-struct-dk {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .norway-struct-col::before {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .norway-struct-no::before {
+        content: "Norge";
+        color: #00843d;
+    }
+
+    .norway-struct-dk::before {
+        content: "Danmark";
+        color: var(--accent);
     }
 }
