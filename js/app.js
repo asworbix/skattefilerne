@@ -6,7 +6,6 @@
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
         renderITDeepDive();
-        renderPublicSpending();
         initFloatingNav();
         initScrollProgress();
         initSectionAnimations();
