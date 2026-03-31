@@ -463,6 +463,176 @@ const IT_CASE_STUDIES = [
             },
         ],
     },
+    {
+        id: "signalprogrammet",
+        name: "Signalprogrammet: Nye togsignaler (ERTMS)",
+        icon: "",
+        org: "Banedanmark / Transportministeriet",
+        years: "2009–2033?",
+        budgetOriginal: "~19 mia. kr.",
+        budgetFinal: "23+ mia. kr. (kommentatorer advarer: kan nå 40 mia.)",
+        outcome: "12+ år forsinket. Tidligst færdigt 2033.",
+        lostValue: "4,4+ mia. kr. overskridelse. Statsrevisorerne: ministeriet vurderede ikke Banedanmarks fremdriftsrapporter kritisk nok.",
+        severity: "catastrophic",
+        vendors: "Alstom (Østdanmark, massive forsinkelser), Siemens (Vestdanmark), Thales (S-bane, færdigt 2022)",
+        timeline: [
+            { year: "2009", event: "Signalprogrammet vedtages. Budget: ~19 mia. kr. Alle signaler i Danmark skal udskiftes til ERTMS." },
+            { year: "2014", event: "Første forsinkelser. Alstom kan ikke levere software til tiden." },
+            { year: "2017", event: "Budget revideres opad. Yderligere 2,8 mia. kr. i omkostningsstigninger. Ny tidsplan." },
+            { year: "2021", event: "Skulle have været færdigt nu. Langt fra i mål. Statsrevisorerne revser Transportministeriet." },
+            { year: "2022", event: "Thales færdiggør S-bane-delen. Men Alstom-delen (Østdanmark) er stadig massivt forsinket." },
+            { year: "2025", event: "Nu 12+ år forsinket. Kommentatorer advarer: totalomkostningen kan nå 40 mia. kr." },
+            { year: "2033?", event: "Nuværende forventet færdiggørelse. Hvis det holder." },
+        ],
+        rootCauses: [
+            {
+                cause: "Kompleksitet massivt undervurderet",
+                detail: "Udskiftning af ALLE signaler i hele Danmark på én gang. Banedanmark og ministeriet undervurderede opgaven systematisk."
+            },
+            {
+                cause: "Leverandør kan ikke levere",
+                detail: "Alstom kunne ikke levere software til tiden. Samme mønster som EFI, POLSAG og Amanda."
+            },
+            {
+                cause: "Manglende ministeriel kontrol",
+                detail: "Statsrevisorerne kritiserede at Transportministeriet ikke vurderede Banedanmarks fremdriftsrapporter kritisk. Ministeriet troede blindt på leverandøren."
+            },
+        ],
+    },
+    {
+        id: "tinglysning",
+        name: "Digital Tinglysning",
+        icon: "",
+        org: "Domstolsstyrelsen / Justitsministeriet",
+        years: "2006–2009",
+        budgetOriginal: "460 mio. kr.",
+        budgetFinal: "653 mio. kr. (+42%)",
+        outcome: "1,5 år forsinket. Big-bang overgang trods advarsler. Virker nu.",
+        lostValue: "Borgere tabte estimeret 1 mia. kr. i uberettigede renteudgifter pga. ophobede skøder og tvungne mellemfinansieringer.",
+        severity: "critical",
+        vendors: "CSC (primær IT-leverandør)",
+        timeline: [
+            { year: "2006", event: "Projekt startes. Budget: 460 mio. kr. Hele tinglysningssystemet skal digitaliseres." },
+            { year: "2008", event: "Planlagt lancering. Hele den finansielle sektor advarer mod big-bang overgang." },
+            { year: "2009", event: "Lanceres 1,5 år forsinket. Advarsler ignoreret: big-bang overgang skaber kaos. Skøder hober sig op. Boligkøbere tvinges til dyre mellemfinansieringer." },
+            { year: "2010", event: "Statsrevisorerne: 'utilstrækkelig organisatorisk forberedelse' og 'utilfredsstillende projekt- og økonomistyring'. Borgere har tabt ~1 mia. kr. i unødvendige renter." },
+        ],
+        rootCauses: [
+            {
+                cause: "Big-bang trods advarsler",
+                detail: "Hele den finansielle sektor advarede mod at skifte alt på én gang. Domstolsstyrelsen ignorerede advarslerne."
+            },
+            {
+                cause: "CSC igen",
+                detail: "CSC var primær IT-leverandør. Samme firma bag Amanda, POLSAG og dele af EFI."
+            },
+            {
+                cause: "Borgerne betalte prisen",
+                detail: "Boligkøbere tabte estimeret 1 mia. kr. i uberettigede renteudgifter. Staten svigtede, borgerne betalte."
+            },
+        ],
+    },
+    {
+        id: "forsvaret-it",
+        name: "Forsvarets IT-katastrofer: DeMars, Daccis, Tårnfalken",
+        icon: "",
+        org: "Forsvarsministeriet",
+        years: "2004–nu",
+        budgetOriginal: "1,5+ mia. kr. (samlet)",
+        budgetFinal: "2+ mia. kr. Teknisk gæld: 17,5-21 mia. kr.",
+        outcome: "DeMars: 'sønderlemmende kritik'. Daccis: skrottet. Tårnfalken: fløj aldrig.",
+        lostValue: "Soldater kaldte SAP-systemet 'Standser Al Produktivitet'. 17,5-21 mia. kr. i teknisk gæld på tværs af hele forsvarets IT.",
+        severity: "catastrophic",
+        vendors: "IBM (DeMars/SAP), SAAB (Daccis), diverse",
+        timeline: [
+            { year: "2004", event: "DeMars (SAP) startes. Budget: 693 mio. kr. IBM er hovedleverandør." },
+            { year: "2008", event: "DeMars koster nu 1.152 mio. kr. IT-budget overskredet med 350 mio. kr. Alene 259 mio. til DeMars-konsulenter på ét år." },
+            { year: "2008", event: "Daccis (SAAB, 410 mio. kr.) skrottes. SAAB dømmes til at betale 200 mio. kr. i erstatning (2013)." },
+            { year: "2010", event: "Tårnfalken-dronen: 436 mio. kr. investeret. Fløj aldrig. Solgt til Canada for en brøkdel." },
+            { year: "2011", event: "Rigsrevisionen: 'sønderlemmende kritik'. DeMars kan ikke beregne omkostninger pr. mission. Folketinget kan ikke træffe informerede beslutninger." },
+            { year: "2019", event: "DeMars sættes i genudbud for op til 2 mia. kr. Teknisk gæld i forsvarets IT: 17,5-21 mia. kr." },
+        ],
+        rootCauses: [
+            {
+                cause: "Fuldstændig mangel på økonomistyring",
+                detail: "Rigsrevisionen: DeMars kan ikke beregne hvad en mission koster. Folketinget kan ikke vurdere forsvarsudgifter. Systemet hindrer demokratisk kontrol."
+            },
+            {
+                cause: "Konsulenter dyrere end systemet",
+                detail: "I 2008 brugte forsvaret 259 mio. kr. på DeMars-konsulenter alene - mere end hele IT-budgettet var overskredet med."
+            },
+            {
+                cause: "Mia. i teknisk gæld",
+                detail: "17,5-21 mia. kr. i teknisk gæld. Forsvarets IT er så forældet at genopretning koster mere end nye kampfly."
+            },
+        ],
+    },
+    {
+        id: "proask",
+        name: "PROASK: Arbejdsskadestyrelsens sagsbehandling",
+        icon: "",
+        org: "Arbejdsskadestyrelsen / Beskæftigelsesministeriet",
+        years: "2010–2014",
+        budgetOriginal: "108 mio. kr.",
+        budgetFinal: "283 mio. kr. (inkl. renter, licenser, drift)",
+        outcome: "Skrottet 2014. Visse arbejdsgange tog 5x længere end systemet fra 1991.",
+        lostValue: "283 mio. kr. tabt. Minister Mette Frederiksen kritiseret for ikke at orientere Finansudvalget.",
+        severity: "critical",
+        vendors: "Ikke offentligt navngivet. Deloitte og Gartner leverede reviews.",
+        timeline: [
+            { year: "2010", event: "PROASK startes. Budget: 108 mio. kr. Ministeriets første SOA-projekt - bruges som 'prøveklud'." },
+            { year: "2012", event: "Gartner: arkitekturen er 'unødvendigt kompleks for opgaven'. Budget vokser til 164 mio. kr." },
+            { year: "2013", event: "Visse arbejdsgange tager 5x længere end det 22 år gamle system det skulle erstatte." },
+            { year: "2014", event: "Deloitte anbefaler skrotning. PROASK lukkes. Total: 283 mio. kr. tabt. Minister Mette Frederiksen kritiseres for manglende orientering af Finansudvalget." },
+        ],
+        rootCauses: [
+            {
+                cause: "Brugt som teknisk eksperiment",
+                detail: "Ministeriets første SOA-projekt blev brugt som 'prøveklud' for ny teknologi. Høj risiko fra dag ét."
+            },
+            {
+                cause: "Langsommere end 22 år gammelt system",
+                detail: "Visse arbejdsgange tog 5x længere end systemet fra 1991. Det nye system var objektivt dårligere."
+            },
+            {
+                cause: "Politisk ansvarsunddragelse",
+                detail: "Minister Mette Frederiksen kritiseret for ikke at orientere Finansudvalget om problemerne i tide."
+            },
+        ],
+    },
+    {
+        id: "legacy-skat",
+        name: "Skatteministeriets Legacy: IT fra 1960'erne",
+        icon: "",
+        org: "Skatteministeriet / Udviklings- og Forenklingsstyrelsen",
+        years: "1960–nu",
+        budgetOriginal: "612 mio. kr. (2019-2022 til første skridt)",
+        budgetFinal: "Tocifret milliardbeløb over 15 år for fuld udskiftning",
+        outcome: "~230 IT-systemer, ~70 klassificeret som legacy. Nogle fra 1960'erne.",
+        lostValue: "Systemer fra 1960-70'erne kan kun driftes af en skrumpende gruppe aldrende specialister. Blokerer politiske reformer.",
+        severity: "catastrophic",
+        vendors: "KMD, CSC/DXC (historisk)",
+        timeline: [
+            { year: "1960'erne", event: "De første IT-systemer til skatteforvaltningen bygges." },
+            { year: "2018", event: "Fortroligt notat advarer: 'der er risiko for at skatteopkrævningen ikke kan gennemføres rettidigt eller i overensstemmelse med lovgivningen'." },
+            { year: "2019", event: "612 mio. kr. bevilget til at påbegynde modernisering. Størstedelen går til gældsinddrivelse (5% af indtægterne), ikke til legacy der håndterer 73%." },
+            { year: "2025", event: "Systemer fra 1960'erne stadig i drift. Politiske reformer som reduceret fødevare-moms kræver årelang systemtilpasning (først klar 2030)." },
+        ],
+        rootCauses: [
+            {
+                cause: "60 år gammel kode i drift",
+                detail: "Systemer fra 1960-70'erne håndterer 73% af skatteindtægterne. Den skrumpende gruppe specialister der kan driftes dem nærmer sig pensionsalderen."
+            },
+            {
+                cause: "Blokerer demokratisk lovgivning",
+                detail: "Folketinget kan ikke gennemføre reformer fordi IT-systemerne ikke kan tilpasses. Reduceret fødevare-moms: tidligst 2030."
+            },
+            {
+                cause: "Privatisering fjernede al ekspertise",
+                detail: "Da Datacentralen blev privatiseret i 1990'erne forsvandt al IT-ekspertise fra staten. Nu sidder CSC/DXC og KMD på systemerne, og staten kan ikke skifte."
+            },
+        ],
+    },
 ];
 
 /**
@@ -475,7 +645,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Megaprojekt-fælden",
         description: "Store monolitiske systemer der skal løse alt på én gang. Ingen trinvis levering, ingen feedback loops.",
-        frequency: "Alle 12 sager",
+        frequency: "Alle 17 sager",
         color: "#ef4444"
     },
     {
@@ -483,7 +653,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Kravspecifikation i blinde",
         description: "Organisationer kender ikke deres egne processer. Krav skrives af konsulenter der ikke forstår domænet.",
-        frequency: "Alle 12 sager",
+        frequency: "Alle 17 sager",
         color: "#f97316"
     },
     {
@@ -491,7 +661,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Udbudsregler tvinger vandfald",
         description: "EU-udbudsregler behandler IT som byggeri. Lineær proces med fastlåst scope, men software kræver iteration.",
-        frequency: "9 af 12 sager",
+        frequency: "13 af 17 sager",
         color: "#eab308"
     },
     {
@@ -507,7 +677,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Besparelser før systemet virker",
         description: "Medarbejdere fyres og gamle systemer nedlægges FØR det nye system er testet og i drift. Ingen plan B.",
-        frequency: "7 af 12 sager",
+        frequency: "10 af 17 sager",
         color: "#ec4899"
     },
     {
@@ -515,7 +685,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Leverandør-optimisme",
         description: "'Den der vinder er den der lyver.' Leverandører underbudgetterer for at vinde, vel vidende at scope vil vokse.",
-        frequency: "9 af 12 sager",
+        frequency: "13 af 17 sager",
         color: "#06b6d4"
     },
     {
@@ -523,7 +693,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Ingen tidlig brugertest",
         description: "Systemer bygges i årevis uden at rigtige brugere tester dem. Problemer opdages først ved go-live.",
-        frequency: "Alle 12 sager",
+        frequency: "Alle 17 sager",
         color: "#22c55e"
     },
     {
@@ -531,7 +701,7 @@ const SYSTEMIC_ROOT_CAUSES = [
         icon: "",
         title: "Manglende gennemsigtighed",
         description: "Dokumenter holdes fortrolige. Fejl skjules. Ingen offentlig ansvarlighed eller læring.",
-        frequency: "7 af 12 sager",
+        frequency: "10 af 17 sager",
         color: "#94a3b8"
     },
 ];
@@ -637,7 +807,7 @@ const MODERN_SOLUTIONS = [
  * Summary statistics for the "what could have been saved" calculation
  */
 const IT_WASTE_SUMMARY = {
-    totalWastedBn: 40,           // Conservative estimate: 40+ mia. kr. wasted on failed/overrun IT over 25 years (12 documented cases)
+    totalWastedBn: 60,           // Conservative estimate: 60+ mia. kr. wasted on failed/overrun IT and infrastructure over 30 years (17 documented cases)
     annualConsultantBn: 13.5,    // 12-15 mia. kr./year on consultants
     avgOverrunPct: 108,          // Danish average
     norwayOverrunPct: 8,         // Norway comparison
